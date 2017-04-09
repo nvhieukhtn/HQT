@@ -24,27 +24,44 @@ namespace HQT
             set { cbColleage.DataSource = value; }
         }
 
-        public int NumberOfProject
-        {
-            get
-            {
-                var count = 0;
-                Int32.TryParse(txtProjectCount.Text, out count);
-                return count;
-            }
+        private List<string> _listProjects;
+        public List<string> ListProjects {
+            get { return _listProjects; }
             set
             {
-                if (value >= 0)
-                {
-                    var text = $"{value}";
-                
-                    txtProjectCount.Text = text;
-                }
+                _listProjects = value;
+                UpdateProjects();
             }
         }
 
+        private void UpdateProjects()
+        {
+            var height = Math.Max(90, 45 * ListProjects.Count);
+            Height = height;
+            if(grbSubject != null)
+                grbSubject.Height = height;
+            if (grbProjects != null)
+                grbProjects.Height = height - 12;
+
+            var index = 0;
+            ListProjects.ForEach(x =>
+            {
+                var projectName = new Label
+                {
+                    Text = x,
+                    Location = new Point(10 , 19 + 35 * index),
+                    Cursor =  Cursors.Hand
+                };
+                index++;
+                if (grbProjects != null)
+                {
+                    grbProjects.Controls.Add(projectName);
+                }
+            });
+        }
         public SubjectBoard()
         {
+            ListProjects = new List<string>();
             InitializeComponent();
         }
     }

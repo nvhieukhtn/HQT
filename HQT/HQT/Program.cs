@@ -16,7 +16,7 @@ namespace HQT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SubjectManager());
+            Application.Run(new ProjectDetail());
         }
     }
 }

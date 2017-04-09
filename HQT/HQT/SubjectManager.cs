@@ -30,22 +30,33 @@ namespace HQT
         {
 
         }
-
+        
         private void SubjectManager_Load(object sender, EventArgs e)
         {
+            UpdateSubjects();
+        }
+
+        private void UpdateSubjects()
+        {
+            var index = 0;
             var listTeacher = new List<string>
             {
                 "Mr. Triết",
                 "Mr. Quân"
             };
-            var index = 0;
+            var listProject = new List<string>
+            {
+                "HQT",
+                "Data Mining",
+                "Algorithms"
+            };
             foreach (var subject in ListSubject)
             {
                 var subjectBoard = new SubjectBoard
                 {
                     SubjectName = subject,
                     ListTeacher = listTeacher,
-                    NumberOfProject = 0
+                    ListProjects = listProject
                 };
                 subjectBoard.Location = new Point(2, 30 + index * subjectBoard.Height);
                 index++;

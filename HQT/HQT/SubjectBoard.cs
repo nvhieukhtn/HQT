@@ -12,21 +12,31 @@ namespace HQT
 {
     public partial class SubjectBoard : UserControl
     {
+        public delegate void SubjectBoardProjectDetailClickedEventHandler(object sender, EventArgs e);
+
+        public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardProjectDetailClicked;
+        private void SubjectBoardProjectDetail_OnClick(object sender, EventArgs e)
+        {
+            if (SubjectBoardProjectDetailClicked != null)
+            {
+                SubjectBoardProjectDetailClicked(this, e);
+            }
+        }
         public string SubjectName
         {
-            get { return txtSubjectName.Text; }
-            set { txtSubjectName.Text = value; }
+            get => txtSubjectName.Text;
+            set => txtSubjectName.Text = value;
         }
 
         public List<string> ListTeacher
         {
-            get { return cbColleage.Items.Cast<string>().ToList(); }
-            set { cbColleage.DataSource = value; }
+            get => cbColleage.Items.Cast<string>().ToList();
+            set => cbColleage.DataSource = value;
         }
 
         private List<string> _listProjects;
         public List<string> ListProjects {
-            get { return _listProjects; }
+            get => _listProjects;
             set
             {
                 _listProjects = value;
@@ -52,6 +62,7 @@ namespace HQT
                     Location = new Point(10 , 19 + 35 * index),
                     Cursor =  Cursors.Hand
                 };
+                projectName.Click += new EventHandler(SubjectBoardProjectDetail_OnClick);
                 index++;
                 if (grbProjects != null)
                 {

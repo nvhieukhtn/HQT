@@ -12,10 +12,13 @@ namespace HQT
 {
     public partial class SubjectManager : Form
     {
+        public static SubjectManager Instance { get; private set; }
         public List<string> ListSubject { get; set; }
+        private List<SubjectBoard> _listSubjectControls { get; set; }
         public SubjectManager()
         {
             InitializeComponent();
+            Instance = this;
             ListSubject = new List<string>
             {
                 "HQT",
@@ -26,19 +29,16 @@ namespace HQT
             };
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         
         private void SubjectManager_Load(object sender, EventArgs e)
         {
-            UpdateSubjects();
+            InitSubjects();
         }
 
-        private void UpdateSubjects()
+        private void InitSubjects()
         {
             var index = 0;
+            _listSubjectControls = new List<SubjectBoard>();
             var listTeacher = new List<string>
             {
                 "Mr. Triết",
@@ -58,15 +58,21 @@ namespace HQT
                     ListTeacher = listTeacher,
                     ListProjects = listProject
                 };
-                subjectBoard.Location = new Point(2, 30 + index * subjectBoard.Height);
+                subjectBoard.Location = new Point(10, 30 + index * subjectBoard.Height);
+                subjectBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
                 index++;
+                subjectBoard.SubjectBoardProjectDetailClicked += 
+                    new SubjectBoard.SubjectBoardProjectDetailClickedEventHandler(ShowProjectDetail);
+                _listSubjectControls.Add(subjectBoard);
                 Controls.Add(subjectBoard);
             }
         }
 
-        private void functionToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowProjectDetail(object sender, EventArgs e)
         {
-
+            var projectDetail = new ProjectDetail();
+            projectDetail.Show();
+            this.Hide();
         }
     }
 }

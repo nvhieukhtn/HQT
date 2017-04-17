@@ -14,9 +14,11 @@ namespace HQT
     public partial class Login : Form
     {
         private bool _isLogin;
+        public static Login Instance { get; private set; }
         public Login()
         {
             InitializeComponent();
+            Instance = this;
             txtConfirmPassword.Visible = false;
             lbConfirmPassword.Visible = false;
             ckRemember.Visible = true;
@@ -46,6 +48,12 @@ namespace HQT
                 lbConfirmPassword.Visible = false;
                 ckRemember.Visible = true;
                 _isLogin = true;
+            }
+            else
+            {
+                var dashboard = new SubjectManager();
+                dashboard.Show();
+                this.Hide();
             }
         }
 

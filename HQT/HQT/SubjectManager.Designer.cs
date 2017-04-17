@@ -87,7 +87,6 @@
             this.functionToolStripMenuItem.Name = "functionToolStripMenuItem";
             this.functionToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.functionToolStripMenuItem.Text = "Chức năng";
-            this.functionToolStripMenuItem.Click += new System.EventHandler(this.functionToolStripMenuItem_Click);
             // 
             // đăngKýĐồÁnToolStripMenuItem
             // 
@@ -145,8 +144,8 @@
             this.Controls.Add(this.menuMain);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuMain;
-            this.MaximizeBox = false;
             this.Name = "SubjectManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý môn học";
             this.Load += new System.EventHandler(this.SubjectManager_Load);
             this.menuMain.ResumeLayout(false);

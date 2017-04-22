@@ -8,13 +8,13 @@ namespace HQT
 {
     public static class StringHelper
     {
-        public static int ToLineNumber(this string source)
+        public static int ToLineNumber(this string source, int lineLength)
         {
             var listLines = source.Split('\n').ToList();
             var numberOfLines = 0;
             listLines.ForEach(line =>
             {
-                var numberOfLocalLine = 1 + line.Length / 120;
+                var numberOfLocalLine = 1 + line.Length / lineLength;
                 numberOfLines += numberOfLocalLine;
             });
             return numberOfLines;

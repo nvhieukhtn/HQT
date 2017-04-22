@@ -1,6 +1,6 @@
 ﻿namespace HQT
 {
-    partial class Practice
+    partial class Topic
     {
         /// <summary> 
         /// Required designer variable.
@@ -41,6 +41,8 @@
             // 
             // grbPractice
             // 
+            this.grbPractice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbPractice.Controls.Add(this.btnRegister);
             this.grbPractice.Controls.Add(this.btnTitle);
             this.grbPractice.Controls.Add(this.grbDetail);
@@ -54,6 +56,7 @@
             // 
             // btnRegister
             // 
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRegister.BackgroundImage = global::HQT.Properties.Resources.register;
             this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -67,6 +70,8 @@
             // 
             // btnTitle
             // 
+            this.btnTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTitle.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTitle.CausesValidation = false;
             this.btnTitle.FlatAppearance.BorderSize = 0;
@@ -80,6 +85,8 @@
             // 
             // grbDetail
             // 
+            this.grbDetail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grbDetail.Controls.Add(this.txtDetail);
             this.grbDetail.Location = new System.Drawing.Point(20, 50);
             this.grbDetail.Name = "grbDetail";
@@ -91,6 +98,8 @@
             // 
             // txtDetail
             // 
+            this.txtDetail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDetail.BackColor = System.Drawing.SystemColors.Menu;
             this.txtDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDetail.Enabled = false;

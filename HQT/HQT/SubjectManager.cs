@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HQT
 {
-    public partial class SubjectManager : Form
+    public partial class SubjectManager : BaseForm
     {
         public static SubjectManager Instance { get; private set; }
         public List<string> ListSubject { get; set; }
@@ -58,7 +58,7 @@ namespace HQT
                     ListTeacher = listTeacher,
                     ListProjects = listProject
                 };
-                subjectBoard.Location = new Point(10, 30 + index * subjectBoard.Height);
+                subjectBoard.Location = new Point(10,55 + index * subjectBoard.Height);
                 subjectBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
                 index++;
                 subjectBoard.SubjectBoardProjectDetailClicked += 
@@ -72,7 +72,14 @@ namespace HQT
         {
             var projectDetail = new ProjectDetail();
             projectDetail.Show();
-            this.Hide();
+            _isClose = false;
+            Close();
+        }
+
+        private void SubjectManager_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_isClose)
+                Login.Instance.Close();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace HQT
 {
-    partial class SubjectManager
+    partial class BaseForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,26 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.statusBar = new HQT.StatusBar();
             this.SuspendLayout();
             // 
-            // SubjectManager
+            // statusBar
+            // 
+            this.statusBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.statusBar.Location = new System.Drawing.Point(17, 4);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(650, 43);
+            this.statusBar.TabIndex = 0;
+            // 
+            // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(684, 411);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "SubjectManager";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý môn học";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SubjectManager_FormClosing);
-            this.Load += new System.EventHandler(this.SubjectManager_Load);
+            this.Controls.Add(this.statusBar);
+            this.Name = "BaseForm";
+            this.Text = "BaseForm";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
+
+        protected StatusBar statusBar;
     }
 }

@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace HQT
 {
-    public partial class ProjectDetail : Form
+    public partial class ProjectDetail : BaseForm
     {
         public static ProjectDetail Instance { get; private set; }
 
         public List<string> ListPractices;
-        private List<Practice> _listPracticeControl;
+        private List<Topic> _listPracticeControl;
         public ProjectDetail()
         {
             ListPractices = new List<string>
@@ -37,7 +37,7 @@ namespace HQT
 
         private void UpdateSubjects()
         {
-            var marginTop = 10;
+            var marginTop = 55;
             foreach (var practiceControl in _listPracticeControl)
             {
                 practiceControl.Location = new Point(5, marginTop);
@@ -57,18 +57,18 @@ namespace HQT
         {
             var index = 0;
             var detail = "Bầu trời chấn động, biển rộng gào thét, lớn vô cùng Chiến Ý Cự Long chiếm giữ không trung, khổng lồ trên Thân Khu, 68 triệu đạo chiến văn lóe ra đoạt ánh mắt huy, cái kia tản mát ra chiến ý, cơ hồ là làm cho mảnh không gian này đều đang run rẩy nhè nhẹ lấy...";
-            _listPracticeControl = new List<Practice>();
+            _listPracticeControl = new List<Topic>();
             foreach (var practice in ListPractices)
             {
-                var practiceBoard = new Practice()
+                var practiceBoard = new Topic()
                 {
                     Title = practice,
                     Detail = detail
                 };
-                practiceBoard.Location = new Point(10, 10 + index * practiceBoard.Height);
+                practiceBoard.Location = new Point(10, 55 + index * practiceBoard.Height);
                 practiceBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
                 index++;
-                practiceBoard.PracticeClicked += new Practice.PracticeClickedEventHandler(ShowDetail);
+                practiceBoard.TopicClicked += new Topic.TopicClickedEventHandler(ShowDetail);
                 _listPracticeControl.Add(practiceBoard);
                 Controls.Add(practiceBoard);
             }
@@ -76,7 +76,8 @@ namespace HQT
 
         private void ProjectDetail_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Login.Instance.Close();
+            if (_isClose)
+                Login.Instance.Close();
         }
     }
 }

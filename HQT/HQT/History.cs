@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace HQT
 {
-    public partial class History : Form
+    public partial class History : BaseForm
     {
         public List<string> ListSubject;
         public List<string> ListAction;
@@ -56,6 +56,12 @@ namespace HQT
                 btnSearch.Enabled = true;
             else
                 btnSearch.Enabled = false;
+        }
+
+        private void History_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_isClose)
+                Login.Instance.Close();
         }
     }
 }

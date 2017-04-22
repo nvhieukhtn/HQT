@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace HQT
 {
-    public partial class Practice : UserControl
+    public partial class Topic : UserControl
     {
-        public delegate void PracticeClickedEventHandler(object sender, EventArgs e);
+        public delegate void TopicClickedEventHandler(object sender, EventArgs e);
 
-        public event PracticeClickedEventHandler PracticeClicked;
+        public event TopicClickedEventHandler TopicClicked;
 
         private bool _collapse = false;
         public string Title
@@ -29,24 +29,41 @@ namespace HQT
             set
             {
                 txtDetail.Text = value;
-                var numberOfLines = txtDetail.Text.ToLineNumber();
+                
+                var numberOfLines = txtDetail.Text.ToLineNumber(120);
                 txtDetail.Height = 15 * numberOfLines;
                 grbDetail.Height = txtDetail.Height + 20;
 
             }
         }
         
-        public Practice()
+        public Topic()
         {
             InitializeComponent();
+            InitDefaultControl();
+        }
+
+        private void InitDefaultControl()
+        {
+            btnTitle.FlatAppearance.MouseOverBackColor = btnTitle.BackColor;
+            btnTitle.FlatAppearance.MouseDownBackColor = btnTitle.BackColor;
+            btnRegister.FlatAppearance.MouseOverBackColor = btnTitle.BackColor;
+            btnRegister.FlatAppearance.MouseDownBackColor = btnRegister.BackColor;
             grbDetail.Visible = false;
             grbPractice.Height = 65;
             Height = 65;
             btnTitle.Click += new EventHandler(Practice_OnClick);
-            grbPractice.Click += new EventHandler(Practice_OnClick);
             lbTitle.Click += new EventHandler(Practice_OnClick);
             grbDetail.Click += new EventHandler(Practice_OnClick);
-            grbPractice.MouseHover += (sender, args) =>
+            btnTitle.MouseHover += (sender, args) =>
+            {
+                Cursor = Cursors.Hand;
+            };
+            lbTitle.MouseHover += (sender, args) =>
+            {
+                Cursor = Cursors.Hand;
+            };
+            grbDetail.MouseHover += (sender, args) =>
             {
                 Cursor = Cursors.Hand;
             };
@@ -71,10 +88,10 @@ namespace HQT
 
         private void Practice_OnClick(object sender, EventArgs e)
         {
-            if (PracticeClicked != null)
+            if (TopicClicked != null)
             {
                 Collapse();
-                PracticeClicked(this, e);
+                TopicClicked(this, e);
             }
         }
     }

@@ -61,6 +61,7 @@
             // 
             this.btnTeacherMore.BackgroundImage = global::HQT.Properties.Resources.info;
             this.btnTeacherMore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnTeacherMore.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTeacherMore.FlatAppearance.BorderSize = 0;
             this.btnTeacherMore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeacherMore.Location = new System.Drawing.Point(318, 57);
@@ -74,6 +75,7 @@
             // 
             this.btnAddProject.BackgroundImage = global::HQT.Properties.Resources.add_project;
             this.btnAddProject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddProject.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddProject.FlatAppearance.BorderSize = 0;
             this.btnAddProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddProject.Location = new System.Drawing.Point(318, 19);

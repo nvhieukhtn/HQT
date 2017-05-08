@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HQT.Shared;
 
 namespace HQT
 {
@@ -16,7 +18,9 @@ namespace HQT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            ApplicationSetting.Load(ConfigurationManager.AppSettings);
+            DependencyResolution.Start();
+            Application.Run(new LoginForm());
         }
     }
 }

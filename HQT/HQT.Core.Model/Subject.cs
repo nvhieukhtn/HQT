@@ -10,8 +10,32 @@ namespace HQT.Core.Model
     {
         public string SubjectName { get; set; }
         public List<Teacher> ListTeachers { get; set; }
-        public List<Student> ListStudents { get; set; }
-
         public List<BaseProject> ListProjects { get; set; }
+
+        public static Subject Test()
+        {
+            var listTeachers = new List<Teacher>
+            {
+                Teacher.Test, 
+                Teacher.Test,
+                Teacher.Test
+            };
+
+            var listProjects = new List<BaseProject>
+            {
+                ProjectForSingle.Test(),
+                ProjectForTeam.Test(),
+                ProjectForSingle.Test(),
+                ProjectForTeam.Test()
+            };
+
+            var subject = new Subject
+            {
+                SubjectName = "Subject name",
+                ListTeachers = listTeachers,
+                ListProjects = listProjects
+            };
+            return subject;
+        }
     }
 }

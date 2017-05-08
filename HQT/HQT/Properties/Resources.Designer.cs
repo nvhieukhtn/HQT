@@ -73,6 +73,56 @@ namespace HQT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_member {
+            get {
+                object obj = ResourceManager.GetObject("add_member", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add_project {
+            get {
+                object obj = ResourceManager.GetObject("add-project", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap delete {
+            get {
+                object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit {
+            get {
+                object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap group {
+            get {
+                object obj = ResourceManager.GetObject("group", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap history {
             get {
                 object obj = ResourceManager.GetObject("history", resourceCulture);
@@ -86,6 +136,16 @@ namespace HQT.Properties {
         internal static System.Drawing.Bitmap home {
             get {
                 object obj = ResourceManager.GetObject("home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap info {
+            get {
+                object obj = ResourceManager.GetObject("info", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -151,6 +211,26 @@ namespace HQT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap save {
+            get {
+                object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap single {
+            get {
+                object obj = ResourceManager.GetObject("single", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap subject {
             get {
                 object obj = ResourceManager.GetObject("subject", resourceCulture);
@@ -159,11 +239,12 @@ namespace HQT.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1412166 Nguyễn Văn Hiếu
-        ///1412170 Nguyễn Thị Thu Hiền
-        ///1412449 Lê Bá Quý
-        ///1412502 Nguyễn Quốc Thảo
-        ///1412543 Nguyễn Thủy Tiên.
+        ///   Looks up a localized string similar to Thành viên :
+        ///       - 1412166 Nguyễn Văn Hiếu
+        ///       - 1412170 Nguyễn Thị Thu Hiền
+        ///       - 1412449 Lê Bá Quý
+        ///       - 1412502 Nguyễn Quốc Thảo
+        ///       - 1412543 Nguyễn Thủy Tiên.
         /// </summary>
         internal static string TeamInformation {
             get {
@@ -172,7 +253,7 @@ namespace HQT.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nhóm 11.
+        ///   Looks up a localized string similar to Nhóm 11 - YES.
         /// </summary>
         internal static string TeamName {
             get {

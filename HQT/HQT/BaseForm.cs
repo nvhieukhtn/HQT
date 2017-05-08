@@ -12,14 +12,14 @@ namespace HQT
 {
     public partial class BaseForm : Form
     {
-        public bool _isClose = true;
+        public bool IsClose = true;
         public BaseForm()
         {
             InitializeComponent();
-            statusBar.HomeClicked += new StatusBar.StatusBarClickedEventHandler(GoHome);
-            statusBar.NextClicked += new StatusBar.StatusBarClickedEventHandler(Next);
-            statusBar.PreviousClicked += new StatusBar.StatusBarClickedEventHandler(Previous);
-            statusBar.LogoutClicked += new StatusBar.StatusBarClickedEventHandler(Logout);
+            statusBar.HomeClicked += new StatusBarUserControl.StatusBarClickedEventHandler(GoHome);
+            statusBar.NextClicked += new StatusBarUserControl.StatusBarClickedEventHandler(Next);
+            statusBar.PreviousClicked += new StatusBarUserControl.StatusBarClickedEventHandler(Previous);
+            statusBar.LogoutClicked += new StatusBarUserControl.StatusBarClickedEventHandler(Logout);
         }
 
         public void Next(object sender, EventArgs e)
@@ -34,13 +34,16 @@ namespace HQT
 
         public void Logout(object sender, EventArgs e)
         {
-            
+            IsClose = false;
+            var login = LoginForm.Instance;
+            login.Show();
+            Close();
         }
 
         public void GoHome(object sender, EventArgs e)
         {
-            _isClose = false;
-            var home = new Home();
+            IsClose = false;
+            var home = new HomeForm();
             home.Show();
             Close();
         }

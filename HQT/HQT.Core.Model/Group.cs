@@ -10,6 +10,6 @@ namespace HQT.Core.Model
     {
         public string GroupName { get; set; }
         public List<Student> Members { get; set; }
-        public int Leader { get; set; }
+        public Student Leader { get; set; }
     }
 }

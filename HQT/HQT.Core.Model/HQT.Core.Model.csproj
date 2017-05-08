@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,9 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="BaseProject.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="Role.cs" />
+    <Compile Include="Status.cs" />
+    <Compile Include="StatusProperties.cs" />
     <Compile Include="Topic.cs" />
     <Compile Include="ProjectForTeam.cs" />
     <Compile Include="ProjectTypes.cs" />
@@ -53,6 +57,7 @@
     <Compile Include="Subject.cs" />
     <Compile Include="Teacher.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusBar = new HQT.StatusBar();
+            this.statusBar = new HQT.StatusBarUserControl();
             this.SuspendLayout();
             // 
             // statusBar
@@ -54,6 +54,6 @@
 
         #endregion
 
-        protected StatusBar statusBar;
+        protected StatusBarUserControl statusBar;
     }
 }

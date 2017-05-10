@@ -35,16 +35,16 @@
             this.btnStatus = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numberGroup = new System.Windows.Forms.NumericUpDown();
+            this.numberTo = new System.Windows.Forms.NumericUpDown();
+            this.numberFrom = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.numberFrom = new System.Windows.Forms.NumericUpDown();
-            this.numberTo = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberFrom)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +68,7 @@
             // timeFrom
             // 
             this.timeFrom.Checked = false;
-            this.timeFrom.CustomFormat = "dd.MM.yyyy HH:ss";
+            this.timeFrom.CustomFormat = "dd.MM.yyyy HH:mm";
             this.timeFrom.Enabled = false;
             this.timeFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.timeFrom.Location = new System.Drawing.Point(73, 19);
@@ -81,7 +81,7 @@
             // timeTo
             // 
             this.timeTo.Checked = false;
-            this.timeTo.CustomFormat = "dd.MM.yyyy HH:ss";
+            this.timeTo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.timeTo.Enabled = false;
             this.timeTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.timeTo.Location = new System.Drawing.Point(239, 19);
@@ -146,6 +146,54 @@
             0,
             0});
             // 
+            // numberTo
+            // 
+            this.numberTo.Enabled = false;
+            this.numberTo.Location = new System.Drawing.Point(240, 56);
+            this.numberTo.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numberTo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numberTo.Name = "numberTo";
+            this.numberTo.ReadOnly = true;
+            this.numberTo.Size = new System.Drawing.Size(120, 20);
+            this.numberTo.TabIndex = 6;
+            this.numberTo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numberFrom
+            // 
+            this.numberFrom.Enabled = false;
+            this.numberFrom.Location = new System.Drawing.Point(73, 56);
+            this.numberFrom.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numberFrom.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numberFrom.Name = "numberFrom";
+            this.numberFrom.ReadOnly = true;
+            this.numberFrom.Size = new System.Drawing.Size(120, 20);
+            this.numberFrom.TabIndex = 6;
+            this.numberFrom.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -182,54 +230,6 @@
             this.label5.TabIndex = 1;
             this.label5.Text = "Đến";
             // 
-            // numberFrom
-            // 
-            this.numberFrom.Enabled = false;
-            this.numberFrom.Location = new System.Drawing.Point(73, 56);
-            this.numberFrom.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numberFrom.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numberFrom.Name = "numberFrom";
-            this.numberFrom.ReadOnly = true;
-            this.numberFrom.Size = new System.Drawing.Size(120, 20);
-            this.numberFrom.TabIndex = 6;
-            this.numberFrom.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numberTo
-            // 
-            this.numberTo.Enabled = false;
-            this.numberTo.Location = new System.Drawing.Point(240, 56);
-            this.numberTo.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numberTo.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numberTo.Name = "numberTo";
-            this.numberTo.ReadOnly = true;
-            this.numberTo.Size = new System.Drawing.Size(120, 20);
-            this.numberTo.TabIndex = 6;
-            this.numberTo.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // ProjectDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,8 +247,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberFrom)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -64,6 +64,18 @@
     <Compile Include="AccountManagerForm.Designer.cs">
       <DependentUpon>AccountManagerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateProjectForm.Designer.cs">
+      <DependentUpon>CreateProjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\TabTopicContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\TabTopicContentUserControl.Designer.cs">
+      <DependentUpon>TabTopicContentUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\AccountUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,6 +166,12 @@
     </Compile>
     <EmbeddedResource Include="AccountManagerForm.resx">
       <DependentUpon>AccountManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateProjectForm.resx">
+      <DependentUpon>CreateProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\TabTopicContentUserControl.resx">
+      <DependentUpon>TabTopicContentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\AccountUserControl.resx">
       <DependentUpon>AccountUserControl.cs</DependentUpon>

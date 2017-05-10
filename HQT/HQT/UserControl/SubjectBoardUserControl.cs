@@ -17,6 +17,7 @@ namespace HQT
 
         public BaseProject CurrentProject;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardProjectDetailClicked;
+        public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardCreateProject;
         private void SubjectBoardProjectDetail_OnClick(object sender, EventArgs e)
         {
             if (SubjectBoardProjectDetailClicked != null)
@@ -92,7 +93,10 @@ namespace HQT
 
         private void btnAddProject_Click(object sender, EventArgs e)
         {
-
+            if (SubjectBoardCreateProject != null)
+            {
+                SubjectBoardCreateProject(this, e);
+            }
         }
     }
 }

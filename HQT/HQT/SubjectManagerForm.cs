@@ -60,6 +60,7 @@ namespace HQT
                 index++;
                 subjectBoard.SubjectBoardProjectDetailClicked += 
                     new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(ShowProjectDetail);
+                subjectBoard.SubjectBoardCreateProject += new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(CreateProjectEvent);
                 _listSubjectControls.Add(subjectBoard);
                 Controls.Add(subjectBoard);
             }
@@ -79,6 +80,14 @@ namespace HQT
         {
             if (IsClose)
                 LoginForm.Instance.Close();
+        }
+
+        private void CreateProjectEvent(object sender, EventArgs e)
+        {
+            var createProjectForm = new CreateProjectForm();
+            createProjectForm.Show();
+            IsClose = false;
+            Close();
         }
     }
 }

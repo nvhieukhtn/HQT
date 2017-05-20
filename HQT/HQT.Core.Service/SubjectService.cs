@@ -14,5 +14,10 @@ namespace HQT.Core.Service
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Subject>> GetListSubjectAsync(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,27 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HQT.Core.Interface.Service;
 using HQT.Core.Model;
+using HQT.Shared;
+using Microsoft.Practices.Unity;
 
 namespace HQT
 {
     public partial class SubjectManagerForm : BaseForm
     {
+        private readonly IUnityContainer _container = DependencyResolution.Container;
+        private readonly ISubjectService _subjectService;
         public static SubjectManagerForm Instance { get; private set; }
-        public List<Subject> ListSubject { get; set; }
-        private List<SubjectBoardUserControl> _listSubjectControls { get; set; }
+        public List<SubjectBoardUserControl> ListSubjectControls { get; set; }
         
         public SubjectManagerForm()
         {
             InitializeComponent();
             Instance = this;
-            ListSubject = PrepareData();
+            _subjectService = _container.Resolve<ISubjectService>();
+            ListSubjectControls = new List<SubjectBoardUserControl>();
         }
 
         
         private void SubjectManager_Load(object sender, EventArgs e)
         {
-            InitSubjects();
+            RenderSubjectToGUIAsync();
         }
 
         private List<Subject> PrepareData()
@@ -47,23 +52,45 @@ namespace HQT
             
             return listSubjects;
         }
-        private void InitSubjects()
+
+        private async Task<List<Subject>> GetListSubjects()
         {
-            var index = 0;
-            _listSubjectControls = new List<SubjectBoardUserControl>();
+            var userId = ApplicationSetting.CurrentUser.Id;
+#if !DEBUG
+            var listSubjects = await _subjectService.GetListSubjectAsync(userId);
+#else
+            var listSubjects = PrepareData();
+#endif
+
+            if(listSubjects == null)
+                listSubjects = new List<Subject>();
+
+            return listSubjects;
+        }
+
+
+        private async Task RenderSubjectToGUIAsync()
+        {
+            var listSubjects = await GetListSubjects();
             
-            foreach (var subject in ListSubject)
+            foreach (var subject in listSubjects)
             {
-                var subjectBoard = new SubjectBoardUserControl {Data = subject};
-                subjectBoard.Location = new Point(10,55 + index * subjectBoard.Height);
-                subjectBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
-                index++;
-                subjectBoard.SubjectBoardProjectDetailClicked += 
-                    new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(ShowProjectDetail);
-                subjectBoard.SubjectBoardCreateProject += new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(CreateProjectEvent);
-                _listSubjectControls.Add(subjectBoard);
+                var subjectBoard = CreateSubjectBoardUserControl(subject);
+                ListSubjectControls.Add(subjectBoard);
                 Controls.Add(subjectBoard);
             }
+        }
+
+        private SubjectBoardUserControl CreateSubjectBoardUserControl(Subject subject)
+        {
+            var index = ListSubjectControls.Count;
+            var subjectBoard = new SubjectBoardUserControl { Data = subject };
+            subjectBoard.Location = new Point(10, 55 + index * subjectBoard.Height);
+            subjectBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
+            subjectBoard.SubjectBoardProjectDetailClicked +=
+                new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(ShowProjectDetail);
+            subjectBoard.SubjectBoardCreateProject += new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(CreateProjectEvent);
+            return subjectBoard;
         }
 
         private void ShowProjectDetail(object sender, EventArgs e)

@@ -94,9 +94,35 @@ namespace HQT
             IsEditing = true;
         }
 
-        private void SaveAccountEvent(object sender, EventArgs e)
+        private async void SaveAccountEvent(object sender, EventArgs e)
         {
             IsEditing = false;
+            var target = (AccountUserControl)sender;
+            var user = target.Data;
+            if (user != null)
+            {
+                var userId = user.Id;
+#if !DEBUG
+                var result = await _accountService.UpdateAccountAsync(user);
+#else
+                var result = true;
+#endif
+                if (result)
+                {
+                    var act = MessageBox.Show(this, "Cập nhật tài khoản thành công", "Thông báo", MessageBoxButtons.OK);
+                    if (act == DialogResult.OK)
+                    {
+                        IsClose = false;
+                        var accountManagerForm = new AccountManagerForm();
+                        accountManagerForm.Show();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    var act = MessageBox.Show(this, "Cập nhật tài khoản thất bại", "Thông báo", MessageBoxButtons.OK);
+                }
+            }
         }
 
         private async void DeleteAccountEvent(object sender, EventArgs e)

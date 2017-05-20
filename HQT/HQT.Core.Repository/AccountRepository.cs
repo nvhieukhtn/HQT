@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using HQT.Core.Interface.Repository;
 using HQT.Core.Model;
@@ -26,13 +24,18 @@ namespace HQT.Core.Repository
                     var role = result["Role"].GetString();
                     var usernameResult = result["UserName"].GetString();
                     //var passwordResult = result["Password"].GetString();
-
+#if DEBUG
+                    return Student.Test;
+#endif
                     if (string.Equals(role, Role.Teacher, StringComparison.CurrentCultureIgnoreCase))
-                        return new Teacher();
+                        return Teacher.Default;
                     if (string.Equals(role, Role.Administrator, StringComparison.CurrentCultureIgnoreCase))
-                        return new Administrator();
-                    return new Student();
+                        return Administrator.Default;
+                    return Student.Default;
                 }
+#if DEBUG
+                return Student.Test;
+#endif
                 return Student.Default;
             }
         }
@@ -71,7 +74,6 @@ namespace HQT.Core.Repository
                 listAccounts.Add(Administrator.Test);
                 listAccounts.Add(Teacher.Test);
 #endif
-
                 return listAccounts;
             }
         }

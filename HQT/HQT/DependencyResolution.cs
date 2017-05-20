@@ -25,6 +25,7 @@ namespace HQT
         {
             container.RegisterType<IAccountRepository, AccountRepository>();
             container.RegisterType<IAccountService, AccountService>();
+            container.RegisterType<ISubjectService, SubjectService>();
         }
 
         public static IUnityContainer Container => _container;

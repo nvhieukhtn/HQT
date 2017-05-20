@@ -22,8 +22,8 @@ namespace HQT
         {
             if (SubjectBoardProjectDetailClicked != null)
             {
-                var obj = (ProjectItemUserControl) sender;
-                CurrentProject = obj.Data;
+                var target = (ProjectItemUserControl) sender;
+                CurrentProject = target.Data;
                 SubjectBoardProjectDetailClicked(this, e);
             }
         }

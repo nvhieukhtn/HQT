@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using HQT.Core.Interface.Service;
 using HQT.Properties;
+using HQT.Shared;
 using Microsoft.Practices.Unity;
 
 namespace HQT
@@ -25,6 +26,7 @@ namespace HQT
             var result = await _accountService.LoginAsync(username, password);
             if (result != null)
             {
+                ApplicationSetting.CurrentUser = result;
                 var dashboard = new HomeForm();
                 dashboard.Show();
                 this.Hide();

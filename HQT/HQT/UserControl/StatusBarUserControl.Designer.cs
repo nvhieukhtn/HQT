@@ -32,10 +32,13 @@
             this.picLogout = new System.Windows.Forms.PictureBox();
             this.picPrevious = new System.Windows.Forms.PictureBox();
             this.picNext = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtFullName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picHome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPrevious)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // picHome
@@ -88,10 +91,35 @@
             this.picNext.TabIndex = 0;
             this.picNext.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::HQT.Properties.Resources.account;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(246, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // txtFullName
+            // 
+            this.txtFullName.BackColor = System.Drawing.SystemColors.Control;
+            this.txtFullName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtFullName.Cursor = System.Windows.Forms.Cursors.No;
+            this.txtFullName.Enabled = false;
+            this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtFullName.Location = new System.Drawing.Point(282, 13);
+            this.txtFullName.Name = "txtFullName";
+            this.txtFullName.ReadOnly = true;
+            this.txtFullName.Size = new System.Drawing.Size(161, 14);
+            this.txtFullName.TabIndex = 2;
+            // 
             // StatusBarUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtFullName);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.picLogout);
             this.Controls.Add(this.picNext);
             this.Controls.Add(this.picPrevious);
@@ -102,7 +130,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPrevious)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picNext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -112,5 +142,7 @@
         private System.Windows.Forms.PictureBox picLogout;
         private System.Windows.Forms.PictureBox picPrevious;
         private System.Windows.Forms.PictureBox picNext;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtFullName;
     }
 }

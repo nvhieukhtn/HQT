@@ -57,12 +57,12 @@ namespace HQT
 
         private void Register(object sender, EventArgs e)
         {
-            var obj = (TopicUserControl) sender;
-            if (obj != null)
+            var target = (TopicUserControl) sender;
+            if (target != null)
             {
                 var topicRegister = new TopicRegisterForm
                 {
-                    Data = obj.Data
+                    Data = target.Data
                 };
                 IsClose = false;
                 topicRegister.Show();

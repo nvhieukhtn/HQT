@@ -48,9 +48,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(684, 411);
             this.Controls.Add(this.btnAddAccount);
             this.Name = "AccountManagerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý tài khoản";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AccountManagerForm_FormClosing);
             this.Load += new System.EventHandler(this.AccountManagerForm_Load);

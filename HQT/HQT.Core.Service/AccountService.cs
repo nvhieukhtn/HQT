@@ -28,5 +28,20 @@ namespace HQT.Core.Service
             var result = await _accountRepository.GetListAccountAsync(userId);
             return result;
         }
+
+        public Task<bool> CreateAccountAsync(User account)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DeleteAccountAsync(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> UpdateAccountAsync(User account)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

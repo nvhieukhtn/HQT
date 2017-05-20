@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HQT.Shared;
 
 namespace HQT
 {
@@ -16,6 +17,7 @@ namespace HQT
         public BaseForm()
         {
             InitializeComponent();
+            //statusBar.FullName = ApplicationSetting.CurrentUser.FullName;
             statusBar.HomeClicked += new StatusBarUserControl.StatusBarClickedEventHandler(GoHome);
             statusBar.NextClicked += new StatusBarUserControl.StatusBarClickedEventHandler(Next);
             statusBar.PreviousClicked += new StatusBarUserControl.StatusBarClickedEventHandler(Previous);

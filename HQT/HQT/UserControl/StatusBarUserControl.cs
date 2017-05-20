@@ -14,6 +14,11 @@ namespace HQT
     {
         public delegate void StatusBarClickedEventHandler(object sender, EventArgs e);
 
+        public string FullName
+        {
+            get => txtFullName.Text;
+            set => txtFullName.Text = value;
+        }
         public event StatusBarClickedEventHandler HomeClicked;
         public event StatusBarClickedEventHandler PreviousClicked;
         public event StatusBarClickedEventHandler NextClicked;

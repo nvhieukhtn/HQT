@@ -11,5 +11,8 @@ namespace HQT.Core.Interface.Service
     {
         Task<User> LoginAsync(string username, string password);
         Task<List<User>> GetListAccountAsync(Guid userId);
+        Task<bool> CreateAccountAsync(User account);
+        Task<bool> DeleteAccountAsync(Guid userId);
+        Task<bool> UpdateAccountAsync(User account);
     }
 }

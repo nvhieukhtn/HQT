@@ -68,8 +68,8 @@ namespace HQT
 
         private void ShowProjectDetail(object sender, EventArgs e)
         {
-            var obj = (SubjectBoardUserControl) sender;
-            var currentProject = obj.CurrentProject;
+            var target = (SubjectBoardUserControl) sender;
+            var currentProject = target.CurrentProject;
             var projectDetail = new ProjectDetailForm(currentProject);
             projectDetail.Show();
             IsClose = false;
@@ -85,6 +85,8 @@ namespace HQT
         private void CreateProjectEvent(object sender, EventArgs e)
         {
             var createProjectForm = new CreateProjectForm();
+            var target = (SubjectBoardUserControl)sender;
+            createProjectForm.Data = target.Data;
             createProjectForm.Show();
             IsClose = false;
             Close();

@@ -17,6 +17,7 @@ namespace HQT
     {
         public delegate void ProjectItemClickedEventHandler(object sender, EventArgs e);
         public event ProjectItemClickedEventHandler ProjectItemClicked;
+        public event ProjectItemClickedEventHandler ProjectDeleteEvent;
         public ProjectItemUserControl()
         {
             InitializeComponent();
@@ -48,6 +49,12 @@ namespace HQT
         {
             if (ProjectItemClicked != null)
                 ProjectItemClicked(this, e);
+        }
+
+        private void btnDeleteProject_Click(object sender, EventArgs e)
+        {
+            if (ProjectDeleteEvent != null)
+                ProjectDeleteEvent(this, e);
         }
     }
 }

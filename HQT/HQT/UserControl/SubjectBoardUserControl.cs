@@ -18,6 +18,7 @@ namespace HQT
         public BaseProject CurrentProject;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardProjectDetailClicked;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardCreateProject;
+        public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardDeleteProject;
         private void SubjectBoardProjectDetail_OnClick(object sender, EventArgs e)
         {
             if (SubjectBoardProjectDetailClicked != null)
@@ -62,7 +63,10 @@ namespace HQT
                     Data = x,
                     Location = new Point(10, 19 + 35 * index)
                 };
-                project.ProjectItemClicked += new ProjectItemUserControl.ProjectItemClickedEventHandler(SubjectBoardProjectDetail_OnClick);
+                project.ProjectItemClicked +=
+                    new ProjectItemUserControl.ProjectItemClickedEventHandler(SubjectBoardProjectDetail_OnClick);
+                project.ProjectDeleteEvent +=
+                    new ProjectItemUserControl.ProjectItemClickedEventHandler(DeleteProject_Click);
                 index++;
                 if (grbProjects != null)
                 {
@@ -97,6 +101,15 @@ namespace HQT
             {
                 SubjectBoardCreateProject(this, e);
             }
+        }
+
+        private void DeleteProject_Click(object sender, EventArgs e)
+        {
+            var target = (ProjectItemUserControl) sender;
+#if DEBUG
+            var id = target.Data.Id;
+            MessageBox.Show($"Xóa đồ án id = {id.ToString()}", "Xóa đồ án", MessageBoxButtons.OK);
+#endif
         }
     }
 }

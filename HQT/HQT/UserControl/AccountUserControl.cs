@@ -18,7 +18,17 @@ namespace HQT
         public AccountClickedEventHandler DeleteAccountEvent;
         public AccountClickedEventHandler EditAccountEvent;
         public AccountClickedEventHandler SaveAccountEvent;
+        private bool _editable;
 
+        public bool Editable
+        {
+            get => _editable;
+            set
+            {
+                _editable = value;
+                btnEdit.Visible = _editable;
+            }
+        }
         private bool _isEdit = false;
 
         public bool IsEdit

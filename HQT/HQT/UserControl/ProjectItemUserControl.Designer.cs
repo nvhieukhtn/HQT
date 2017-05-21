@@ -67,6 +67,7 @@
             this.btnDeleteProject.Size = new System.Drawing.Size(20, 20);
             this.btnDeleteProject.TabIndex = 2;
             this.btnDeleteProject.UseVisualStyleBackColor = true;
+            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
             // 
             // ProjectItemUserControl
             // 

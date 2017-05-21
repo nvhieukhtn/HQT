@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using HQT.Core.Interface.Service;
 using HQT.Core.Model;
 using HQT.Shared;
+using Microsoft.Practices.ObjectBuilder2;
 using Microsoft.Practices.Unity;
 
 namespace HQT
@@ -89,6 +90,7 @@ namespace HQT
             var account = Student.Default;
             var accountControl = CreateAccountUsercontrol(account);
             accountControl.IsEdit = true;
+            ListAccountUserControls.Where(x => x.Data.Id != accountControl.Data.Id).ForEach(x => x.Editable = false);
             Controls.Add(accountControl);
             ListAccountUserControls.Add(accountControl);
             IsEditing = true;
@@ -98,30 +100,14 @@ namespace HQT
         {
             IsEditing = false;
             var target = (AccountUserControl)sender;
+            ListAccountUserControls.Where(x => x.Data.Id != target.Data.Id).ForEach(x => x.Editable = true);
             var user = target.Data;
             if (user != null)
             {
                 var userId = user.Id;
 #if !DEBUG
                 var result = await _accountService.UpdateAccountAsync(user);
-#else
-                var result = true;
 #endif
-                if (result)
-                {
-                    var act = MessageBox.Show(this, "Cập nhật tài khoản thành công", "Thông báo", MessageBoxButtons.OK);
-                    if (act == DialogResult.OK)
-                    {
-                        IsClose = false;
-                        var accountManagerForm = new AccountManagerForm();
-                        accountManagerForm.Show();
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    var act = MessageBox.Show(this, "Cập nhật tài khoản thất bại", "Thông báo", MessageBoxButtons.OK);
-                }
             }
         }
 
@@ -134,30 +120,15 @@ namespace HQT
                 var userId = user.Id;
 #if !DEBUG
                 var result = await _accountService.DeleteAccountAsync(userId);
-#else
-                var result = true;
 #endif
-                if (result)
-                {
-                    var act = MessageBox.Show(this, "Xóa tài khoản thành công", "Thông báo", MessageBoxButtons.OK);
-                    if (act == DialogResult.OK)
-                    {
-                        IsClose = false;
-                        var accountManagerForm = new AccountManagerForm();
-                        accountManagerForm.Show();
-                        this.Close();
-                    }
-                }
-                else
-                {
-                    var act = MessageBox.Show(this, "Xóa tài khoản thất bại", "Thông báo", MessageBoxButtons.OK);
-                }
             }
         }
 
         private void EditAccountEvent(object sender, EventArgs e)
         {
             IsEditing = true;
+            var target = (AccountUserControl) sender;
+            ListAccountUserControls.Where(x=>x.Data.Id != target.Data.Id).ForEach(x=>x.Editable = false);
         }
     }
 }

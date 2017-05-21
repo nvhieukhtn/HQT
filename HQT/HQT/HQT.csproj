@@ -58,6 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AccountDetailForm.Designer.cs">
+      <DependentUpon>AccountDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AccountManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     <Compile Include="SubjectManagerForm.Designer.cs">
       <DependentUpon>SubjectManagerForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AccountDetailForm.resx">
+      <DependentUpon>AccountDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AccountManagerForm.resx">
       <DependentUpon>AccountManagerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +317,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\avatar.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

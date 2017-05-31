@@ -44,7 +44,6 @@
     <Compile Include="DataAccess.cs" />
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="MSSQL\SqlDataAccess.cs" />
-    <Compile Include="ProjectRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectRepository.cs" />
   </ItemGroup>

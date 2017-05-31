@@ -32,8 +32,8 @@ namespace HQT
                 var team = _data as ProjectForTeam;
                 if (team != null)
                 {
-                    numberFrom.Value = team.LowerThreshold;
                     numberTo.Value = team.UpperThreshold;
+                    numberFrom.Value = 1;
                 }
                 else
                 {

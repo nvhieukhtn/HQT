@@ -38,9 +38,7 @@
             this.cbAction = new System.Windows.Forms.ComboBox();
             this.cbType = new System.Windows.Forms.ComboBox();
             this.cbSubject = new System.Windows.Forms.ComboBox();
-            this.dgvResult = new System.Windows.Forms.DataGridView();
             this.grbController.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.SuspendLayout();
             // 
             // grbController
@@ -148,23 +146,11 @@
             this.cbSubject.TabIndex = 0;
             this.cbSubject.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // dgvResult
-            // 
-            this.dgvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResult.Location = new System.Drawing.Point(12, 158);
-            this.dgvResult.Name = "dgvResult";
-            this.dgvResult.Size = new System.Drawing.Size(660, 241);
-            this.dgvResult.TabIndex = 1;
-            // 
             // HistoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 411);
-            this.Controls.Add(this.dgvResult);
             this.Controls.Add(this.grbController);
             this.MaximizeBox = false;
             this.Name = "HistoryForm";
@@ -172,11 +158,9 @@
             this.Text = "Lịch sử đăng ký";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.History_FormClosing);
             this.Controls.SetChildIndex(this.grbController, 0);
-            this.Controls.SetChildIndex(this.dgvResult, 0);
             this.Controls.SetChildIndex(this.statusBar, 0);
             this.grbController.ResumeLayout(false);
             this.grbController.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -191,7 +175,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbAction;
         private System.Windows.Forms.ComboBox cbType;
-        private System.Windows.Forms.DataGridView dgvResult;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSearch;
     }

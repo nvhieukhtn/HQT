@@ -35,7 +35,9 @@ namespace HQT.Core.Repository
             }
         }
 
-        public async Task<List<User>> GetListAccountAsync(Guid userId)
+
+
+        public async Task<List<User>> GetListAccountAsync()
         {
             using (var db = DataAccessFactory.CreateDataAccess("sp_User_GetAll"))
             {
@@ -59,6 +61,11 @@ namespace HQT.Core.Repository
 
                 return listAccounts;
             }
+        }
+
+        public Task<User> GetAccountDetailAsync(Guid userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

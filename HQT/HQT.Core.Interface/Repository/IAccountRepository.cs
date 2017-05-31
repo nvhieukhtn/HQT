@@ -11,6 +11,7 @@ namespace HQT.Core.Interface.Repository
     public interface IAccountRepository
     {
         Task<User> LoginAsync(string username, string password);
-        Task<List<User>> GetListAccountAsync(Guid userId);
+        Task<List<User>> GetListAccountAsync();
+        Task<User> GetAccountDetailAsync(Guid userId);
     }
 }

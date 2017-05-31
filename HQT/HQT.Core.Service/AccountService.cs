@@ -23,9 +23,14 @@ namespace HQT.Core.Service
             return result;
         }
 
-        public async Task<List<User>> GetListAccountAsync(Guid userId)
+        public Task<User> GetUserDetailAsync(Guid userId)
         {
-            var result = await _accountRepository.GetListAccountAsync(userId);
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<User>> GetListAccountAsync()
+        {
+            var result = await _accountRepository.GetListAccountAsync();
             return result;
         }
 

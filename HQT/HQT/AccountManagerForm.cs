@@ -53,7 +53,7 @@ namespace HQT
             ListAccountUserControls = new List<AccountUserControl>();
         }
 
-        private async Task RenderAccountToGUIAsync()
+        private async Task RenderAccountToGuiAsync()
         {
             var listAccounts = await GetListAccountAsync();
             foreach (var account in listAccounts)
@@ -66,7 +66,7 @@ namespace HQT
 
         private async Task<List<User>> GetListAccountAsync()
         {
-            var listAccounts = await _accountService.GetListAccountAsync(ApplicationSetting.CurrentUser.Id);
+            var listAccounts = await _accountService.GetListAccountAsync();
 
             if(listAccounts == null)
                 listAccounts = new List<User>();
@@ -82,7 +82,7 @@ namespace HQT
 
         private async void AccountManagerForm_Load(object sender, EventArgs e)
         {
-            await RenderAccountToGUIAsync();
+            await RenderAccountToGuiAsync();
         }
 
         private void btnAddAccount_Click(object sender, EventArgs e)
@@ -105,9 +105,7 @@ namespace HQT
             if (user != null)
             {
                 var userId = user.Id;
-#if !DEBUG
                 var result = await _accountService.UpdateAccountAsync(user);
-#endif
             }
         }
 
@@ -118,9 +116,7 @@ namespace HQT
             if (user != null)
             {
                 var userId = user.Id;
-#if !DEBUG
                 var result = await _accountService.DeleteAccountAsync(userId);
-#endif
             }
         }
 

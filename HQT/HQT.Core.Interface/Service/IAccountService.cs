@@ -10,7 +10,8 @@ namespace HQT.Core.Interface.Service
     public interface IAccountService
     {
         Task<User> LoginAsync(string username, string password);
-        Task<List<User>> GetListAccountAsync(Guid userId);
+        Task<User> GetUserDetailAsync(Guid userId);
+        Task<List<User>> GetListAccountAsync();
         Task<bool> CreateAccountAsync(User account);
         Task<bool> DeleteAccountAsync(Guid userId);
         Task<bool> UpdateAccountAsync(User account);

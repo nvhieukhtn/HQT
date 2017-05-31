@@ -19,10 +19,8 @@ namespace HQT
             set
             {
                 _isPersonalProject = value;
-                lbNumberPeopleMax.Visible = !_isPersonalProject;
                 lbNumberPeopleMin.Visible = !_isPersonalProject;
                 numberPeopleMax.Visible = !_isPersonalProject;
-                numberPeopleMin.Visible = !_isPersonalProject;
             }
         }
         public Subject Data { get; set; }
@@ -119,7 +117,6 @@ namespace HQT
             }
             else
             {
-                var numberMinPerson = (int)numberPeopleMin.Value;
                 var numberMaxPerson = (int) numberPeopleMax.Value;
                 var project = new ProjectForTeam
                 {
@@ -128,8 +125,7 @@ namespace HQT
                     To = dateTo,
                     ProjectName = projectName,
                     Limit = limit,
-                    UpperThreshold =  numberMaxPerson,
-                    LowerThreshold = numberMinPerson
+                    UpperThreshold =  numberMaxPerson
                 };
                 return project;
             }

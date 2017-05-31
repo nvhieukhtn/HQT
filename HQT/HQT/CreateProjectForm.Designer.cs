@@ -34,12 +34,10 @@
             this.radioGroup = new System.Windows.Forms.RadioButton();
             this.numberGroup = new System.Windows.Forms.NumericUpDown();
             this.numberPeopleMax = new System.Windows.Forms.NumericUpDown();
-            this.numberPeopleMin = new System.Windows.Forms.NumericUpDown();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.btnAddTopic = new System.Windows.Forms.Button();
             this.txtProjectName = new System.Windows.Forms.TextBox();
-            this.lbNumberPeopleMax = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbGroupNumber = new System.Windows.Forms.Label();
             this.lbNumberPeopleMin = new System.Windows.Forms.Label();
@@ -51,7 +49,6 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberPeopleMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberPeopleMin)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -61,12 +58,10 @@
             this.groupBox1.Controls.Add(this.radioGroup);
             this.groupBox1.Controls.Add(this.numberGroup);
             this.groupBox1.Controls.Add(this.numberPeopleMax);
-            this.groupBox1.Controls.Add(this.numberPeopleMin);
             this.groupBox1.Controls.Add(this.dtTo);
             this.groupBox1.Controls.Add(this.dtFrom);
             this.groupBox1.Controls.Add(this.btnAddTopic);
             this.groupBox1.Controls.Add(this.txtProjectName);
-            this.groupBox1.Controls.Add(this.lbNumberPeopleMax);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lbGroupNumber);
             this.groupBox1.Controls.Add(this.lbNumberPeopleMin);
@@ -134,7 +129,7 @@
             // 
             // numberPeopleMax
             // 
-            this.numberPeopleMax.Location = new System.Drawing.Point(539, 72);
+            this.numberPeopleMax.Location = new System.Drawing.Point(450, 72);
             this.numberPeopleMax.Maximum = new decimal(new int[] {
             20,
             0,
@@ -149,28 +144,6 @@
             this.numberPeopleMax.Size = new System.Drawing.Size(38, 20);
             this.numberPeopleMax.TabIndex = 5;
             this.numberPeopleMax.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // numberPeopleMin
-            // 
-            this.numberPeopleMin.Location = new System.Drawing.Point(450, 72);
-            this.numberPeopleMin.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numberPeopleMin.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numberPeopleMin.Name = "numberPeopleMin";
-            this.numberPeopleMin.Size = new System.Drawing.Size(38, 20);
-            this.numberPeopleMin.TabIndex = 5;
-            this.numberPeopleMin.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -217,15 +190,6 @@
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.Size = new System.Drawing.Size(523, 20);
             this.txtProjectName.TabIndex = 1;
-            // 
-            // lbNumberPeopleMax
-            // 
-            this.lbNumberPeopleMax.AutoSize = true;
-            this.lbNumberPeopleMax.Location = new System.Drawing.Point(500, 76);
-            this.lbNumberPeopleMax.Name = "lbNumberPeopleMax";
-            this.lbNumberPeopleMax.Size = new System.Drawing.Size(27, 13);
-            this.lbNumberPeopleMax.TabIndex = 0;
-            this.lbNumberPeopleMax.Text = "Đến";
             // 
             // label3
             // 
@@ -323,7 +287,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberPeopleMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberPeopleMin)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -341,8 +304,6 @@
         private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numberPeopleMax;
-        private System.Windows.Forms.NumericUpDown numberPeopleMin;
-        private System.Windows.Forms.Label lbNumberPeopleMax;
         private System.Windows.Forms.Label lbNumberPeopleMin;
         private System.Windows.Forms.Label lbGroupNumber;
         private System.Windows.Forms.NumericUpDown numberGroup;

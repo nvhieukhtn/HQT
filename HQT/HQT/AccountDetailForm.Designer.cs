@@ -29,8 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnChangePassword = new System.Windows.Forms.Button();
+            this.btnChangeAvatar = new System.Windows.Forms.Button();
             this.btnEditAddress = new System.Windows.Forms.Button();
             this.btnEditPhone = new System.Windows.Forms.Button();
+            this.btnSavePhone = new System.Windows.Forms.Button();
+            this.btnSaveAddress = new System.Windows.Forms.Button();
+            this.btnSaveFullname = new System.Windows.Forms.Button();
             this.btnEditFullname = new System.Windows.Forms.Button();
             this.picAvatar = new System.Windows.Forms.PictureBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -45,14 +50,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnSaveFullname = new System.Windows.Forms.Button();
-            this.btnSavePhone = new System.Windows.Forms.Button();
-            this.btnSaveAddress = new System.Windows.Forms.Button();
-            this.btnChangeAvatar = new System.Windows.Forms.Button();
-            this.btnChangePassword = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
             this.SuspendLayout();
+            // 
+            // statusBar
+            // 
+            this.statusBar.Load += new System.EventHandler(this.statusBar_Load);
             // 
             // groupBox1
             // 
@@ -84,6 +88,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin tài khoản";
             // 
+            // btnChangePassword
+            // 
+            this.btnChangePassword.Location = new System.Drawing.Point(16, 242);
+            this.btnChangePassword.Name = "btnChangePassword";
+            this.btnChangePassword.Size = new System.Drawing.Size(116, 23);
+            this.btnChangePassword.TabIndex = 5;
+            this.btnChangePassword.Text = "Đổi mật khẩu";
+            this.btnChangePassword.UseVisualStyleBackColor = true;
+            // 
+            // btnChangeAvatar
+            // 
+            this.btnChangeAvatar.Location = new System.Drawing.Point(45, 185);
+            this.btnChangeAvatar.Name = "btnChangeAvatar";
+            this.btnChangeAvatar.Size = new System.Drawing.Size(63, 24);
+            this.btnChangeAvatar.TabIndex = 5;
+            this.btnChangeAvatar.Text = "Thay đổi";
+            this.btnChangeAvatar.UseVisualStyleBackColor = true;
+            // 
             // btnEditAddress
             // 
             this.btnEditAddress.BackgroundImage = global::HQT.Properties.Resources.edit;
@@ -109,6 +131,48 @@
             this.btnEditPhone.TabIndex = 4;
             this.btnEditPhone.UseVisualStyleBackColor = true;
             this.btnEditPhone.Click += new System.EventHandler(this.btnEditPhone_Click);
+            // 
+            // btnSavePhone
+            // 
+            this.btnSavePhone.BackgroundImage = global::HQT.Properties.Resources.save;
+            this.btnSavePhone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSavePhone.FlatAppearance.BorderSize = 0;
+            this.btnSavePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSavePhone.Location = new System.Drawing.Point(541, 203);
+            this.btnSavePhone.Name = "btnSavePhone";
+            this.btnSavePhone.Size = new System.Drawing.Size(20, 20);
+            this.btnSavePhone.TabIndex = 4;
+            this.btnSavePhone.UseVisualStyleBackColor = true;
+            this.btnSavePhone.Visible = false;
+            this.btnSavePhone.Click += new System.EventHandler(this.btnSavePhone_Click);
+            // 
+            // btnSaveAddress
+            // 
+            this.btnSaveAddress.BackgroundImage = global::HQT.Properties.Resources.save;
+            this.btnSaveAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSaveAddress.FlatAppearance.BorderSize = 0;
+            this.btnSaveAddress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAddress.Location = new System.Drawing.Point(541, 244);
+            this.btnSaveAddress.Name = "btnSaveAddress";
+            this.btnSaveAddress.Size = new System.Drawing.Size(20, 20);
+            this.btnSaveAddress.TabIndex = 4;
+            this.btnSaveAddress.UseVisualStyleBackColor = true;
+            this.btnSaveAddress.Visible = false;
+            this.btnSaveAddress.Click += new System.EventHandler(this.btnSaveAddress_Click);
+            // 
+            // btnSaveFullname
+            // 
+            this.btnSaveFullname.BackgroundImage = global::HQT.Properties.Resources.save;
+            this.btnSaveFullname.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSaveFullname.FlatAppearance.BorderSize = 0;
+            this.btnSaveFullname.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveFullname.Location = new System.Drawing.Point(541, 126);
+            this.btnSaveFullname.Name = "btnSaveFullname";
+            this.btnSaveFullname.Size = new System.Drawing.Size(20, 20);
+            this.btnSaveFullname.TabIndex = 4;
+            this.btnSaveFullname.UseVisualStyleBackColor = true;
+            this.btnSaveFullname.Visible = false;
+            this.btnSaveFullname.Click += new System.EventHandler(this.btnSaveFullname_Click);
             // 
             // btnEditFullname
             // 
@@ -234,66 +298,6 @@
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên tài khoản";
-            // 
-            // btnSaveFullname
-            // 
-            this.btnSaveFullname.BackgroundImage = global::HQT.Properties.Resources.save;
-            this.btnSaveFullname.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSaveFullname.FlatAppearance.BorderSize = 0;
-            this.btnSaveFullname.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveFullname.Location = new System.Drawing.Point(541, 126);
-            this.btnSaveFullname.Name = "btnSaveFullname";
-            this.btnSaveFullname.Size = new System.Drawing.Size(20, 20);
-            this.btnSaveFullname.TabIndex = 4;
-            this.btnSaveFullname.UseVisualStyleBackColor = true;
-            this.btnSaveFullname.Visible = false;
-            this.btnSaveFullname.Click += new System.EventHandler(this.btnSaveFullname_Click);
-            // 
-            // btnSavePhone
-            // 
-            this.btnSavePhone.BackgroundImage = global::HQT.Properties.Resources.save;
-            this.btnSavePhone.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSavePhone.FlatAppearance.BorderSize = 0;
-            this.btnSavePhone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSavePhone.Location = new System.Drawing.Point(541, 203);
-            this.btnSavePhone.Name = "btnSavePhone";
-            this.btnSavePhone.Size = new System.Drawing.Size(20, 20);
-            this.btnSavePhone.TabIndex = 4;
-            this.btnSavePhone.UseVisualStyleBackColor = true;
-            this.btnSavePhone.Visible = false;
-            this.btnSavePhone.Click += new System.EventHandler(this.btnSavePhone_Click);
-            // 
-            // btnSaveAddress
-            // 
-            this.btnSaveAddress.BackgroundImage = global::HQT.Properties.Resources.save;
-            this.btnSaveAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSaveAddress.FlatAppearance.BorderSize = 0;
-            this.btnSaveAddress.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAddress.Location = new System.Drawing.Point(541, 244);
-            this.btnSaveAddress.Name = "btnSaveAddress";
-            this.btnSaveAddress.Size = new System.Drawing.Size(20, 20);
-            this.btnSaveAddress.TabIndex = 4;
-            this.btnSaveAddress.UseVisualStyleBackColor = true;
-            this.btnSaveAddress.Visible = false;
-            this.btnSaveAddress.Click += new System.EventHandler(this.btnSaveAddress_Click);
-            // 
-            // btnChangeAvatar
-            // 
-            this.btnChangeAvatar.Location = new System.Drawing.Point(45, 185);
-            this.btnChangeAvatar.Name = "btnChangeAvatar";
-            this.btnChangeAvatar.Size = new System.Drawing.Size(63, 24);
-            this.btnChangeAvatar.TabIndex = 5;
-            this.btnChangeAvatar.Text = "Thay đổi";
-            this.btnChangeAvatar.UseVisualStyleBackColor = true;
-            // 
-            // btnChangePassword
-            // 
-            this.btnChangePassword.Location = new System.Drawing.Point(16, 242);
-            this.btnChangePassword.Name = "btnChangePassword";
-            this.btnChangePassword.Size = new System.Drawing.Size(116, 23);
-            this.btnChangePassword.TabIndex = 5;
-            this.btnChangePassword.Text = "Đổi mật khẩu";
-            this.btnChangePassword.UseVisualStyleBackColor = true;
             // 
             // AccountDetailForm
             // 

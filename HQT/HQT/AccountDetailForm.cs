@@ -7,12 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HQT.Core.Interface.Service;
 using HQT.Core.Model;
+using Microsoft.Practices.Unity;
 
 namespace HQT
 {
     public partial class AccountDetailForm : BaseForm
     {
+        private readonly IUnityContainer _container = DependencyResolution.Container;
+        private readonly IAccountService _accountService;
+        private readonly Guid _userId;
         private User _data;
 
         public User Data
@@ -32,9 +37,11 @@ namespace HQT
                 }
             }
         }
-        public AccountDetailForm()
+        public AccountDetailForm(Guid userId)
         {
             InitializeComponent();
+            _userId = userId;
+            _accountService = _container.Resolve<IAccountService>();
         }
 
         private void btnEditFullname_Click(object sender, EventArgs e)
@@ -77,6 +84,11 @@ namespace HQT
             txtAddress.Enabled = false;
             btnEditAddress.Visible = true;
             btnSaveAddress.Visible = false;
+        }
+
+        private async void statusBar_Load(object sender, EventArgs e)
+        {
+            Data = await _accountService.GetUserDetailAsync(_userId);
         }
     }
 }

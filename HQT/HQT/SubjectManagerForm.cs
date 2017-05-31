@@ -35,32 +35,12 @@ namespace HQT
             RenderSubjectToGUIAsync();
         }
 
-        private List<Subject> PrepareData()
-        {
-            var listSubjects = new List<Subject>
-            {
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test(),
-                Subject.Test()
-            };
-            
-            return listSubjects;
-        }
+        
 
         private async Task<List<Subject>> GetListSubjects()
         {
             var userId = ApplicationSetting.CurrentUser.Id;
-#if !DEBUG
             var listSubjects = await _subjectService.GetListSubjectAsync(userId);
-#else
-            var listSubjects = PrepareData();
-#endif
 
             if(listSubjects == null)
                 listSubjects = new List<Subject>();

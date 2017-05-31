@@ -1,108 +1,123 @@
+
 CREATE DATABASE [hqt-yes]
 
-GO 
+GO
 
 USE [hqt-yes]
 
 GO
 
-CREATE TABLE [Subject]
-( 
-	Id UNIQUEIDENTIFIER PRIMARY KEY,
-	SubjectCode NVARCHAR(10),
-	SubjectName NVARCHAR(100),
-	[Status] NVARCHAR(20)
-) 
+CREATE TABLE Course (
+  CourseId uniqueidentifier PRIMARY KEY,
+  CourseName nvarchar(100),
+  CourseStatus int -- 0: open, 1: closed
+)
 
-GO 
+GO
 
-CREATE TABLE Project 
-(
-	Id UNIQUEIDENTIFIER PRIMARY KEY,	 
-    ProjectCode NVARCHAR(10),
-    ProjectType NVARCHAR(30),
-    StartRegister  DATETIME, 
-    EndRegister DATETIME, 
-    EndSubmit DATETIME, 
-    Capacity   INT, 
-    Minimum   INT, 
-    SubjectId    UNIQUEIDENTIFIER,
-    FOREIGN KEY (SubjectId) REFERENCES [Subject](Id) 
-) 
+CREATE TABLE Project (
+  ProjectId uniqueidentifier PRIMARY KEY,
+  ProjectTypeId nvarchar(30),
+  ProjectName nvarchar(100),
+  StartRegister datetime,
+  EndRegister datetime,
+  EndSubmit datetime,
+  StudentMax int,
+  -- StudentMin   INT,
+  CourseId uniqueidentifier,
+  GroupCapacity int,
+  FOREIGN KEY (CourseId) REFERENCES Course (CourseId)
+)
 
-GO  
+GO
 
-CREATE TABLE [User]
-( 
-	Id UNIQUEIDENTIFIER PRIMARY KEY ,
-    UserName   NVARCHAR(50), 
-    [Password]     VARCHAR(100), 
-    [Role]    NVARCHAR(20), 
-) 
+CREATE TABLE ProjectType (
+  ProjectTypeId uniqueidentifier PRIMARY KEY,
+  ProjectTypeName nvarchar(30)
+)
 
-GO  
+GO
 
-CREATE TABLE Teacher_Subject 
-( 
-    TeacherId UNIQUEIDENTIFIER,
-    SubjectId  UNIQUEIDENTIFIER,
-    PRIMARY KEY(TeacherId, SubjectId), 
-    FOREIGN KEY (TeacherId) REFERENCES [User](Id), 
-    FOREIGN KEY (SubjectId) REFERENCES [Subject](Id) 
-) 
+CREATE TABLE [User] (
+  UserId uniqueidentifier PRIMARY KEY,
+  FullName nvarchar(50),
+  UserName nvarchar(50),
+  [Password] varchar(100),
+  UserType nvarchar(20),
+  Status int, -- -1: delete; 0: active; 1: locked
+  Email nvarchar(100),
+  Phone varchar(15),
+  Address nvarchar(max)
+)
 
-GO  
+GO
 
-CREATE TABLE Practice 
-( 
-    Id UNIQUEIDENTIFIER PRIMARY KEY ,
-    Content NVARCHAR(MAX), 
-    Capacity INT, 
-    ProjectId UNIQUEIDENTIFIER,
-    FOREIGN KEY (ProjectId) REFERENCES Project(Id) 
-) 
+CREATE TABLE User_Course (
+  UserId uniqueidentifier,
+  CourseId uniqueidentifier,
+  PRIMARY KEY (UserId, CourseId),
+  FOREIGN KEY (UserId) REFERENCES [User] (UserId),
+  FOREIGN KEY (CourseId) REFERENCES Course (CourseId)
+)
 
-GO 
+GO
 
-CREATE TABLE [Group]
-  ( 
-     Id UNIQUEIDENTIFIER PRIMARY KEY, 
-     GroupName NVARCHAR(50), 
-     Capacity INT, 
-     PracticeId UNIQUEIDENTIFIER,
-     FOREIGN KEY (PracticeId) REFERENCES Practice(Id),
-  ) 
+CREATE TABLE Topic (
+  TopicId uniqueidentifier PRIMARY KEY,
+  Title nvarchar(100),
+  Content nvarchar(max)
+)
 
-GO 
+GO
 
-CREATE TABLE [GroupDetail] 
-( 
-    GroupId   UNIQUEIDENTIFIER ,
-    StudentId UNIQUEIDENTIFIER ,
-	IsLeader NVARCHAR(5),
-    PRIMARY KEY (GroupId, StudentId), 
-    FOREIGN KEY (GroupId) REFERENCES [Group](Id), 
-    FOREIGN KEY (StudentId) REFERENCES [User](Id) 
-) 
+CREATE TABLE Topic_Project (
+  TopicId uniqueidentifier,
+  ProjectId uniqueidentifier,
+  PRIMARY KEY (TopicId, ProjectId),
+  FOREIGN KEY (TopicId) REFERENCES Topic (TopicId),
+  FOREIGN KEY (ProjectId) REFERENCES Project (ProjectId)
+)
 
-GO  
+GO
 
-CREATE TABLE Student_Practice 
-( 
-    StudentId UNIQUEIDENTIFIER,
-    PracticeId UNIQUEIDENTIFIER,
-    PRIMARY KEY (StudentId, PracticeId), 
-    FOREIGN KEY (PracticeId) REFERENCES Practice(Id), 
-    FOREIGN KEY (StudentId) REFERENCES [User](Id) 
-) 
+CREATE TABLE Teacher_Topic_Project (
+  TeacherId uniqueidentifier,
+  TopicId uniqueidentifier,
+  ProjectId uniqueidentifier,
+  PRIMARY KEY (TeacherId, TopicId, ProjectId),
+  FOREIGN KEY (TeacherId) REFERENCES [User] (UserId),
+  FOREIGN KEY (TopicId, ProjectId) REFERENCES Topic_Project (TopicId, ProjectId)
+)
 
-GO 
+GO
 
-CREATE TABLE Student_Subject 
-( 
-    StudentId UNIQUEIDENTIFIER,
-    SubjectId UNIQUEIDENTIFIER, 
-    PRIMARY KEY (StudentId, SubjectId), 
-    FOREIGN KEY (SubjectId) REFERENCES [Subject](Id), 
-    FOREIGN KEY (StudentId) REFERENCES [User](Id) 
-) 
+CREATE TABLE [Group] (
+  GroupId uniqueidentifier PRIMARY KEY,
+  GroupName nvarchar(50),
+  Leader uniqueidentifier,
+  TopicId uniqueidentifier,
+  ProjectId uniqueidentifier,
+  FOREIGN KEY (Leader) REFERENCES [User] (UserId),
+  FOREIGN KEY (TopicId, ProjectId) REFERENCES Topic_Project (TopicId, ProjectId)
+)
+
+GO
+
+CREATE TABLE Group_Student (
+  GroupId uniqueidentifier,
+  StudentId uniqueidentifier,
+  PRIMARY KEY (GroupId, StudentId),
+  FOREIGN KEY (GroupId) REFERENCES [Group] (GroupId),
+  FOREIGN KEY (StudentId) REFERENCES [User] (UserId)
+)
+
+GO
+
+CREATE TABLE Student_Topic_Project (
+  StudentId uniqueidentifier,
+  ProjectId uniqueidentifier,
+  TopicId uniqueidentifier,
+  PRIMARY KEY (StudentId, ProjectId),
+  FOREIGN KEY (StudentId) REFERENCES [User] (UserId),
+  FOREIGN KEY (TopicId, ProjectId) REFERENCES Topic_Project (TopicId, ProjectId)
+)

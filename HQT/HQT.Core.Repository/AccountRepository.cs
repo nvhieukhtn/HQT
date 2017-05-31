@@ -11,7 +11,7 @@ namespace HQT.Core.Repository
     {
         public async Task<User> LoginAsync(string username, string password)
         {
-            using (var db = DataAccessFactory.CreateDataAccess("sp_Account_Login"))
+            using (var db = DataAccessFactory.CreateDataAccess("sp_User_Login"))
             {
                 var listParams = new Dictionary<string, object>
                 {
@@ -21,59 +21,42 @@ namespace HQT.Core.Repository
                 var result = await db.ExecuteReaderAsync(listParams);
                 if (result.Read())
                 {
-                    var role = result["Role"].GetString();
+                    var role = result["UserType"].GetString();
                     var usernameResult = result["UserName"].GetString();
-                    //var passwordResult = result["Password"].GetString();
-#if DEBUG
-                    return Student.Test;
-#endif
+                    var fullname = result["FullName"].GetString();
+                    var id = result["UserId"].GetGuid();
                     if (string.Equals(role, Role.Teacher, StringComparison.CurrentCultureIgnoreCase))
-                        return Teacher.Default;
+                        return new Teacher(id, usernameResult, fullname);
                     if (string.Equals(role, Role.Administrator, StringComparison.CurrentCultureIgnoreCase))
-                        return Administrator.Default;
-                    return Student.Default;
+                        return new Administrator(id, usernameResult, fullname);
+                    return new Student(id, usernameResult, fullname);
                 }
-#if DEBUG
-                return Student.Test;
-#endif
-                return Student.Default;
+                return null;
             }
         }
 
         public async Task<List<User>> GetListAccountAsync(Guid userId)
         {
-            using (var db = DataAccessFactory.CreateDataAccess("sp_Account_Login"))
+            using (var db = DataAccessFactory.CreateDataAccess("sp_User_GetAll"))
             {
                 var listAccounts = new List<User>();
-                var listParams = new Dictionary<string, object>
-                {
-#if DEBUG
-                    {"username", ""},
-                    {"password", ""},
-#else
-                    {nameof(userId), userId}
-#endif
-                };
+                var listParams = new Dictionary<string, object>();
                 var result = await db.ExecuteReaderAsync(listParams);
-                if (result.Read())
+                while (result.Read())
                 {
-                    var role = result["Role"].GetString();
+                    var role = result["UserType"].GetString();
                     var usernameResult = result["UserName"].GetString();
-                    //var passwordResult = result["Password"].GetString();
+                    var fullname = result["FullName"].GetString();
+                    var id = result["UserId"].GetGuid();
 
                     if (string.Equals(role, Role.Teacher, StringComparison.CurrentCultureIgnoreCase))
-                        listAccounts.Add(new Teacher()); 
-                    if (string.Equals(role, Role.Administrator, StringComparison.CurrentCultureIgnoreCase))
-                        listAccounts.Add(new Administrator());
-                    listAccounts.Add(new Student());
-
+                        listAccounts.Add(new Teacher(id, usernameResult, fullname)); 
+                    else if (string.Equals(role, Role.Administrator, StringComparison.CurrentCultureIgnoreCase))
+                        listAccounts.Add(new Administrator(id, usernameResult, fullname));
+                    else
+                        listAccounts.Add(new Student(id, usernameResult, fullname));
                 }
 
-#if DEBUG
-                listAccounts.Add (Student.Test);
-                listAccounts.Add(Administrator.Test);
-                listAccounts.Add(Teacher.Test);
-#endif
                 return listAccounts;
             }
         }

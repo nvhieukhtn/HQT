@@ -21,7 +21,13 @@ namespace HQT.Core.Model
             FullName = fullname;
         }
 
+        public Administrator(Guid id, string username, string fullname)
+        {
+            Id = id;
+            UserName = username;
+            FullName = fullname;
+        }
+
         public static Administrator Default => new Administrator();
-        public static Administrator Test => new Administrator("hieu.nguyen", "Hiếu Nguyễn");
     }
 }

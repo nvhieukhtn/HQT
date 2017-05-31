@@ -35,5 +35,19 @@ namespace HQT.Shared
                 return result;
             }
         }
+
+        public static Guid GetGuid(this object obj)
+        {
+            var result = Guid.Empty;
+            try
+            {
+                result = new Guid(Convert.ToString(obj));
+                return result;
+            }
+            catch (Exception)
+            {
+                return result;
+            }
+        }
     }
 }

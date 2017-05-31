@@ -15,12 +15,18 @@ namespace HQT.Core.Model
             UserName = string.Empty;
             Password = string.Empty;
         }
+
         public Student(string username, string fullname)
         {
             UserName = username;
             FullName = fullname;
         }
+        public Student(Guid id, string username, string fullname)
+        {
+            Id = id;
+            UserName = username;
+            FullName = fullname;
+        }
         public static Student  Default => new Student();
-        public static Student Test => new Student("hieu.nguyen","Hiếu Nguyễn");
     }
 }

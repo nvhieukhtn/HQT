@@ -21,7 +21,13 @@ namespace HQT.Core.Model
             FullName = fullname;
         }
 
+        public Teacher(Guid id, string username, string fullname)
+        {
+            Id = id;
+            UserName = username;
+            FullName = fullname;
+        }
+
         public static Teacher Default => new Teacher();
-        public static Teacher Test => new Teacher("hieu.nguyen","Hiếu Nguyễn");
     }
 }

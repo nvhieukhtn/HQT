@@ -82,6 +82,42 @@
     <Compile Include="Overview.Designer.cs">
       <DependentUpon>Overview.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\OverviewAvailableProjectTabContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\OverviewAvailableProjectTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewAvailableProjectTabContentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\OverviewExpireProjectTabContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\OverviewExpireProjectTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewExpireProjectTabContentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\OverviewAvailableTopicTabContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\OverviewAvailableTopicTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewAvailableTopicTabContentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\OverviewSubjectTabContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\OverviewSubjectTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewSubjectTabContentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\OverviewExpireTopicTabContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\OverviewExpireTopicTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewExpireTopicTabContentUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\OverviewTabContentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\OverviewTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewTabContentUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\TabTopicContentUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +223,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Overview.resx">
       <DependentUpon>Overview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\OverviewAvailableProjectTabContentUserControl.resx">
+      <DependentUpon>OverviewAvailableProjectTabContentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\OverviewExpireProjectTabContentUserControl.resx">
+      <DependentUpon>OverviewExpireProjectTabContentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\OverviewAvailableTopicTabContentUserControl.resx">
+      <DependentUpon>OverviewAvailableTopicTabContentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\OverviewExpireTopicTabContentUserControl.resx">
+      <DependentUpon>OverviewExpireTopicTabContentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\OverviewSubjectTabContentUserControl.resx">
+      <DependentUpon>OverviewSubjectTabContentUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\OverviewTabContentUserControl.resx">
+      <DependentUpon>OverviewTabContentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\TabTopicContentUserControl.resx">
       <DependentUpon>TabTopicContentUserControl.cs</DependentUpon>

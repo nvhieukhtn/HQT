@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using HQT.Core.Interface.Repository;
@@ -28,6 +30,30 @@ namespace HQT.Core.Repository
                 }
                 return listTopics;
             }
+        }
+
+        public async Task<bool> CreateTopicAsync(Topic topic, Guid projectId)
+        {
+            try
+            {
+                using (var db = DataAccessFactory.CreateDataAccess("sp_Topic_AddTopic"))
+                {
+                    var listParams = new Dictionary<string, object>
+                    {
+                        {nameof(topic.Id), topic.Id},
+                        {nameof(topic.Title), topic.Title},
+                        {nameof(topic.Detail), topic.Detail},
+                        {nameof(projectId), projectId }
+                    };
+                    var result = await db.ExecuteNonQueryAsync(listParams);
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
     }
 }

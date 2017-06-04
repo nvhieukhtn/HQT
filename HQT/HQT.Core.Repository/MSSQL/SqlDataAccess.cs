@@ -12,11 +12,21 @@ namespace HQT.Core.Repository.MSSQL
     public class SqlDataAccess:DataAccess
     {
         private SqlConnection Connection { get; }
+        private SqlTransaction Transaction { get; }
         public SqlDataAccess(string storeProcedure) : base(storeProcedure)
         {
             var connectionString = ApplicationSetting.ConnectionString;
             Connection = new SqlConnection(connectionString);
             Connection.Open();
+            Transaction = null;
+        }
+
+        public SqlDataAccess(string storeProcedure, SqlTransaction transaction):base(storeProcedure)
+        {
+            var connectionString = ApplicationSetting.ConnectionString;
+            Connection = new SqlConnection(connectionString);
+            Connection.Open();
+            Transaction = transaction;
         }
 
         public override void Dispose()
@@ -31,6 +41,7 @@ namespace HQT.Core.Repository.MSSQL
                 command.Connection = Connection;
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = StoreProcedure;
+                command.Transaction = Transaction;
                 foreach (var param in listParams)
                 {
                     command.Parameters.AddWithValue(param.Key, param.Value);
@@ -47,6 +58,7 @@ namespace HQT.Core.Repository.MSSQL
                 command.Connection = Connection;
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = StoreProcedure;
+                command.Transaction = Transaction;
                 foreach (var param in listParams)
                 {
                     command.Parameters.AddWithValue(param.Key, param.Value);
@@ -63,6 +75,7 @@ namespace HQT.Core.Repository.MSSQL
                 command.Connection = Connection;
                 command.CommandType = CommandType.StoredProcedure;
                 command.CommandText = StoreProcedure;
+                command.Transaction = Transaction;
                 foreach (var param in listParams)
                 {
                     command.Parameters.AddWithValue(param.Key, param.Value);

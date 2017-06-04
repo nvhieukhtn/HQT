@@ -12,7 +12,7 @@ namespace HQT.Shared
     {
         public static string ConnectionString { get; set; }
         public static User CurrentUser { get; set; }
-
+        
         public static void Load(NameValueCollection collection)
         {
             ConnectionString = collection["ConnectionString"];

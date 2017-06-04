@@ -20,7 +20,7 @@ namespace HQT
             Application.SetCompatibleTextRenderingDefault(false);
             ApplicationSetting.Load(ConfigurationManager.AppSettings);
             DependencyResolution.Start();
-            Application.Run(new Overview());
+            Application.Run(new LoginForm());
         }
     }
 }

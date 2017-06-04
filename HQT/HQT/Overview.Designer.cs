@@ -28,69 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabOverview = new System.Windows.Forms.TabControl();
-            this.tabAvailableProject = new System.Windows.Forms.TabPage();
-            this.overviewAvailableProjectTabContentUserControl1 = new HQT.OverviewAvailableProjectTabContentUserControl();
-            this.tabExpireProject = new System.Windows.Forms.TabPage();
-            this.overviewExpireProjectTabContentUserControl1 = new HQT.OverviewExpireProjectTabContentUserControl();
             this.tabAvailableTopic = new System.Windows.Forms.TabPage();
             this.overviewAvailableTopicTabContentUserControl1 = new HQT.OverviewAvailableTopicTabContentUserControl();
+            this.tabAvailableProject = new System.Windows.Forms.TabPage();
+            this.overviewAvailableProjectTabContentUserControl1 = new HQT.OverviewAvailableProjectTabContentUserControl();
             this.tabSubject = new System.Windows.Forms.TabPage();
             this.overviewSubjectTabContentUserControl = new HQT.OverviewSubjectTabContentUserControl();
-            this.tabOverview.SuspendLayout();
-            this.tabAvailableProject.SuspendLayout();
-            this.tabExpireProject.SuspendLayout();
+            this.tabOverview = new System.Windows.Forms.TabControl();
+            this.overviewExpireProjectTabContentUserControl1 = new HQT.OverviewExpireProjectTabContentUserControl();
+            this.tabExpireProject = new System.Windows.Forms.TabPage();
             this.tabAvailableTopic.SuspendLayout();
+            this.tabAvailableProject.SuspendLayout();
             this.tabSubject.SuspendLayout();
+            this.tabOverview.SuspendLayout();
+            this.tabExpireProject.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabOverview
-            // 
-            this.tabOverview.Controls.Add(this.tabSubject);
-            this.tabOverview.Controls.Add(this.tabAvailableProject);
-            this.tabOverview.Controls.Add(this.tabExpireProject);
-            this.tabOverview.Controls.Add(this.tabAvailableTopic);
-            this.tabOverview.Location = new System.Drawing.Point(17, 67);
-            this.tabOverview.Name = "tabOverview";
-            this.tabOverview.SelectedIndex = 0;
-            this.tabOverview.Size = new System.Drawing.Size(655, 332);
-            this.tabOverview.TabIndex = 1;
-            // 
-            // tabAvailableProject
-            // 
-            this.tabAvailableProject.Controls.Add(this.overviewAvailableProjectTabContentUserControl1);
-            this.tabAvailableProject.Location = new System.Drawing.Point(4, 22);
-            this.tabAvailableProject.Name = "tabAvailableProject";
-            this.tabAvailableProject.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAvailableProject.Size = new System.Drawing.Size(647, 306);
-            this.tabAvailableProject.TabIndex = 0;
-            this.tabAvailableProject.Text = "Đồ án đang có";
-            this.tabAvailableProject.UseVisualStyleBackColor = true;
-            // 
-            // overviewAvailableProjectTabContentUserControl1
-            // 
-            this.overviewAvailableProjectTabContentUserControl1.Location = new System.Drawing.Point(0, 0);
-            this.overviewAvailableProjectTabContentUserControl1.Name = "overviewAvailableProjectTabContentUserControl1";
-            this.overviewAvailableProjectTabContentUserControl1.Size = new System.Drawing.Size(647, 306);
-            this.overviewAvailableProjectTabContentUserControl1.TabIndex = 0;
-            // 
-            // tabExpireProject
-            // 
-            this.tabExpireProject.Controls.Add(this.overviewExpireProjectTabContentUserControl1);
-            this.tabExpireProject.Location = new System.Drawing.Point(4, 22);
-            this.tabExpireProject.Name = "tabExpireProject";
-            this.tabExpireProject.Padding = new System.Windows.Forms.Padding(3);
-            this.tabExpireProject.Size = new System.Drawing.Size(647, 306);
-            this.tabExpireProject.TabIndex = 1;
-            this.tabExpireProject.Text = "Đồ án đã hết hạn";
-            this.tabExpireProject.UseVisualStyleBackColor = true;
-            // 
-            // overviewExpireProjectTabContentUserControl1
-            // 
-            this.overviewExpireProjectTabContentUserControl1.Location = new System.Drawing.Point(0, 0);
-            this.overviewExpireProjectTabContentUserControl1.Name = "overviewExpireProjectTabContentUserControl1";
-            this.overviewExpireProjectTabContentUserControl1.Size = new System.Drawing.Size(647, 306);
-            this.overviewExpireProjectTabContentUserControl1.TabIndex = 0;
             // 
             // tabAvailableTopic
             // 
@@ -105,10 +57,30 @@
             // 
             // overviewAvailableTopicTabContentUserControl1
             // 
+            this.overviewAvailableTopicTabContentUserControl1.ListTopics = null;
             this.overviewAvailableTopicTabContentUserControl1.Location = new System.Drawing.Point(0, 0);
             this.overviewAvailableTopicTabContentUserControl1.Name = "overviewAvailableTopicTabContentUserControl1";
             this.overviewAvailableTopicTabContentUserControl1.Size = new System.Drawing.Size(647, 306);
             this.overviewAvailableTopicTabContentUserControl1.TabIndex = 0;
+            // 
+            // tabAvailableProject
+            // 
+            this.tabAvailableProject.Controls.Add(this.overviewAvailableProjectTabContentUserControl1);
+            this.tabAvailableProject.Location = new System.Drawing.Point(4, 22);
+            this.tabAvailableProject.Name = "tabAvailableProject";
+            this.tabAvailableProject.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAvailableProject.Size = new System.Drawing.Size(647, 306);
+            this.tabAvailableProject.TabIndex = 0;
+            this.tabAvailableProject.Text = "Đồ án đang có";
+            this.tabAvailableProject.UseVisualStyleBackColor = true;
+            // 
+            // overviewAvailableProjectTabContentUserControl1
+            // 
+            this.overviewAvailableProjectTabContentUserControl1.ListProjects = null;
+            this.overviewAvailableProjectTabContentUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.overviewAvailableProjectTabContentUserControl1.Name = "overviewAvailableProjectTabContentUserControl1";
+            this.overviewAvailableProjectTabContentUserControl1.Size = new System.Drawing.Size(647, 306);
+            this.overviewAvailableProjectTabContentUserControl1.TabIndex = 0;
             // 
             // tabSubject
             // 
@@ -128,6 +100,37 @@
             this.overviewSubjectTabContentUserControl.Size = new System.Drawing.Size(647, 306);
             this.overviewSubjectTabContentUserControl.TabIndex = 0;
             // 
+            // tabOverview
+            // 
+            this.tabOverview.Controls.Add(this.tabSubject);
+            this.tabOverview.Controls.Add(this.tabAvailableProject);
+            this.tabOverview.Controls.Add(this.tabExpireProject);
+            this.tabOverview.Controls.Add(this.tabAvailableTopic);
+            this.tabOverview.Location = new System.Drawing.Point(17, 67);
+            this.tabOverview.Name = "tabOverview";
+            this.tabOverview.SelectedIndex = 0;
+            this.tabOverview.Size = new System.Drawing.Size(655, 332);
+            this.tabOverview.TabIndex = 1;
+            // 
+            // overviewExpireProjectTabContentUserControl1
+            // 
+            this.overviewExpireProjectTabContentUserControl1.ListProjects = null;
+            this.overviewExpireProjectTabContentUserControl1.Location = new System.Drawing.Point(0, 0);
+            this.overviewExpireProjectTabContentUserControl1.Name = "overviewExpireProjectTabContentUserControl1";
+            this.overviewExpireProjectTabContentUserControl1.Size = new System.Drawing.Size(647, 306);
+            this.overviewExpireProjectTabContentUserControl1.TabIndex = 0;
+            // 
+            // tabExpireProject
+            // 
+            this.tabExpireProject.Controls.Add(this.overviewExpireProjectTabContentUserControl1);
+            this.tabExpireProject.Location = new System.Drawing.Point(4, 22);
+            this.tabExpireProject.Name = "tabExpireProject";
+            this.tabExpireProject.Padding = new System.Windows.Forms.Padding(3);
+            this.tabExpireProject.Size = new System.Drawing.Size(647, 306);
+            this.tabExpireProject.TabIndex = 1;
+            this.tabExpireProject.Text = "Đồ án đã hết hạn";
+            this.tabExpireProject.UseVisualStyleBackColor = true;
+            // 
             // Overview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,29 +138,31 @@
             this.ClientSize = new System.Drawing.Size(684, 411);
             this.Controls.Add(this.tabOverview);
             this.Name = "Overview";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tổng quan";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Overview_FormClosing);
             this.Load += new System.EventHandler(this.Overview_Load);
-            this.Controls.SetChildIndex(this.statusBar, 0);
             this.Controls.SetChildIndex(this.tabOverview, 0);
-            this.tabOverview.ResumeLayout(false);
-            this.tabAvailableProject.ResumeLayout(false);
-            this.tabExpireProject.ResumeLayout(false);
+            this.Controls.SetChildIndex(this.statusBar, 0);
             this.tabAvailableTopic.ResumeLayout(false);
+            this.tabAvailableProject.ResumeLayout(false);
             this.tabSubject.ResumeLayout(false);
+            this.tabOverview.ResumeLayout(false);
+            this.tabExpireProject.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabOverview;
-        private System.Windows.Forms.TabPage tabAvailableProject;
-        private System.Windows.Forms.TabPage tabExpireProject;
         private System.Windows.Forms.TabPage tabAvailableTopic;
-        private System.Windows.Forms.TabPage tabSubject;
-        private OverviewAvailableProjectTabContentUserControl overviewAvailableProjectTabContentUserControl1;
-        private OverviewExpireProjectTabContentUserControl overviewExpireProjectTabContentUserControl1;
         private OverviewAvailableTopicTabContentUserControl overviewAvailableTopicTabContentUserControl1;
+        private System.Windows.Forms.TabPage tabAvailableProject;
+        private OverviewAvailableProjectTabContentUserControl overviewAvailableProjectTabContentUserControl1;
+        private System.Windows.Forms.TabPage tabSubject;
         private OverviewSubjectTabContentUserControl overviewSubjectTabContentUserControl;
+        private System.Windows.Forms.TabControl tabOverview;
+        private System.Windows.Forms.TabPage tabExpireProject;
+        private OverviewExpireProjectTabContentUserControl overviewExpireProjectTabContentUserControl1;
     }
 }

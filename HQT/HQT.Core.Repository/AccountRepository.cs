@@ -67,5 +67,38 @@ namespace HQT.Core.Repository
         {
             throw new NotImplementedException();
         }
+        public async Task<List<Teacher>> GetListTeachersBySubjectAsync(Guid subjectId)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Teacher_GetListBySubject"))
+            {
+                var listParams = new Dictionary<string, object>
+                {
+                    {nameof(subjectId), subjectId}
+                };
+                var result = await db.ExecuteReaderAsync(listParams);
+                var listTeachers = new List<Teacher>();
+                while (result.Read())
+                {
+                    var id = result["UserId"].GetGuid();
+                    var fullname = result["FullName"].GetString();
+                    var username = result["UserName"].GetString();
+                    var email = result["Email"].GetString();
+                    var phone = result["Phone"].GetString();
+                    var address = result["Address"].GetString();
+
+                    var teacher = new Teacher()
+                    {
+                        Id = id,
+                        FullName = fullname,
+                        UserName = username,
+                        Email = email,
+                        Phone = phone,
+                        Address = address
+                    };
+                    listTeachers.Add(teacher);
+                }
+                return listTeachers;
+            }
+        }
     }
 }

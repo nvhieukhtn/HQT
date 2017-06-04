@@ -11,6 +11,9 @@ namespace HQT.Core.Interface.Repository
     {
         Task<List<BaseProject>> GetListProjectsAsync();
         Task<BaseProject> GetProjectDetailAsync(Guid projectId);
-        Task<List<BaseProject>> GetListProjectBySubject(Guid subjectId);
+        Task<List<BaseProject>> GetListProjectBySubjectAsync(Guid subjectId);
+
+        Task<bool> CreateProjectAsync(BaseProject project, Guid subjectId);
+        Task<bool> DeleteProjectAsync(Guid projectId, Guid subjectId);
     }
 }

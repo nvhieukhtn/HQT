@@ -31,9 +31,8 @@ namespace HQT
             await RenderSubjectToGuiAsync();
         }
 
-        
 
-        private async Task<List<Subject>> GetListSubjects()
+        private async Task<List<Subject>> GetListSubjectsAsync()
         {
             var userId = ApplicationSetting.CurrentUser.Id;
             var listSubjects = await _subjectService.GetListSubjectByUserAsync(userId);
@@ -47,7 +46,7 @@ namespace HQT
 
         private async Task RenderSubjectToGuiAsync()
         {
-            var listSubjects = await GetListSubjects();
+            var listSubjects = await GetListSubjectsAsync();
             
             foreach (var subject in listSubjects)
             {
@@ -87,9 +86,8 @@ namespace HQT
 
         private void CreateProjectEvent(object sender, EventArgs e)
         {
-            var createProjectForm = new CreateProjectForm();
             var target = (SubjectBoardUserControl)sender;
-            createProjectForm.Data = target.Data;
+            var createProjectForm = new CreateProjectForm(target.Data.Id);
             createProjectForm.Show();
             IsClose = false;
             Close();

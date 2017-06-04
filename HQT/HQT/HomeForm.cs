@@ -31,7 +31,9 @@ namespace HQT
             
             funcLogout.Avatar = Properties.Resources.logout;
             funcLogout.Title = "Đăng xuất";
-            
+
+            funcStatistics.Avatar = Properties.Resources.statistic;
+            funcStatistics.Title = "Thống kê";
 
         }
 
@@ -68,6 +70,14 @@ namespace HQT
         private void funcLogout_FunctionClicked(object sender, EventArgs e)
         {
             LoginForm.Instance.Show();
+            _isClose = false;
+            Close();
+        }
+
+        private void funcStatistics_Click(object sender, EventArgs e)
+        {
+            var statistic = new Overview();
+            statistic.Show();
             _isClose = false;
             Close();
         }

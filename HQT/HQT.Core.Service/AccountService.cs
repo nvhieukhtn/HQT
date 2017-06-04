@@ -34,6 +34,12 @@ namespace HQT.Core.Service
             return result;
         }
 
+        public async Task<List<Teacher>> GetListTeacherBySubjectAsync(Guid subjectId)
+        {
+            var result = await _accountRepository.GetListTeachersBySubjectAsync(subjectId);
+            return result;
+        }
+
         public Task<bool> CreateAccountAsync(User account)
         {
             throw new NotImplementedException();

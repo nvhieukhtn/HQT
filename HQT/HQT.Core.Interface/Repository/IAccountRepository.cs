@@ -13,5 +13,6 @@ namespace HQT.Core.Interface.Repository
         Task<User> LoginAsync(string username, string password);
         Task<List<User>> GetListAccountAsync();
         Task<User> GetAccountDetailAsync(Guid userId);
+        Task<List<Teacher>> GetListTeachersBySubjectAsync(Guid subjectId);
     }
 }

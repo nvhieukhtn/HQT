@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using HQT.Core.Interface.Service;
 using HQT.Core.Model;
+using Microsoft.Practices.Unity;
 
 namespace HQT
 {
     public partial class SubjectBoardUserControl : UserControl
     {
+        private readonly IProjectService _projectService;
+        private readonly IUnityContainer _container = DependencyResolution.Container;
         public delegate void SubjectBoardProjectDetailClickedEventHandler(object sender, EventArgs e);
 
         public BaseProject CurrentProject;
@@ -47,6 +46,7 @@ namespace HQT
 
         private void UpdateProjects()
         {
+            grbProjects.Controls.Clear();
             var height = Math.Max(90, 45 * _data.ListProjects.Count);
             Height = height;
             if(grbSubject != null)
@@ -63,20 +63,16 @@ namespace HQT
                     Data = x,
                     Location = new Point(10, 19 + 35 * index)
                 };
-                project.ProjectItemClicked +=
-                    new ProjectItemUserControl.ProjectItemClickedEventHandler(SubjectBoardProjectDetail_OnClick);
-                project.ProjectDeleteEvent +=
-                    new ProjectItemUserControl.ProjectItemClickedEventHandler(DeleteProject_Click);
+                project.ProjectItemClicked += SubjectBoardProjectDetail_OnClick;
+                project.ProjectDeleteEvent += DeleteProject_Click;
                 index++;
-                if (grbProjects != null)
-                {
-                    grbProjects.Controls.Add(project);
-                }
+                grbProjects?.Controls.Add(project);
             });
         }
         public SubjectBoardUserControl()
         {
             InitializeComponent();
+            _projectService = _container.Resolve<IProjectService>();
             CurrentProject = null;
         }
 
@@ -103,13 +99,13 @@ namespace HQT
             }
         }
 
-        private void DeleteProject_Click(object sender, EventArgs e)
+        private async void DeleteProject_Click(object sender, EventArgs e)
         {
             var target = (ProjectItemUserControl) sender;
-#if DEBUG
-            var id = target.Data.Id;
-            MessageBox.Show($"Xóa đồ án id = {id.ToString()}", "Xóa đồ án", MessageBoxButtons.OK);
-#endif
+            var projectId = target.Data.Id;
+            var result = await _projectService.DeleteProjectAsync(projectId, Data.Id);
+            if (result)
+                Data.ListProjects.RemoveAll(x => x.Id == projectId);
         }
     }
 }

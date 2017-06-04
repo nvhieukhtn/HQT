@@ -12,7 +12,8 @@ namespace HQT
     {
         private readonly IUnityContainer _container = DependencyResolution.Container;
         private bool _isPersonalProject;
-        private ISubjectService _subjectService;
+        private readonly ISubjectService _subjectService;
+        private readonly IProjectService _projectService;
         public bool IsPersonalProject
         {
             get => _isPersonalProject;
@@ -23,7 +24,6 @@ namespace HQT
                 numberPeopleMax.Visible = !_isPersonalProject;
             }
         }
-        public Subject Data { get; set; }
 
         private bool _isLimit;
 
@@ -38,11 +38,14 @@ namespace HQT
             }
         }
 
+        private readonly Guid _subjectId;
         private List<TabTopicContentUserControl> ListTabPageTopics { get; set; }
-        public CreateProjectForm()
+        public CreateProjectForm(Guid subjectId)
         {
+            _subjectId = subjectId;
             InitializeComponent();
             _subjectService = _container.Resolve<ISubjectService>();
+            _projectService = _container.Resolve<IProjectService>();
             radioGroup.Checked = true;
             ckLimit.Checked = true;
             ListTabPageTopics  = new List<TabTopicContentUserControl>();
@@ -134,7 +137,7 @@ namespace HQT
         private async void btnCreate_Click(object sender, EventArgs e)
         {
             var project = GetProjectFromUi();
-            var result = await _subjectService.CreateProjectAsync(project, Data);
+            var result = await _projectService.CreateProjectAsync(project, _subjectId);
             if (result)
             {
                 var act = MessageBox.Show(this, "Thêm đồ án thành công", "Thông báo", MessageBoxButtons.OK);
@@ -159,7 +162,7 @@ namespace HQT
                 else
                 {
                     IsClose = false;
-                    var createProjectForm = new CreateProjectForm();
+                    var createProjectForm = new CreateProjectForm(_subjectId);
                     createProjectForm.Show();
                     this.Close();
                 }

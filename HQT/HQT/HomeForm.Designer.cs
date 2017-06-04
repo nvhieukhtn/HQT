@@ -32,6 +32,7 @@
             this.funcSubject = new HQT.FunctionUserControl();
             this.funcHistory = new HQT.FunctionUserControl();
             this.funcLogout = new HQT.FunctionUserControl();
+            this.funcStatistics = new HQT.FunctionUserControl();
             this.SuspendLayout();
             // 
             // funcAccount
@@ -64,17 +65,27 @@
             // funcLogout
             // 
             this.funcLogout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.funcLogout.Location = new System.Drawing.Point(390, 30);
+            this.funcLogout.Location = new System.Drawing.Point(508, 30);
             this.funcLogout.Name = "funcLogout";
             this.funcLogout.Size = new System.Drawing.Size(100, 100);
             this.funcLogout.TabIndex = 0;
             this.funcLogout.FunctionClicked += new HQT.FunctionUserControl.FunctionClickedEventHandler(this.funcLogout_FunctionClicked);
+            // 
+            // funcStatistics
+            // 
+            this.funcStatistics.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.funcStatistics.Location = new System.Drawing.Point(389, 30);
+            this.funcStatistics.Name = "funcStatistics";
+            this.funcStatistics.Size = new System.Drawing.Size(100, 100);
+            this.funcStatistics.TabIndex = 0;
+            this.funcStatistics.FunctionClicked += new HQT.FunctionUserControl.FunctionClickedEventHandler(this.funcStatistics_Click);
             // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 411);
+            this.Controls.Add(this.funcStatistics);
             this.Controls.Add(this.funcLogout);
             this.Controls.Add(this.funcHistory);
             this.Controls.Add(this.funcSubject);
@@ -93,5 +104,6 @@
         private FunctionUserControl funcSubject;
         private FunctionUserControl funcHistory;
         private FunctionUserControl funcLogout;
+        private FunctionUserControl funcStatistics;
     }
 }

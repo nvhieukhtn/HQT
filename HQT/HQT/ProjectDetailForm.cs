@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Model;
 
@@ -14,8 +8,6 @@ namespace HQT
 {
     public partial class ProjectDetailForm : BaseForm
     {
-        public static ProjectDetailForm Instance { get; private set; }
-
         private List<TopicUserControl> _listPracticeControl;
         private BaseProject _data;
         public BaseProject Data
@@ -47,7 +39,6 @@ namespace HQT
         {
             InitializeComponent();
             Data = data;
-            Instance = this;
             InitSubjects();
         }
         private void ShowDetail(object sender, EventArgs e)
@@ -88,17 +79,17 @@ namespace HQT
             _listPracticeControl = new List<TopicUserControl>();
             foreach (var topic in Data.ListTopics)
             {
-                var topicControl = new TopicUserControl()
+                var topicControl = new TopicUserControl
                 {
                     Data = topic,
-                    Index = index + 1
+                    Index = index + 1,
+                    AllowRegister = allowRegister
                 };
-                topicControl.AllowRegister = allowRegister;
                 topicControl.Location = new Point(10, 140 + index * topicControl.Height);
                 topicControl.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
                 index++;
-                topicControl.TopicClicked += new TopicUserControl.TopicClickedEventHandler(ShowDetail);
-                topicControl.TopicRegister += new TopicUserControl.TopicClickedEventHandler(Register);
+                topicControl.TopicClicked += ShowDetail;
+                topicControl.TopicRegister += Register;
                 _listPracticeControl.Add(topicControl);
                 Controls.Add(topicControl);
             }

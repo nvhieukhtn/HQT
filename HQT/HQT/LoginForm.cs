@@ -50,5 +50,23 @@ namespace HQT
             MessageBox.Show(this, Resources.TeamInformation, Resources.TeamName,
                 MessageBoxButtons.OK);
         }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnLogin.PerformClick();
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                btnLogin.PerformClick();
+        }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            txtUsername.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+        }
     }
 }

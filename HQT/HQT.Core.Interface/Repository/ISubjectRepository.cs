@@ -11,6 +11,6 @@ namespace HQT.Core.Interface.Repository
     {
         Task<List<Subject>> GetListSubjectsAsync();
         Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
-        
+
     }
 }

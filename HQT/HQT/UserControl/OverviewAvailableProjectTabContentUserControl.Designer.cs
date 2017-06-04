@@ -64,6 +64,7 @@
             this.cbProjectType.Name = "cbProjectType";
             this.cbProjectType.Size = new System.Drawing.Size(90, 21);
             this.cbProjectType.TabIndex = 6;
+            this.cbProjectType.SelectedIndexChanged += new System.EventHandler(this.cbProjectType_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -81,6 +82,7 @@
             this.Controls.Add(this.cbProjectType);
             this.Controls.Add(this.label2);
             this.Name = "OverviewAvailableProjectTabContentUserControl";
+            this.Load += new System.EventHandler(this.OverviewAvailableProjectTabContentUserControl_Load);
             this.Controls.SetChildIndex(this.listView, 0);
             this.Controls.SetChildIndex(this.txtNumber, 0);
             this.Controls.SetChildIndex(this.label2, 0);

@@ -24,8 +24,14 @@ namespace HQT
         private static void RegisterType(IUnityContainer container)
         {
             container.RegisterType<IAccountRepository, AccountRepository>();
+            container.RegisterType<ISubjectRepository, SubjectRepository>();
+            container.RegisterType<ITopicRepository, TopicRepository>();
+            container.RegisterType<IProjectRepository, ProjectRepository>();
+            
             container.RegisterType<IAccountService, AccountService>();
             container.RegisterType<ISubjectService, SubjectService>();
+            container.RegisterType<IProjectService, ProjectService>();
+            container.RegisterType<ITopicService, TopicService>();
         }
 
         public static IUnityContainer Container => _container;

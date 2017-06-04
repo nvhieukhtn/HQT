@@ -5,32 +5,39 @@ using System.Text;
 using System.Threading.Tasks;
 using HQT.Core.Interface.Repository;
 using HQT.Core.Model;
+using HQT.Shared;
 
 namespace HQT.Core.Repository
 {
     public class SubjectRepository:ISubjectRepository
     {
-        public Task<List<Subject>> GetAllSubjectAsync()
+        public async Task<List<Subject>> GetListSubjectsAsync()
         {
-            throw new NotImplementedException();
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Subject_GetList"))
+            {
+                var listParams  = new Dictionary<string, object>();
+                var result = await db.ExecuteReaderAsync(listParams);
+
+                var listSubjects = new List<Subject>();
+
+                while (result.Read())
+                {
+                    var id = result["CourseId"].GetGuid();
+                    var subjectName = result["CourseName"].GetString();
+                    var status = result["CourseStatus"].GetInt32();
+
+                    var subject = new Subject(subjectName)
+                    {
+                        Id = id,
+                        Status = status
+                    };
+                    listSubjects.Add(subject);
+                }
+                return listSubjects;
+            }
         }
 
         public Task<List<Subject>> GetListSubjectByUserAsync(Guid userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<BaseProject>> GetListProjectBySubjectAsync(Guid sujbectId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<List<BaseProject>> GetAllProjectAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<BaseProject> GetProjectDetailAsync(Guid projectId)
         {
             throw new NotImplementedException();
         }

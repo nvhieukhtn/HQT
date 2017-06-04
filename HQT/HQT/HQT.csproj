@@ -94,23 +94,17 @@
     <Compile Include="UserControl\OverviewExpireProjectTabContentUserControl.Designer.cs">
       <DependentUpon>OverviewExpireProjectTabContentUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\OverviewAvailableTopicTabContentUserControl.cs">
+    <Compile Include="UserControl\OverviewTopicTabContentUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\OverviewAvailableTopicTabContentUserControl.Designer.cs">
-      <DependentUpon>OverviewAvailableTopicTabContentUserControl.cs</DependentUpon>
+    <Compile Include="UserControl\OverviewTopicTabContentUserControl.Designer.cs">
+      <DependentUpon>OverviewTopicTabContentUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl\OverviewSubjectTabContentUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControl\OverviewSubjectTabContentUserControl.Designer.cs">
       <DependentUpon>OverviewSubjectTabContentUserControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserControl\OverviewExpireTopicTabContentUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControl\OverviewExpireTopicTabContentUserControl.Designer.cs">
-      <DependentUpon>OverviewExpireTopicTabContentUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl\OverviewTabContentUserControl.cs">
       <SubType>UserControl</SubType>
@@ -230,11 +224,8 @@
     <EmbeddedResource Include="UserControl\OverviewExpireProjectTabContentUserControl.resx">
       <DependentUpon>OverviewExpireProjectTabContentUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\OverviewAvailableTopicTabContentUserControl.resx">
-      <DependentUpon>OverviewAvailableTopicTabContentUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\OverviewExpireTopicTabContentUserControl.resx">
-      <DependentUpon>OverviewExpireTopicTabContentUserControl.cs</DependentUpon>
+    <EmbeddedResource Include="UserControl\OverviewTopicTabContentUserControl.resx">
+      <DependentUpon>OverviewTopicTabContentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\OverviewSubjectTabContentUserControl.resx">
       <DependentUpon>OverviewSubjectTabContentUserControl.cs</DependentUpon>

@@ -31,6 +31,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbProjectType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView
@@ -55,11 +57,34 @@
             this.columnHeader3.Text = "Tên môn học";
             this.columnHeader3.Width = 160;
             // 
+            // cbProjectType
+            // 
+            this.cbProjectType.FormattingEnabled = true;
+            this.cbProjectType.Location = new System.Drawing.Point(496, 18);
+            this.cbProjectType.Name = "cbProjectType";
+            this.cbProjectType.Size = new System.Drawing.Size(90, 21);
+            this.cbProjectType.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(458, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Loại";
+            // 
             // OverviewAvailableProjectTabContentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbProjectType);
+            this.Controls.Add(this.label2);
             this.Name = "OverviewAvailableProjectTabContentUserControl";
+            this.Controls.SetChildIndex(this.listView, 0);
+            this.Controls.SetChildIndex(this.txtNumber, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.cbProjectType, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -70,5 +95,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ComboBox cbProjectType;
+        private System.Windows.Forms.Label label2;
     }
 }

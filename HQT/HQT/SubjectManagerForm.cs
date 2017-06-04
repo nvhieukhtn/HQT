@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Interface.Service;
@@ -30,9 +26,9 @@ namespace HQT
         }
 
         
-        private void SubjectManager_Load(object sender, EventArgs e)
+        private async void SubjectManager_Load(object sender, EventArgs e)
         {
-            RenderSubjectToGUIAsync();
+            await RenderSubjectToGuiAsync();
         }
 
         
@@ -40,7 +36,7 @@ namespace HQT
         private async Task<List<Subject>> GetListSubjects()
         {
             var userId = ApplicationSetting.CurrentUser.Id;
-            var listSubjects = await _subjectService.GetListSubjectAsync(userId);
+            var listSubjects = await _subjectService.GetListSubjectByUserAsync(userId);
 
             if(listSubjects == null)
                 listSubjects = new List<Subject>();
@@ -49,7 +45,7 @@ namespace HQT
         }
 
 
-        private async Task RenderSubjectToGUIAsync()
+        private async Task RenderSubjectToGuiAsync()
         {
             var listSubjects = await GetListSubjects();
             
@@ -68,8 +64,8 @@ namespace HQT
             subjectBoard.Location = new Point(10, 55 + index * subjectBoard.Height);
             subjectBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
             subjectBoard.SubjectBoardProjectDetailClicked +=
-                new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(ShowProjectDetail);
-            subjectBoard.SubjectBoardCreateProject += new SubjectBoardUserControl.SubjectBoardProjectDetailClickedEventHandler(CreateProjectEvent);
+                ShowProjectDetail;
+            subjectBoard.SubjectBoardCreateProject += CreateProjectEvent;
             return subjectBoard;
         }
 

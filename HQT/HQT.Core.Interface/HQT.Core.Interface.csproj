@@ -45,8 +45,11 @@
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IProjectRepository.cs" />
     <Compile Include="Repository\ISubjectRepository.cs" />
+    <Compile Include="Repository\ITopicRepository.cs" />
     <Compile Include="Service\IAccountService.cs" />
+    <Compile Include="Service\IProjectService.cs" />
     <Compile Include="Service\ISubjectService.cs" />
+    <Compile Include="Service\ITopicService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HQT.Core.Model\HQT.Core.Model.csproj">

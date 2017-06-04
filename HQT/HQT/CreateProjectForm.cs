@@ -95,7 +95,7 @@ namespace HQT
             return listTopics;
         }
 
-        private BaseProject GetProjectFromUI()
+        private BaseProject GetProjectFromUi()
         {
             var projectName = txtProjectName.Text;
             var projectType = radioGroup.Checked ? ProjectTypes.Team : ProjectTypes.Person;
@@ -107,9 +107,9 @@ namespace HQT
             {
                 var project = new ProjectForSingle
                 {
-                    From = dateFrom,
+                    RegisterFrom = dateFrom,
                     ListTopics = listTopics,
-                    To = dateTo,
+                    RegisterTo = dateTo,
                     ProjectName = projectName,
                     Limit = limit
                 };
@@ -120,9 +120,9 @@ namespace HQT
                 var numberMaxPerson = (int) numberPeopleMax.Value;
                 var project = new ProjectForTeam
                 {
-                    From = dateFrom,
+                    RegisterFrom = dateFrom,
                     ListTopics = listTopics,
-                    To = dateTo,
+                    RegisterTo = dateTo,
                     ProjectName = projectName,
                     Limit = limit,
                     UpperThreshold =  numberMaxPerson
@@ -133,12 +133,8 @@ namespace HQT
 
         private async void btnCreate_Click(object sender, EventArgs e)
         {
-            var project = GetProjectFromUI();
-#if !DEBUG
+            var project = GetProjectFromUi();
             var result = await _subjectService.CreateProjectAsync(project, Data);
-#else
-            var result = false;
-#endif
             if (result)
             {
                 var act = MessageBox.Show(this, "Thêm đồ án thành công", "Thông báo", MessageBoxButtons.OK);

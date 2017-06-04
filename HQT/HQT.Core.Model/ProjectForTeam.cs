@@ -13,8 +13,8 @@ namespace HQT.Core.Model
         {
             UpperThreshold = -1;
         }
-        public ProjectForTeam(string projectName, DateTime from, DateTime to, int upperThreshold,
-            List<Topic> listTopics):base(projectName, from, to, listTopics)
+        public ProjectForTeam(string projectName, DateTime registerFrom, DateTime to, int upperThreshold,
+            List<Topic> listTopics):base(projectName, registerFrom, to, listTopics)
         {
             UpperThreshold = upperThreshold;
         }

@@ -49,5 +49,20 @@ namespace HQT.Shared
                 return result;
             }
         }
+
+        public static DateTime GetDateTime(this object obj)
+        {
+            var dateTime = DateTime.MinValue;
+
+            try
+            {
+                dateTime = Convert.ToDateTime(obj);
+                return dateTime;
+            }
+            catch (Exception)
+            {
+                return dateTime;
+            }
+        }
     }
 }

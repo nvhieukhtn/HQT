@@ -52,7 +52,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Số lượng còn lại";
+            this.columnHeader2.Text = "Ghi chú";
             this.columnHeader2.Width = 160;
             // 
             // OverviewAvailableTopicTabContentUserControl

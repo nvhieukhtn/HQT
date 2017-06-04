@@ -7,10 +7,8 @@ using HQT.Core.Model;
 
 namespace HQT.Core.Interface.Repository
 {
-    public interface ISubjectRepository
+    public interface ITopicRepository
     {
-        Task<List<Subject>> GetListSubjectsAsync();
-        Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
-        
+        Task<List<Topic>> GetListTopicsAsync();
     }
 }

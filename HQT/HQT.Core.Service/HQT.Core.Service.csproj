@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountService.cs" />
+    <Compile Include="ProjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SubjectService.cs" />
+    <Compile Include="TopicService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HQT.Core.Interface\HQT.Core.Interface.csproj">

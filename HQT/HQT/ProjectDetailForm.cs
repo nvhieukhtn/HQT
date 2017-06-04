@@ -24,11 +24,11 @@ namespace HQT
             set 
             {
                 _data = value;
-                var status = Status.GetStatusProperty(_data.From, _data.To);
+                var status = Status.GetStatusProperty(_data.RegisterFrom, _data.RegisterTo);
                 btnStatus.Text = status.Description;
                 btnStatus.BackColor = status.StatusColor;
-                timeFrom.Value = _data.From;
-                timeTo.Value = _data.To;
+                timeFrom.Value = _data.RegisterFrom;
+                timeTo.Value = _data.RegisterTo;
                 var team = _data as ProjectForTeam;
                 if (team != null)
                 {
@@ -83,7 +83,7 @@ namespace HQT
         private void InitSubjects()
         {
             var index = 0;
-            var status = Status.GetStatusProperty(_data.From, _data.To);
+            var status = Status.GetStatusProperty(_data.RegisterFrom, _data.RegisterTo);
             var allowRegister = status.Description == "Processing";
             _listPracticeControl = new List<TopicUserControl>();
             foreach (var topic in Data.ListTopics)

@@ -11,5 +11,6 @@ namespace HQT.Core.Interface.Service
     {
         Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
         Task<List<Subject>> GetListSubjectsAsync();
+        Task<bool> CreateSubjectAsync(Subject subject);
     }
 }

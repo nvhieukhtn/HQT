@@ -45,9 +45,43 @@ namespace HQT.Core.Service
             return result;
         }
 
-        public async Task<bool> DeleteProjectAsync(Guid projectId, Guid subjectId)
+        public async Task<BaseProject> GetProjectDetailAsync(Guid projectId)
         {
-            var result = await _projectRepository.DeleteProjectAsync(projectId, subjectId);
+            var result = await _projectRepository.GetProjectDetailAsync(projectId);
+            if (result != null)
+            {
+                result.ListTopics = await _topicRepository.GetListTopicsByProjectAsync(projectId);
+            }
+            return result;
+        }
+
+        public async Task<List<BaseProject>> GetListProjectCanRegisterAsync(Guid courseId)
+        {
+            var listProjects = await _projectRepository.GetListProjectCanRegisterAsync(courseId);
+            return listProjects;
+        }
+
+        public async Task<List<BaseProject>> GetListProjectCanNotRegisterAsync(Guid courseId)
+        {
+            var listProjects = await _projectRepository.GetListProjectCanNotRegisterAsync(courseId);
+            return listProjects;
+        }
+
+        public async Task<List<ProjectType>> GetListProjectTypeAsync()
+        {
+            var listProjectTypes = await _projectRepository.GetListProjectTypeAsync();
+            return listProjectTypes;
+        }
+
+        public async Task<bool> SaveProjectInformationAsync(BaseProject project)
+        {
+            var result = await _projectRepository.SaveProjectInformationAsync(project);
+            return result;
+        }
+
+        public async Task<bool> RemoveTopicAsync(Guid topicId, Guid projectId)
+        {
+            var result = await _projectRepository.RemoveTopicAsync(topicId, projectId);
             return result;
         }
     }

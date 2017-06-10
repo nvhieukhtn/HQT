@@ -32,6 +32,8 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtContent = new System.Windows.Forms.RichTextBox();
+            this.ckAddNew = new System.Windows.Forms.CheckBox();
+            this.cbTitle = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -48,7 +50,7 @@
             this.txtTitle.BackColor = System.Drawing.Color.Lavender;
             this.txtTitle.Location = new System.Drawing.Point(69, 14);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(548, 20);
+            this.txtTitle.Size = new System.Drawing.Size(491, 20);
             this.txtTitle.TabIndex = 1;
             // 
             // label2
@@ -69,17 +71,45 @@
             this.txtContent.TabIndex = 2;
             this.txtContent.Text = "";
             // 
+            // ckAddNew
+            // 
+            this.ckAddNew.AutoSize = true;
+            this.ckAddNew.Checked = true;
+            this.ckAddNew.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckAddNew.Location = new System.Drawing.Point(569, 16);
+            this.ckAddNew.Name = "ckAddNew";
+            this.ckAddNew.Size = new System.Drawing.Size(72, 17);
+            this.ckAddNew.TabIndex = 3;
+            this.ckAddNew.Text = "Thêm mới";
+            this.ckAddNew.UseVisualStyleBackColor = true;
+            this.ckAddNew.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // cbTitle
+            // 
+            this.cbTitle.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cbTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbTitle.FormattingEnabled = true;
+            this.cbTitle.Location = new System.Drawing.Point(69, 14);
+            this.cbTitle.Name = "cbTitle";
+            this.cbTitle.Size = new System.Drawing.Size(491, 21);
+            this.cbTitle.TabIndex = 4;
+            this.cbTitle.Visible = false;
+            this.cbTitle.SelectedIndexChanged += new System.EventHandler(this.cbTitle_SelectedIndexChanged);
+            // 
             // TabTopicContentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.cbTitle);
+            this.Controls.Add(this.ckAddNew);
             this.Controls.Add(this.txtContent);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "TabTopicContentUserControl";
             this.Size = new System.Drawing.Size(641, 184);
+            this.Load += new System.EventHandler(this.TabTopicContentUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -91,5 +121,7 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox txtContent;
+        private System.Windows.Forms.CheckBox ckAddNew;
+        private System.Windows.Forms.ComboBox cbTitle;
     }
 }

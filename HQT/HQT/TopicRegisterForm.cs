@@ -7,76 +7,142 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HQT.Core.Interface.Service;
 using HQT.Core.Model;
+using HQT.Shared;
+using Microsoft.Practices.Unity;
 
 namespace HQT
 {
     public partial class TopicRegisterForm : BaseForm
     {
-        public List<Student> ListStudents { get; set; }
-        public List<MemberUserControl> ListMemberControls { get; set; }
-        private Topic _data;
-
-        public Topic Data
-        {
-            get => _data;
-            set
-            {
-                _data = value;
-                txtTitle.Text = _data.Title;
-                txtContent.Text = _data.Detail;
-            }
-        }
-        public TopicRegisterForm()
+        private readonly IAccountService _accountService;
+        private readonly IProjectService _projectService;
+        private readonly ITopicService _topicService;
+        private readonly IUnityContainer _container = DependencyResolution.Container;
+        private readonly Guid _topicId;
+        private readonly Guid _projectId;
+        public TopicRegisterForm(Guid projectId, Guid topicId)
         {
             InitializeComponent();
-            ListStudents  = new List<Student>();
-            ListMemberControls = new List<MemberUserControl>();
-            var student = Student.Default;
-            ListStudents.Add(student);
-            var memberControl = AddMemberControl(0);
-            gbGroupInformation.Controls.Add(memberControl);
-            ListMemberControls.Add(memberControl);
+            _projectId = projectId;
+            _topicId = topicId;
+            _accountService = _container.Resolve<IAccountService>();
+            _topicService = _container.Resolve<ITopicService>();
+            _projectService = _container.Resolve<IProjectService>();
         }
-
-        private MemberUserControl AddMemberControl(int index)
+        private void FillData(BaseProject data)
         {
-            if (index < 10)
-            {
-                var memberControl = new MemberUserControl();
-                var y = 15 + index * 30;
-                var x = 20;
-                if (index >= 5)
-                {
-                    x = 320;
-                    y = 15 + (index - 5) * 30;
-                }
-                memberControl.Location = new Point(x, y);
-
-                return memberControl;
-            }
-            return null;
-        }
-
-        private void btnAddMember_Click(object sender, EventArgs e)
-        {
-            var index = ListStudents.Count;
-            var student = Student.Default;
-            
-            var memberControl = AddMemberControl(index);
-            if (memberControl != null)
-            {
-                ListStudents.Add(student);
-                gbGroupInformation.Controls.Add(memberControl);
-                ListMemberControls.Add(memberControl);
-            }
-            
+            dtFrom.Value = data.RegisterFrom;
+            dtTo.Value = data.RegisterTo;
+            var team = data as ProjectForTeam;
+            numberTo.Value = team?.UpperThreshold ?? 1;
+            numberGroup.Value = data.Limit;
+            dtDeadline.Value = data.Deadline;
+            cbProjectType.SelectedIndex = cbProjectType.FindString(data.ProjectType);
         }
 
         private void TopicRegisterForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (IsClose)
                 LoginForm.Instance.Close();
+        }
+
+        private async void TopicRegisterForm_Load(object sender, EventArgs e)
+        {
+            var listProjectType = await _projectService.GetListProjectTypeAsync();
+            cbProjectType.DataSource = listProjectType;
+            cbProjectType.DisplayMember = "ProjectTypeName";
+            var projectDetail = await _projectService.GetProjectDetailAsync(_projectId);
+            var topicDetail = await _topicService.GetTopicDetailAsync(_topicId);
+            FillData(projectDetail);
+            txtTitle.Text = topicDetail.Title;
+            txtContent.Text = topicDetail.Detail;
+
+            if (projectDetail is ProjectForSingle)
+                grbGroup.Visible = false;
+            else
+            {
+                txtCountNumber.Text = ((ProjectForTeam) projectDetail).UpperThreshold.ToString();
+                var listStudents = await _accountService.GetListStudentsAsync();
+                var listStudentItems = listStudents.Where(x=>x.Id != ApplicationSetting.CurrentUser.Id).Select(x => new ListViewItem() { Text = x.FullName, Tag = x }).ToArray();
+                lvStudent.Items.AddRange(listStudentItems);
+            }
+
+        }
+
+        private async void btnRegister_Click(object sender, EventArgs e)
+        {
+            var remainder = Int32.Parse(txtCountRemainder.Text);
+            if (remainder < 0)
+                MessageBox.Show(this, "Quá số người", "Cảnh cáo", MessageBoxButtons.OK);
+            else
+            {
+                var group = GetGroup();
+                var result = true;
+                if (grbGroup.Visible)
+                    result = await _topicService.CreateGroupAsync(group);
+                else
+                    result = await _topicService.RegisterTopicAsync(group);
+                if (result)
+                {
+                    var act = MessageBox.Show(this, "Đăng ký thành công", "Thông báo", MessageBoxButtons.OK);
+                    if (act == DialogResult.OK)
+                    {
+                        IsClose = false;
+                        var projectDetailForm = new ProjectDetailForm(_projectId);
+                        projectDetailForm.Show();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    var act = MessageBox.Show(this, "Đăng ký thất bại\nThử lại!", "Thông báo", MessageBoxButtons.RetryCancel);
+                    if (act == DialogResult.Cancel)
+                    {
+                        IsClose = false;
+                        var projectDetailForm = new ProjectDetailForm(_projectId);
+                        projectDetailForm.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        IsClose = false;
+                        var topicRegisterForm = new TopicRegisterForm(_projectId, _topicId);
+                        topicRegisterForm.Show();
+                        this.Close();
+                    }
+                }
+            }
+        }
+
+        private Group GetGroup()
+        {
+            var groupName = txtGroupName.Text;
+            var capacity = Int32.Parse(txtCountNumber.Text);
+            var group = new Group
+            {
+                Capacity = capacity,
+                GroupName = groupName,
+                Leader = (Student) ApplicationSetting.CurrentUser,
+                ProjectId = _projectId,
+                TopicId = _topicId,
+                Members =  new List<Student>()
+            };
+
+            if (grbGroup.Visible)
+            {
+                group.Members = lvStudent.CheckedItems.Cast<ListViewItem>().Select(x => x.Tag).Cast<Student>().ToList();
+            }
+            return group;
+        }
+
+        private void lvStudent_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            var totalMember = Int32.Parse(txtCountNumber.Text);
+            var countChecked = lvStudent.CheckedItems.Count;
+            var remainderMember = totalMember - countChecked;
+            txtCountRemainder.Text = remainderMember.ToString();
         }
     }
 }

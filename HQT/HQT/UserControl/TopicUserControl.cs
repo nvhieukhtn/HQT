@@ -17,6 +17,8 @@ namespace HQT
 
         public event TopicClickedEventHandler TopicClicked;
         public event TopicClickedEventHandler TopicRegister;
+        public event TopicClickedEventHandler TopicDelete;
+        public event TopicClickedEventHandler DisplayMember;
 
         private bool _collapse = false;
 
@@ -32,17 +34,6 @@ namespace HQT
             }
         }
 
-        private bool _allowRegister;
-
-        public bool AllowRegister
-        {
-            get => _allowRegister;
-            set
-            {
-                _allowRegister = value;
-                btnRegister.Visible = _allowRegister;
-            }
-        }
 
         public Group GroupForProject { get; set; }
 
@@ -66,7 +57,6 @@ namespace HQT
         {
             InitializeComponent();
             InitDefaultControl();
-            _allowRegister = true;
         }
 
         private void InitDefaultControl()
@@ -78,9 +68,9 @@ namespace HQT
             grbDetail.Visible = false;
             grbPractice.Height = 60;
             Height = 60;
-            btnTitle.Click += new EventHandler(Topic_OnClick);
-            lbTitle.Click += new EventHandler(Topic_OnClick);
-            grbDetail.Click += new EventHandler(Topic_OnClick);
+            btnTitle.Click += Topic_OnClick;
+            lbTitle.Click += Topic_OnClick;
+            grbDetail.Click += Topic_OnClick;
         }
 
         public void Collapse()
@@ -116,6 +106,18 @@ namespace HQT
                 Collapse();
                 TopicRegister(this, e);
             }
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (TopicDelete != null)
+                TopicDelete(this, e);
+        }
+
+        private void btnMembers_Click(object sender, EventArgs e)
+        {
+            if (DisplayMember != null)
+                DisplayMember(this, e);
         }
     }
 }

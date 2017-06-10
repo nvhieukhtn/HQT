@@ -24,11 +24,15 @@ namespace HQT.Core.Service
 
         public async Task<List<Subject>> GetListSubjectByUserAsync(Guid userId)
         {
+            var user = await _accoutAccountRepository.GetAccountDetailAsync(userId);
             var listSubjects = await _subjectRepository.GetListSubjectByUserAsync(userId);
             foreach (var subject in listSubjects)
             {
                 subject.ListTeachers = await _accoutAccountRepository.GetListTeachersBySubjectAsync(subject.Id);
-                subject.ListProjects = await _projectRepository.GetListProjectBySubjectAsync(subject.Id);
+                if(user is Student)
+                    subject.ListProjects = await _projectRepository.GetListProjectCanRegisterAsync(subject.Id);
+                else 
+                    subject.ListProjects = await _projectRepository.GetListProjectBySubjectAsync(subject.Id);
             }
             return listSubjects;
         }
@@ -37,6 +41,23 @@ namespace HQT.Core.Service
         {
             var listSubjects = await _subjectRepository.GetListSubjectsAsync();
             return listSubjects;
+        }
+
+        public async Task<bool> CreateSubjectAsync(Subject subject)
+        {
+            var result = await _subjectRepository.CreateSubjectAsync(subject);
+            if (result)
+            {
+                foreach (var student in subject.ListStudents)
+                {
+                    result |= await _subjectRepository.AddUserIntoSubjectAsync(student.Id, subject.Id);
+                }
+                foreach (var teacher in subject.ListTeachers)
+                {
+                    result |= await _subjectRepository.AddUserIntoSubjectAsync(teacher.Id, subject.Id);
+                }
+            }
+            return result;
         }
     }
 }

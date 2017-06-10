@@ -10,10 +10,10 @@ namespace HQT.Core.Model
     {
         public static BaseProject CreateProject(Guid id, string projectName, 
             DateTime registerFrom, DateTime registerTo, int limit, 
-            DateTime deadline, ProjectTypes projectType , string subjectName,
-            int upperThreshold)
+            DateTime deadline, ProjectTypes type , string subjectName,
+            int upperThreshold, string projectType)
         {
-            switch (projectType)
+            switch (type)
             {
                 case ProjectTypes.Team:
                     return new ProjectForTeam()
@@ -25,7 +25,8 @@ namespace HQT.Core.Model
                         Deadline = deadline,
                         Limit = limit,
                         SubjectName = subjectName,
-                        UpperThreshold = upperThreshold
+                        UpperThreshold = upperThreshold,
+                        ProjectType =  projectType
                     };
                 case ProjectTypes.Person:
                     return new ProjectForSingle()
@@ -36,7 +37,8 @@ namespace HQT.Core.Model
                         RegisterTo = registerTo,
                         Deadline = deadline,
                         Limit = limit,
-                        SubjectName = subjectName
+                        SubjectName = subjectName,
+                        ProjectType =  projectType
                     };
                 default:
                     return null;

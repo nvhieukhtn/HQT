@@ -17,5 +17,6 @@ namespace HQT.Core.Model
         {
             SubjectName = subjectName;
         }
+        public List<Student> ListStudents { get; set; }
     }
 }

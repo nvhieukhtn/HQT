@@ -19,7 +19,47 @@ namespace HQT
         private readonly IAccountService _accountService;
         private readonly Guid _userId;
         private User _data;
+        private bool _isRegister;
 
+        public bool IsRegister
+        {
+            get => _isRegister;
+            set
+            {
+                _isRegister = value;
+                if (_isRegister)
+                {
+                    btnEditPhone.Visible = false;
+                    btnEditAddress.Visible = false;
+                    btnEditFullname.Visible = false;
+                    btnChangePassword.Visible = false;
+                    btnRegister.Visible = true;
+                    btnChangePassword.Visible = false;
+                    btnChangeAvatar.Visible = false;
+                    cbAccountType.Enabled = true;
+                    txtUsername.Enabled = true;
+                    txtPhone.Enabled = true;
+                    txtAddress.Enabled = true;
+                    txtEmail.Enabled = true;
+                    txtFullname.Enabled = true;
+                    cbAccountType.SelectedItem = "Student";
+                }
+                else
+                {
+                    btnRegister.Visible = false;
+                    lbPassword.Visible = false;
+                    txtPassword.Visible = false;
+                    txtRePassword.Visible = false;
+
+
+                    txtUsername.Enabled = false;
+                    txtPhone.Enabled = false;
+                    txtAddress.Enabled = false;
+                    txtEmail.Enabled = false;
+                    txtFullname.Enabled = false;
+                }
+            }
+        }
         public User Data
         {
             get => _data;
@@ -33,7 +73,6 @@ namespace HQT
                     txtAddress.Text = _data.Address;
                     txtPhone.Text = _data.Phone;
                     txtEmail.Text = _data.Email;
-                    txtCode.Text = _data.Code;
                 }
             }
         }
@@ -41,6 +80,13 @@ namespace HQT
         {
             InitializeComponent();
             _userId = userId;
+            IsRegister = false;
+            _accountService = _container.Resolve<IAccountService>();
+        }
+        public AccountDetailForm()
+        {
+            InitializeComponent();
+            IsRegister = true;
             _accountService = _container.Resolve<IAccountService>();
         }
 
@@ -88,7 +134,67 @@ namespace HQT
 
         private async void statusBar_Load(object sender, EventArgs e)
         {
-            Data = await _accountService.GetUserDetailAsync(_userId);
+            if(!IsRegister)
+                Data = await _accountService.GetUserDetailAsync(_userId);
+            else 
+                Data = new Student();
+        }
+
+        private void AccountDetailForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(IsClose)
+                LoginForm.Instance.Close();
+        }
+
+        private User GetUser()
+        {
+            var username = txtUsername.Text;
+            var fullname = txtFullname.Text;
+            var type = cbAccountType.SelectedItem.ToString();
+            var email = txtEmail.Text;
+            var phone = txtPhone.Text;
+            var password = txtPassword.Text;
+
+            var user = UserFactory.CreateUser(username, fullname, type);
+            user.Email = email;
+            user.Phone = phone;
+            user.Password = password;
+            return user;
+        }
+
+        private async void btnRegister_Click(object sender, EventArgs e)
+        {
+            var user = GetUser();
+            var result = await _accountService.CreateAccountAsync(user);
+            if (result)
+            {
+                var react = MessageBox.Show(this, "Tạo tài khoản thành công", "Thông báo", MessageBoxButtons.OK);
+                if (react == DialogResult.OK)
+                {
+                    var accountList = new AccountManagerForm();
+                    IsClose = false;
+                    accountList.Show();
+                    Close();
+                }
+            }
+            else
+            {
+                var react = MessageBox.Show(this, "Tạo tài khoản thất bại\n Thử lại!", "Thông báo", MessageBoxButtons.OKCancel);
+                if (react == DialogResult.Cancel)
+                {
+                    var accountList = new AccountManagerForm();
+                    IsClose = false;
+                    accountList.Show();
+                    Close();
+                }
+                else if (react == DialogResult.OK)
+                {
+                    var accountDetail = new AccountDetailForm();
+                    IsClose = false;
+                    accountDetail.Show();
+                    Close();
+                }
+            }
         }
     }
 }

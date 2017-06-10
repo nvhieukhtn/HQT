@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace HQT.Core.Model
 
         public List<Topic> ListTopics { get; set; }
         public int Limit { get; set; }
+        public string ProjectType { get; set; }
         protected BaseProject()
         {
             ProjectName = string.Empty;
@@ -25,12 +27,14 @@ namespace HQT.Core.Model
             ListTopics = new List<Topic>();
         }
 
-        protected BaseProject(string projectName, DateTime registerFrom, DateTime to, List<Topic> listTopics)
+        protected BaseProject(string projectName, string projectType,
+            DateTime registerFrom, DateTime to, List<Topic> listTopics)
         {
             ProjectName = projectName;
             RegisterFrom = registerFrom;
             RegisterTo = to;
             ListTopics = listTopics;
+            ProjectType = projectType;
         }
     }
 }

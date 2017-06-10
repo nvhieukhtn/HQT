@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AccountUserControl));
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtFullname = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.cbRole = new System.Windows.Forms.ComboBox();
+            this.btnDetail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -59,39 +57,12 @@
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Location = new System.Drawing.Point(465, 4);
+            this.btnDelete.Location = new System.Drawing.Point(496, 6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(22, 22);
             this.btnDelete.TabIndex = 1;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.BackgroundImage = global::HQT.Properties.Resources.edit;
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit.Location = new System.Drawing.Point(493, 4);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(22, 22);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSave.BackgroundImage")));
-            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(493, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(22, 22);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Visible = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cbRole
             // 
@@ -102,14 +73,27 @@
             this.cbRole.Size = new System.Drawing.Size(121, 21);
             this.cbRole.TabIndex = 2;
             // 
+            // btnDetail
+            // 
+            this.btnDetail.BackgroundImage = global::HQT.Properties.Resources.info;
+            this.btnDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDetail.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDetail.FlatAppearance.BorderSize = 0;
+            this.btnDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDetail.Location = new System.Drawing.Point(471, 6);
+            this.btnDetail.Name = "btnDetail";
+            this.btnDetail.Size = new System.Drawing.Size(22, 22);
+            this.btnDetail.TabIndex = 1;
+            this.btnDetail.UseVisualStyleBackColor = true;
+            this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
+            // 
             // AccountUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.cbRole);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnDetail);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.txtFullname);
             this.Controls.Add(this.txtUsername);
@@ -125,8 +109,7 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtFullname;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cbRole;
+        private System.Windows.Forms.Button btnDetail;
     }
 }

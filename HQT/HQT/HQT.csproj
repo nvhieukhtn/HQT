@@ -76,11 +76,29 @@
     <Compile Include="CreateProjectForm.Designer.cs">
       <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateSubjectForm.Designer.cs">
+      <DependentUpon>CreateSubjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateTopicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateTopicForm.Designer.cs">
+      <DependentUpon>CreateTopicForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Overview.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Overview.Designer.cs">
       <DependentUpon>Overview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\SubjectFilterUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\SubjectFilterUserControl.Designer.cs">
+      <DependentUpon>SubjectFilterUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControl\OverviewAvailableProjectTabContentUserControl.cs">
       <SubType>UserControl</SubType>
@@ -215,8 +233,17 @@
     <EmbeddedResource Include="CreateProjectForm.resx">
       <DependentUpon>CreateProjectForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateSubjectForm.resx">
+      <DependentUpon>CreateSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateTopicForm.resx">
+      <DependentUpon>CreateTopicForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Overview.resx">
       <DependentUpon>Overview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl\SubjectFilterUserControl.resx">
+      <DependentUpon>SubjectFilterUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\OverviewAvailableProjectTabContentUserControl.resx">
       <DependentUpon>OverviewAvailableProjectTabContentUserControl.cs</DependentUpon>
@@ -377,6 +404,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\statistic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-subject.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

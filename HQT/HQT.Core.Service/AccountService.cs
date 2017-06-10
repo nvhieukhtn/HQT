@@ -23,9 +23,10 @@ namespace HQT.Core.Service
             return result;
         }
 
-        public Task<User> GetUserDetailAsync(Guid userId)
+        public async Task<User> GetUserDetailAsync(Guid userId)
         {
-            throw new NotImplementedException();
+            var account = await _accountRepository.GetAccountDetailAsync(userId);
+            return account;
         }
 
         public async Task<List<User>> GetListAccountAsync()
@@ -40,9 +41,10 @@ namespace HQT.Core.Service
             return result;
         }
 
-        public Task<bool> CreateAccountAsync(User account)
+        public async Task<bool> CreateAccountAsync(User account)
         {
-            throw new NotImplementedException();
+            var result = await _accountRepository.CreateAccountAsync(account);
+            return result;
         }
 
         public Task<bool> DeleteAccountAsync(Guid userId)
@@ -50,9 +52,22 @@ namespace HQT.Core.Service
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAccountAsync(User account)
+        public async Task<bool> UpdateAccountAsync(User account)
         {
-            throw new NotImplementedException();
+            var result = await _accountRepository.UpdateAccountAsync(account);
+            return result;
+        }
+
+        public async Task<List<Teacher>> GetListTeachersAsync()
+        {
+            var listTeachers = await _accountRepository.GetListTeachersAsync();
+            return listTeachers;
+        }
+
+        public async Task<List<Student>> GetListStudentsAsync()
+        {
+            var listStudents = await _accountRepository.GetListStudentsAsync();
+            return listStudents;
         }
     }
 }

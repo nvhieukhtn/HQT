@@ -30,7 +30,6 @@
         {
             this.picAvatar = new System.Windows.Forms.PictureBox();
             this.txtTitle = new System.Windows.Forms.TextBox();
-            this.btnDeleteProject = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,28 +51,14 @@
             this.txtTitle.Location = new System.Drawing.Point(28, 7);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
-            this.txtTitle.Size = new System.Drawing.Size(219, 13);
+            this.txtTitle.Size = new System.Drawing.Size(238, 13);
             this.txtTitle.TabIndex = 1;
             this.txtTitle.Click += new System.EventHandler(this.txtTitle_Click);
-            // 
-            // btnDeleteProject
-            // 
-            this.btnDeleteProject.BackgroundImage = global::HQT.Properties.Resources.delete;
-            this.btnDeleteProject.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnDeleteProject.FlatAppearance.BorderSize = 0;
-            this.btnDeleteProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteProject.Location = new System.Drawing.Point(253, 3);
-            this.btnDeleteProject.Name = "btnDeleteProject";
-            this.btnDeleteProject.Size = new System.Drawing.Size(20, 20);
-            this.btnDeleteProject.TabIndex = 2;
-            this.btnDeleteProject.UseVisualStyleBackColor = true;
-            this.btnDeleteProject.Click += new System.EventHandler(this.btnDeleteProject_Click);
             // 
             // ProjectItemUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnDeleteProject);
             this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.picAvatar);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -89,6 +74,5 @@
 
         private System.Windows.Forms.PictureBox picAvatar;
         private System.Windows.Forms.TextBox txtTitle;
-        private System.Windows.Forms.Button btnDeleteProject;
     }
 }

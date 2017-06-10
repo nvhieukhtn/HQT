@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ckLimit = new System.Windows.Forms.CheckBox();
-            this.radioPersonal = new System.Windows.Forms.RadioButton();
-            this.radioGroup = new System.Windows.Forms.RadioButton();
+            this.cbProjectType = new System.Windows.Forms.ComboBox();
             this.numberGroup = new System.Windows.Forms.NumericUpDown();
-            this.numberPeopleMax = new System.Windows.Forms.NumericUpDown();
+            this.numberStudentMax = new System.Windows.Forms.NumericUpDown();
             this.dtTo = new System.Windows.Forms.DateTimePicker();
+            this.dtDeadline = new System.Windows.Forms.DateTimePicker();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.btnAddTopic = new System.Windows.Forms.Button();
             this.txtProjectName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lbGroupNumber = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbNumberPeopleMin = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,22 +48,26 @@
             this.btnCreate = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberPeopleMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberStudentMax)).BeginInit();
             this.SuspendLayout();
+            // 
+            // statusBar
+            // 
+            this.statusBar.Load += new System.EventHandler(this.statusBar_Load);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ckLimit);
-            this.groupBox1.Controls.Add(this.radioPersonal);
-            this.groupBox1.Controls.Add(this.radioGroup);
+            this.groupBox1.Controls.Add(this.cbProjectType);
             this.groupBox1.Controls.Add(this.numberGroup);
-            this.groupBox1.Controls.Add(this.numberPeopleMax);
+            this.groupBox1.Controls.Add(this.numberStudentMax);
             this.groupBox1.Controls.Add(this.dtTo);
+            this.groupBox1.Controls.Add(this.dtDeadline);
             this.groupBox1.Controls.Add(this.dtFrom);
             this.groupBox1.Controls.Add(this.btnAddTopic);
             this.groupBox1.Controls.Add(this.txtProjectName);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lbGroupNumber);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lbNumberPeopleMin);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label7);
@@ -75,51 +79,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin chung";
             // 
-            // ckLimit
+            // cbProjectType
             // 
-            this.ckLimit.AutoSize = true;
-            this.ckLimit.Location = new System.Drawing.Point(243, 46);
-            this.ckLimit.Name = "ckLimit";
-            this.ckLimit.Size = new System.Drawing.Size(94, 17);
-            this.ckLimit.TabIndex = 7;
-            this.ckLimit.Text = "Giới hạn nhóm";
-            this.ckLimit.UseVisualStyleBackColor = true;
-            this.ckLimit.CheckedChanged += new System.EventHandler(this.ckLimit_CheckedChanged);
-            // 
-            // radioPersonal
-            // 
-            this.radioPersonal.AutoSize = true;
-            this.radioPersonal.Location = new System.Drawing.Point(163, 45);
-            this.radioPersonal.Name = "radioPersonal";
-            this.radioPersonal.Size = new System.Drawing.Size(65, 17);
-            this.radioPersonal.TabIndex = 6;
-            this.radioPersonal.TabStop = true;
-            this.radioPersonal.Text = "Cá nhân";
-            this.radioPersonal.UseVisualStyleBackColor = true;
-            this.radioPersonal.CheckedChanged += new System.EventHandler(this.radioPersonal_CheckedChanged);
-            // 
-            // radioGroup
-            // 
-            this.radioGroup.AutoSize = true;
-            this.radioGroup.Location = new System.Drawing.Point(91, 45);
-            this.radioGroup.Name = "radioGroup";
-            this.radioGroup.Size = new System.Drawing.Size(53, 17);
-            this.radioGroup.TabIndex = 6;
-            this.radioGroup.TabStop = true;
-            this.radioGroup.Text = "Nhóm";
-            this.radioGroup.UseVisualStyleBackColor = true;
-            this.radioGroup.CheckedChanged += new System.EventHandler(this.radioGroup_CheckedChanged);
+            this.cbProjectType.FormattingEnabled = true;
+            this.cbProjectType.Location = new System.Drawing.Point(91, 43);
+            this.cbProjectType.Name = "cbProjectType";
+            this.cbProjectType.Size = new System.Drawing.Size(121, 21);
+            this.cbProjectType.TabIndex = 7;
             // 
             // numberGroup
             // 
-            this.numberGroup.Location = new System.Drawing.Point(450, 45);
+            this.numberGroup.Location = new System.Drawing.Point(304, 45);
             this.numberGroup.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numberGroup.Name = "numberGroup";
-            this.numberGroup.Size = new System.Drawing.Size(38, 20);
+            this.numberGroup.Size = new System.Drawing.Size(42, 20);
             this.numberGroup.TabIndex = 5;
             this.numberGroup.Value = new decimal(new int[] {
             1,
@@ -127,23 +104,23 @@
             0,
             0});
             // 
-            // numberPeopleMax
+            // numberStudentMax
             // 
-            this.numberPeopleMax.Location = new System.Drawing.Point(450, 72);
-            this.numberPeopleMax.Maximum = new decimal(new int[] {
+            this.numberStudentMax.Location = new System.Drawing.Point(513, 44);
+            this.numberStudentMax.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
-            this.numberPeopleMax.Minimum = new decimal(new int[] {
+            this.numberStudentMax.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numberPeopleMax.Name = "numberPeopleMax";
-            this.numberPeopleMax.Size = new System.Drawing.Size(38, 20);
-            this.numberPeopleMax.TabIndex = 5;
-            this.numberPeopleMax.Value = new decimal(new int[] {
+            this.numberStudentMax.Name = "numberStudentMax";
+            this.numberStudentMax.Size = new System.Drawing.Size(38, 20);
+            this.numberStudentMax.TabIndex = 5;
+            this.numberStudentMax.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -153,18 +130,29 @@
             // 
             this.dtTo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtTo.Location = new System.Drawing.Point(232, 72);
+            this.dtTo.Location = new System.Drawing.Point(251, 72);
             this.dtTo.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
             this.dtTo.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtTo.Name = "dtTo";
             this.dtTo.Size = new System.Drawing.Size(128, 20);
             this.dtTo.TabIndex = 4;
             // 
+            // dtDeadline
+            // 
+            this.dtDeadline.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtDeadline.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDeadline.Location = new System.Drawing.Point(486, 72);
+            this.dtDeadline.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.dtDeadline.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dtDeadline.Name = "dtDeadline";
+            this.dtDeadline.Size = new System.Drawing.Size(128, 20);
+            this.dtDeadline.TabIndex = 4;
+            // 
             // dtFrom
             // 
             this.dtFrom.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtFrom.Location = new System.Drawing.Point(72, 72);
+            this.dtFrom.Location = new System.Drawing.Point(91, 72);
             this.dtFrom.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
             this.dtFrom.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtFrom.Name = "dtFrom";
@@ -194,7 +182,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(201, 76);
+            this.label3.Location = new System.Drawing.Point(220, 76);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 0;
@@ -203,16 +191,25 @@
             // lbGroupNumber
             // 
             this.lbGroupNumber.AutoSize = true;
-            this.lbGroupNumber.Location = new System.Drawing.Point(366, 47);
+            this.lbGroupNumber.Location = new System.Drawing.Point(220, 47);
             this.lbGroupNumber.Name = "lbGroupNumber";
             this.lbGroupNumber.Size = new System.Drawing.Size(78, 13);
             this.lbGroupNumber.TabIndex = 0;
             this.lbGroupNumber.Text = "Số lượng nhóm";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(429, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Hạn nộp";
+            // 
             // lbNumberPeopleMin
             // 
             this.lbNumberPeopleMin.AutoSize = true;
-            this.lbNumberPeopleMin.Location = new System.Drawing.Point(366, 75);
+            this.lbNumberPeopleMin.Location = new System.Drawing.Point(429, 47);
             this.lbNumberPeopleMin.Name = "lbNumberPeopleMin";
             this.lbNumberPeopleMin.Size = new System.Drawing.Size(78, 13);
             this.lbNumberPeopleMin.TabIndex = 0;
@@ -286,7 +283,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numberPeopleMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberStudentMax)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -303,13 +300,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown numberPeopleMax;
+        private System.Windows.Forms.NumericUpDown numberStudentMax;
         private System.Windows.Forms.Label lbNumberPeopleMin;
         private System.Windows.Forms.Label lbGroupNumber;
         private System.Windows.Forms.NumericUpDown numberGroup;
-        private System.Windows.Forms.RadioButton radioPersonal;
-        private System.Windows.Forms.RadioButton radioGroup;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox ckLimit;
+        private System.Windows.Forms.DateTimePicker dtDeadline;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbProjectType;
     }
 }

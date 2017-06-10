@@ -16,10 +16,12 @@ namespace HQT
         private readonly ISubjectService _subjectService;
         public static SubjectManagerForm Instance { get; private set; }
         public List<SubjectBoardUserControl> ListSubjectControls { get; set; }
-        
+        private int _position;
         public SubjectManagerForm()
         {
             InitializeComponent();
+            subjectFilter.AddSubjectClicked += AddSubject;
+            subjectFilter.FilterSubjectStatus += FilterSubject;
             Instance = this;
             _subjectService = _container.Resolve<ISubjectService>();
             ListSubjectControls = new List<SubjectBoardUserControl>();
@@ -28,6 +30,16 @@ namespace HQT
         
         private async void SubjectManager_Load(object sender, EventArgs e)
         {
+            if (ApplicationSetting.CurrentUser is Student)
+            {
+                subjectFilter.Visible = false;
+                _position = 55;
+            }
+            else
+            {
+                subjectFilter.Visible = true;
+                _position = 90;
+            }
             await RenderSubjectToGuiAsync();
         }
 
@@ -47,32 +59,48 @@ namespace HQT
         private async Task RenderSubjectToGuiAsync()
         {
             var listSubjects = await GetListSubjectsAsync();
-            
+            var position = _position;
             foreach (var subject in listSubjects)
             {
-                var subjectBoard = CreateSubjectBoardUserControl(subject);
+                var subjectBoard = CreateSubjectBoardUserControl(subject, position);
+                position += subjectBoard.Height;
                 ListSubjectControls.Add(subjectBoard);
                 Controls.Add(subjectBoard);
             }
         }
 
-        private SubjectBoardUserControl CreateSubjectBoardUserControl(Subject subject)
+        private SubjectBoardUserControl CreateSubjectBoardUserControl(Subject subject, int position)
         {
-            var index = ListSubjectControls.Count;
-            var subjectBoard = new SubjectBoardUserControl { Data = subject };
-            subjectBoard.Location = new Point(10, 55 + index * subjectBoard.Height);
-            subjectBoard.Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right);
+            var subjectBoard = new SubjectBoardUserControl
+            {
+                Data = subject,
+                Location = new Point(10, position),
+                Anchor = (AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right)
+            };
             subjectBoard.SubjectBoardProjectDetailClicked +=
                 ShowProjectDetail;
             subjectBoard.SubjectBoardCreateProject += CreateProjectEvent;
             return subjectBoard;
         }
 
+        private void AddSubject(object sender, EventArgs e)
+        {
+            var addSubject = new CreateSubjectForm();
+            IsClose = false;
+            addSubject.Show();
+            Close();
+        }
+
+        private void FilterSubject(object sender, EventArgs e)
+        {
+            
+        }
+
         private void ShowProjectDetail(object sender, EventArgs e)
         {
             var target = (SubjectBoardUserControl) sender;
             var currentProject = target.CurrentProject;
-            var projectDetail = new ProjectDetailForm(currentProject);
+            var projectDetail = new ProjectDetailForm(currentProject.Id);
             projectDetail.Show();
             IsClose = false;
             Close();

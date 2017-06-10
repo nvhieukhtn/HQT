@@ -12,8 +12,9 @@ namespace HQT.Core.Model
         {
             
         }
-        public ProjectForSingle(string projectName, DateTime registerFrom, DateTime to,List<Topic> listTopics)
-            :base(projectName, registerFrom, to, listTopics)
+        public ProjectForSingle(string projectName, string projectType,
+            DateTime registerFrom, DateTime to,List<Topic> listTopics)
+            :base(projectName, projectType, registerFrom, to, listTopics)
         {
             
         }

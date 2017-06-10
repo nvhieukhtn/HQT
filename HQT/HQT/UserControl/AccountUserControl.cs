@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Model;
 
@@ -18,43 +11,7 @@ namespace HQT
         public AccountClickedEventHandler DeleteAccountEvent;
         public AccountClickedEventHandler EditAccountEvent;
         public AccountClickedEventHandler SaveAccountEvent;
-        private bool _editable;
-
-        public bool Editable
-        {
-            get => _editable;
-            set
-            {
-                _editable = value;
-                btnEdit.Visible = _editable;
-            }
-        }
-        private bool _isEdit = false;
-
-        public bool IsEdit
-        {
-            get => _isEdit;
-            set
-            {
-                _isEdit = value;
-                if (_isEdit)
-                {
-                    txtUsername.ReadOnly = false;
-                    txtFullname.ReadOnly = false;
-                    cbRole.Enabled = true;
-                    btnSave.Visible = true;
-                    btnEdit.Visible = false;
-                }
-                else
-                {
-                    txtUsername.ReadOnly = true;
-                    txtFullname.ReadOnly = true;
-                    cbRole.Enabled = false;
-                    btnSave.Visible = false;
-                    btnEdit.Visible = true;
-                }
-            }
-        }
+        public AccountClickedEventHandler DetailAccountEvent;
         private User _data;
 
         public User Data
@@ -88,27 +45,10 @@ namespace HQT
                 DeleteAccountEvent(this, e);
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnDetail_Click(object sender, EventArgs e)
         {
-            IsEdit = true;
-            btnSave.Visible = true;
-            btnEdit.Visible = false;
-            if (EditAccountEvent != null)
-            {                
-                EditAccountEvent(this, e);
-            }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            IsEdit = false;
-            btnSave.Visible = false;
-            btnEdit.Visible = true;
-            Data = UserFactory.CreateUser(txtUsername.Text, txtFullname.Text, cbRole.SelectedItem.ToString());
-            if (SaveAccountEvent != null)
-            {
-                SaveAccountEvent(this, e);
-            }
+            if (DetailAccountEvent != null)
+                DetailAccountEvent(this, e);
         }
     }
 }

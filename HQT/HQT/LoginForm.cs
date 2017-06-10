@@ -29,20 +29,14 @@ namespace HQT
                 ApplicationSetting.CurrentUser = result;
                 var dashboard = new HomeForm();
                 dashboard.Show();
-                this.Hide();
+                Hide();
             }
             else
             {
                 txtUsername.Text = string.Empty;
                 txtPassword.Text = string.Empty;
+                txtUsername.Focus();
             }
-        }
-
-        private void ResetControl()
-        {
-            txtUsername.Text = "";
-            txtPassword.Text = "";
-            ckRemember.Checked = false;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -67,6 +61,13 @@ namespace HQT
         {
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
+        }
+
+        private void LoginForm_Shown(object sender, EventArgs e)
+        {
+            txtUsername.Text = "";
+            txtPassword.Text = "";
+            txtUsername.Focus();
         }
     }
 }

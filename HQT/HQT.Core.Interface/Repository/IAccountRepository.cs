@@ -14,5 +14,9 @@ namespace HQT.Core.Interface.Repository
         Task<List<User>> GetListAccountAsync();
         Task<User> GetAccountDetailAsync(Guid userId);
         Task<List<Teacher>> GetListTeachersBySubjectAsync(Guid subjectId);
+        Task<bool> UpdateAccountAsync(User user);
+        Task<bool> CreateAccountAsync(User user);
+        Task<List<Teacher>> GetListTeachersAsync();
+        Task<List<Student>> GetListStudentsAsync();
     }
 }

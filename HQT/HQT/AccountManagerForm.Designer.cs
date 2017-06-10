@@ -35,6 +35,7 @@
             // 
             this.btnAddAccount.BackgroundImage = global::HQT.Properties.Resources.add_member;
             this.btnAddAccount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAddAccount.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddAccount.FlatAppearance.BorderSize = 0;
             this.btnAddAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAccount.Location = new System.Drawing.Point(619, 60);

@@ -1,6 +1,6 @@
 ﻿namespace HQT
 {
-    partial class SubjectManagerForm
+    partial class CreateTopicForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,39 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.subjectFilter = new HQT.SubjectFilterUserControl();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // subjectFilter
+            // btnAdd
             // 
-            this.subjectFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.subjectFilter.Location = new System.Drawing.Point(12, 53);
-            this.subjectFilter.Name = "subjectFilter";
-            this.subjectFilter.Size = new System.Drawing.Size(642, 30);
-            this.subjectFilter.TabIndex = 1;
+            this.btnAdd.Location = new System.Drawing.Point(291, 250);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // SubjectManagerForm
+            // CreateTopicForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(684, 411);
-            this.Controls.Add(this.subjectFilter);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "SubjectManagerForm";
+            this.ClientSize = new System.Drawing.Size(684, 288);
+            this.Controls.Add(this.btnAdd);
+            this.Name = "CreateTopicForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Quản lý môn học";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SubjectManager_FormClosing);
-            this.Load += new System.EventHandler(this.SubjectManager_Load);
+            this.Text = "Thêm đề tài";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CreateTopicForm_FormClosing);
             this.Controls.SetChildIndex(this.statusBar, 0);
-            this.Controls.SetChildIndex(this.subjectFilter, 0);
+            this.Controls.SetChildIndex(this.btnAdd, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private SubjectFilterUserControl subjectFilter;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

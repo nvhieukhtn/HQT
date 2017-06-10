@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.grbPractice = new System.Windows.Forms.GroupBox();
+            this.btnMembers = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnTitle = new System.Windows.Forms.Button();
@@ -36,7 +37,6 @@
             this.txtDetail = new System.Windows.Forms.TextBox();
             this.lbTitle = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnMembers = new System.Windows.Forms.Button();
             this.grbPractice.SuspendLayout();
             this.grbDetail.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,22 @@
             this.grbPractice.TabStop = false;
             this.grbPractice.Text = "Đề bài";
             // 
+            // btnMembers
+            // 
+            this.btnMembers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMembers.BackgroundImage = global::HQT.Properties.Resources.account;
+            this.btnMembers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMembers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMembers.FlatAppearance.BorderSize = 0;
+            this.btnMembers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMembers.Location = new System.Drawing.Point(568, 19);
+            this.btnMembers.Name = "btnMembers";
+            this.btnMembers.Size = new System.Drawing.Size(30, 30);
+            this.btnMembers.TabIndex = 4;
+            this.btnMembers.UseVisualStyleBackColor = true;
+            this.btnMembers.Visible = false;
+            this.btnMembers.Click += new System.EventHandler(this.btnMembers_Click);
+            // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -67,13 +83,12 @@
             this.btnRemove.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemove.FlatAppearance.BorderSize = 0;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Location = new System.Drawing.Point(597, 19);
+            this.btnRemove.Location = new System.Drawing.Point(601, 19);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(30, 30);
             this.btnRemove.TabIndex = 4;
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Visible = false;
-            this.btnRemove.Click += new System.EventHandler(this.btnRegister_Click);
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // btnRegister
             // 
@@ -83,7 +98,7 @@
             this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegister.FlatAppearance.BorderSize = 0;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegister.Location = new System.Drawing.Point(597, 19);
+            this.btnRegister.Location = new System.Drawing.Point(568, 18);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(30, 30);
             this.btnRegister.TabIndex = 4;
@@ -142,22 +157,6 @@
             this.lbTitle.Size = new System.Drawing.Size(57, 15);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Tiêu đề : ";
-            // 
-            // btnMembers
-            // 
-            this.btnMembers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMembers.BackgroundImage = global::HQT.Properties.Resources.account;
-            this.btnMembers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnMembers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMembers.FlatAppearance.BorderSize = 0;
-            this.btnMembers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMembers.Location = new System.Drawing.Point(568, 19);
-            this.btnMembers.Name = "btnMembers";
-            this.btnMembers.Size = new System.Drawing.Size(30, 30);
-            this.btnMembers.TabIndex = 4;
-            this.btnMembers.UseVisualStyleBackColor = true;
-            this.btnMembers.Visible = false;
-            this.btnMembers.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // TopicUserControl
             // 

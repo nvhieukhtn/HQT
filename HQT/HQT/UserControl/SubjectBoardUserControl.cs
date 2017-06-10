@@ -17,7 +17,6 @@ namespace HQT
         public BaseProject CurrentProject;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardProjectDetailClicked;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardCreateProject;
-        public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardDeleteProject;
         private void SubjectBoardProjectDetail_OnClick(object sender, EventArgs e)
         {
             if (SubjectBoardProjectDetailClicked != null)
@@ -47,7 +46,7 @@ namespace HQT
         private void UpdateProjects()
         {
             grbProjects.Controls.Clear();
-            var height = Math.Max(90, 45 * _data.ListProjects.Count);
+            var height = Math.Max(90, 50 * _data.ListProjects.Count);
             Height = height;
             if(grbSubject != null)
                 grbSubject.Height = height;
@@ -64,7 +63,6 @@ namespace HQT
                     Location = new Point(10, 19 + 35 * index)
                 };
                 project.ProjectItemClicked += SubjectBoardProjectDetail_OnClick;
-                project.ProjectDeleteEvent += DeleteProject_Click;
                 index++;
                 grbProjects?.Controls.Add(project);
             });
@@ -84,8 +82,8 @@ namespace HQT
                               $"    - Giảng viên chính : {Data.ListTeachers.FirstOrDefault().FullName}\n";
                 if (Data.ListTeachers.Count >= 2)
                 {
-                    for (var i = 2; i < Data.ListTeachers.Count; i++)
-                        content += $"    - Giảng viên phụ {i - 1} : {Data.ListTeachers[i].FullName}\n";
+                    for (var i = 1; i < Data.ListTeachers.Count; i++)
+                        content += $"    - Giảng viên phụ {i} : {Data.ListTeachers[i].FullName}\n";
                 }
                 MessageBox.Show(content, "Giáo viên");
             }
@@ -97,15 +95,6 @@ namespace HQT
             {
                 SubjectBoardCreateProject(this, e);
             }
-        }
-
-        private async void DeleteProject_Click(object sender, EventArgs e)
-        {
-            var target = (ProjectItemUserControl) sender;
-            var projectId = target.Data.Id;
-            var result = await _projectService.DeleteProjectAsync(projectId, Data.Id);
-            if (result)
-                Data.ListProjects.RemoveAll(x => x.Id == projectId);
         }
     }
 }

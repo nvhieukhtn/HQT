@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using HQT.Core.Interface.Service;
 using HQT.Core.Model;
@@ -12,7 +13,6 @@ namespace HQT
     {
         private readonly IUnityContainer _container = DependencyResolution.Container;
         private bool _isPersonalProject;
-        private readonly ISubjectService _subjectService;
         private readonly IProjectService _projectService;
         public bool IsPersonalProject
         {
@@ -21,22 +21,10 @@ namespace HQT
             {
                 _isPersonalProject = value;
                 lbNumberPeopleMin.Visible = !_isPersonalProject;
-                numberPeopleMax.Visible = !_isPersonalProject;
+                numberStudentMax.Visible = !_isPersonalProject;
             }
         }
 
-        private bool _isLimit;
-
-        public bool IsLimit
-        {
-            get => _isLimit;
-            set
-            {
-                _isLimit = value;
-                lbGroupNumber.Visible = _isLimit;
-                numberGroup.Visible = _isLimit;
-            }
-        }
 
         private readonly Guid _subjectId;
         private List<TabTopicContentUserControl> ListTabPageTopics { get; set; }
@@ -44,10 +32,7 @@ namespace HQT
         {
             _subjectId = subjectId;
             InitializeComponent();
-            _subjectService = _container.Resolve<ISubjectService>();
             _projectService = _container.Resolve<IProjectService>();
-            radioGroup.Checked = true;
-            ckLimit.Checked = true;
             ListTabPageTopics  = new List<TabTopicContentUserControl>();
         }
 
@@ -72,12 +57,6 @@ namespace HQT
             IsPersonalProject = target.Checked;
         }
 
-        private void ckLimit_CheckedChanged(object sender, EventArgs e)
-        {
-            var target = (CheckBox) sender;
-            IsLimit = target.Checked;
-        }
-
         private void CreateProjectForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (IsClose)
@@ -89,24 +68,39 @@ namespace HQT
             var listTopics = new List<Topic>();
             foreach (var tabPageTopic in ListTabPageTopics)
             {
-                var title = tabPageTopic.Title;
-                var content = tabPageTopic.Content;
-
-                var topic = new Topic(title, content);
+                var topic = tabPageTopic.GetTopic();
                 listTopics.Add(topic);
             }
             return listTopics;
         }
 
+        private bool CheckValidation()
+        {
+            if (string.IsNullOrWhiteSpace(txtProjectName.Text))
+                return false;
+            if (!ListTabPageTopics.Any())
+                return false;
+            foreach (var tabPageTopic in ListTabPageTopics)
+            {
+                var title = tabPageTopic.Title;
+                var content = tabPageTopic.Content;
+                if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(content))
+                    return false;
+            }
+            return true;
+        }
         private BaseProject GetProjectFromUi()
         {
             var projectName = txtProjectName.Text;
-            var projectType = radioGroup.Checked ? ProjectTypes.Team : ProjectTypes.Person;
+            var studentMax = (int)numberStudentMax.Value;
+            var type = studentMax > 1 ? ProjectTypes.Team : ProjectTypes.Person;
             var dateFrom = dtFrom.Value;
             var dateTo = dtTo.Value;
+            var deadline = dtDeadline.Value;
             var listTopics = GetListTopics();
-            var limit = ckLimit.Checked ? (int)numberGroup.Value : -1;
-            if (projectType == ProjectTypes.Person)
+            var limit = (int) numberGroup.Value;
+            var projectType = ((ProjectType)cbProjectType.SelectedItem).ProjectTypeName;
+            if (type == ProjectTypes.Person)
             {
                 var project = new ProjectForSingle
                 {
@@ -114,13 +108,15 @@ namespace HQT
                     ListTopics = listTopics,
                     RegisterTo = dateTo,
                     ProjectName = projectName,
-                    Limit = limit
+                    Limit = limit,
+                    Deadline =  deadline,
+                    ProjectType =  projectType,
+                    
                 };
                 return project;
             }
             else
             {
-                var numberMaxPerson = (int) numberPeopleMax.Value;
                 var project = new ProjectForTeam
                 {
                     RegisterFrom = dateFrom,
@@ -128,7 +124,9 @@ namespace HQT
                     RegisterTo = dateTo,
                     ProjectName = projectName,
                     Limit = limit,
-                    UpperThreshold =  numberMaxPerson
+                    Deadline =  deadline,
+                    UpperThreshold = studentMax,
+                    ProjectType = projectType
                 };
                 return project;
             }
@@ -136,6 +134,12 @@ namespace HQT
 
         private async void btnCreate_Click(object sender, EventArgs e)
         {
+            if (!CheckValidation())
+            {
+                var act = MessageBox.Show(this,"Chưa nhập đủ thông tin", "Thông báo", MessageBoxButtons.OK);
+                if (act == DialogResult.OK)
+                    return;
+            }
             var project = GetProjectFromUi();
             var result = await _projectService.CreateProjectAsync(project, _subjectId);
             if (result)
@@ -168,6 +172,13 @@ namespace HQT
                 }
             }
                     
+        }
+
+        private async void statusBar_Load(object sender, EventArgs e)
+        {
+            var listProjectType = await _projectService.GetListProjectTypeAsync();
+            cbProjectType.DataSource = listProjectType;
+            cbProjectType.DisplayMember = "ProjectTypeName";
         }
     }
 }

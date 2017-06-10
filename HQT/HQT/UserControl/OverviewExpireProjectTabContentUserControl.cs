@@ -42,12 +42,12 @@ namespace HQT
                 return;
             if (target.SelectedItem.ToString().Equals("Cá nhân", StringComparison.CurrentCultureIgnoreCase))
             {
-                var listProjects = ListProjects.Where(x => x is ProjectForSingle).ToList();
+                var listProjects = ListProjects?.Where(x => x is ProjectForSingle).ToList() ?? new List<BaseProject>();
                 RenderListProject(listProjects);
             }
             else
             {
-                var listProjects = ListProjects.Where(x => x is ProjectForTeam).ToList();
+                var listProjects = ListProjects?.Where(x => x is ProjectForTeam).ToList() ?? new List<BaseProject>();
                 RenderListProject(listProjects);
             }
         }

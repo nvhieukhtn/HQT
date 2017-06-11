@@ -1,4 +1,3 @@
-
 CREATE DATABASE [hqt-yes]
 
 GO
@@ -17,7 +16,7 @@ GO
 
 CREATE TABLE Project (
   ProjectId uniqueidentifier PRIMARY KEY,
-  ProjectTypeId nvarchar(30),
+  ProjectTypeId uniqueidentifier,
   ProjectName nvarchar(100),
   StartRegister datetime,
   EndRegister datetime,
@@ -97,6 +96,7 @@ CREATE TABLE [Group] (
   Leader uniqueidentifier,
   TopicId uniqueidentifier,
   ProjectId uniqueidentifier,
+  Capacity int, -- just added
   FOREIGN KEY (Leader) REFERENCES [User] (UserId),
   FOREIGN KEY (TopicId, ProjectId) REFERENCES Topic_Project (TopicId, ProjectId)
 )

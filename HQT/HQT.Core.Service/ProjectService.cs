@@ -84,5 +84,11 @@ namespace HQT.Core.Service
             var result = await _projectRepository.RemoveTopicAsync(topicId, projectId);
             return result;
         }
+
+        public async Task<List<BaseProject>> GetListPraceticeProjectAsync()
+        {
+            var listProjects = await _projectRepository.GetListPraceticeProjectAsync();
+            return listProjects;
+        }
     }
 }

@@ -270,5 +270,39 @@ namespace HQT.Core.Repository
                 return result > 0;
             }
         }
+
+        public async Task<List<BaseProject>> GetListPraceticeProjectAsync()
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Project_GetListPractice"))
+            {
+                var listParams = new Dictionary<string, object>();
+                var result = await db.ExecuteReaderAsync(listParams);
+                var listProjects = new List<BaseProject>();
+                if (result.Read())
+                {
+                    var count = result.GetInt32(0);
+                    var next = result.NextResult();
+                    while (next && result.Read())
+                    {
+                        var id = result["ProjectId"].GetGuid();
+                        var projectName = result["ProjectName"].GetString();
+                        var registerFrom = result["StartRegister"].GetDateTime();
+                        var registerTo = result["EndRegister"].GetDateTime();
+                        var deadline = result["EndSubmit"].GetDateTime();
+                        var subjectName = result["CourseName"].GetString();
+                        var limit = result["GroupCapacity"].GetInt32();
+                        var upperThreshold = result["StudentMax"].GetInt32();
+                        var projectType = result["ProjectTypeName"].GetString();
+                        var type = upperThreshold > 1 ? ProjectTypes.Team : ProjectTypes.Person;
+
+                        var project = ProjectFactory.CreateProject(id, projectName, registerFrom, registerTo, limit,
+                            deadline, type, subjectName, upperThreshold, projectType);
+                        if (project != null)
+                            listProjects.Add(project);
+                    }
+                }
+                return listProjects;
+            }
+        }
     }
 }

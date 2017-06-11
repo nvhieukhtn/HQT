@@ -18,5 +18,6 @@ namespace HQT.Core.Interface.Service
         Task<List<ProjectType>> GetListProjectTypeAsync();
         Task<bool> SaveProjectInformationAsync(BaseProject project);
         Task<bool> RemoveTopicAsync(Guid topicId, Guid projectId);
+        Task<List<BaseProject>> GetListPraceticeProjectAsync();
     }
 }

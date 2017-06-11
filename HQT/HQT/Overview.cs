@@ -23,11 +23,10 @@ namespace HQT
         {
             var listSubjects = await _subjectService.GetListSubjectsAsync();
             overviewSubjectTabContentUserControl.ListSubject = listSubjects;
-            //var listProjects = await _projectService.GetListProjectsAsync();
-            //overviewAvailableProjectTabContentUserControl1.ListProjects = listProjects;
-            //overviewExpireProjectTabContentUserControl1.ListProjects = listProjects;
-            //var listTopics = await _topicService.GetListTopicsAsync();
-            //overviewAvailableTopicTabContentUserControl1.ListTopics = listTopics;
+            var listPractices = await _projectService.GetListPraceticeProjectAsync();
+            overviewPracetice.ListProjects = listPractices;
+            var listTopics = await _topicService.GetListTopicsAsync();
+            overviewAvailableTopicTabContentUserControl1.ListTopics = listTopics;
         }
         
         private void Overview_FormClosing(object sender, FormClosingEventArgs e)

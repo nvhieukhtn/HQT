@@ -34,8 +34,25 @@ namespace HQT
             }
         }
 
-
-        public Group GroupForProject { get; set; }
+        private bool _isRegister;
+        public bool IsRegister
+        {
+            get => _isRegister;
+            set
+            {
+                _isRegister = value;
+                if (_isRegister)
+                {
+                    btnRegister.Visible = false;
+                    btnMembers.Visible = true;
+                }
+                else
+                {
+                    btnRegister.Visible = true;
+                    btnMembers.Visible = false;
+                }
+            }
+        }
 
         private Topic _data;
 

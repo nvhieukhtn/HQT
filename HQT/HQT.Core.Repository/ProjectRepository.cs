@@ -304,5 +304,21 @@ namespace HQT.Core.Repository
                 return listProjects;
             }
         }
+
+        public async Task<bool> IsRegisterProjectAsync(Guid projectId, Guid userId)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Project_IsRegister"))
+            {
+                var listParams = new Dictionary<string, object>
+                {
+                    {nameof(projectId), projectId },
+                    {nameof(userId), userId }
+                };
+                var result = await db.ExecuteReaderAsync(listParams);
+                if (result.Read())
+                    return true;
+                return false;
+            }
+        }
     }
 }

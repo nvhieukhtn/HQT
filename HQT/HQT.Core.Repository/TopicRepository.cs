@@ -42,10 +42,10 @@ namespace HQT.Core.Repository
                         {nameof(projectId), projectId }
                     };
                     var result = await db.ExecuteNonQueryAsync(listParams);
-                    return true;
+                    return result > 0;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -220,7 +220,7 @@ namespace HQT.Core.Repository
             }
         }
 
-        public async Task<bool> RegisterTopicAsync(Group @group)
+        public async Task<bool> RegisterTopicAsync(Group group)
         {
             using (var db = DataAccessFactory.CreateDataAccess("sp_Student_Topic_Project_Add"))
             {
@@ -233,6 +233,28 @@ namespace HQT.Core.Repository
                 };
                 var result = await db.ExecuteNonQueryAsync(listParams);
                 return result > 0;
+            }
+        }
+
+        public async Task<Topic> GetRegisterdTopicAsync(Guid projectId, Guid userId)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Topic_GetDetailByProject"))
+            {
+                var listParams = new Dictionary<string, object>()
+                {
+                    {nameof(projectId), projectId},
+                    {nameof(userId), userId }
+                };
+                var result = await db.ExecuteReaderAsync(listParams);
+                if (result.Read())
+                {
+                    var id = result["TopicId"].GetGuid();
+                    var title = result["Title"].GetString();
+                    var detail = result["Content"].GetString();
+                    var topic = new Topic() { Id = id, Title = title, Detail = detail };
+                    return topic;
+                }
+                return null;
             }
         }
     }

@@ -16,12 +16,14 @@ namespace HQT
     public partial class CreateTopicForm : BaseForm
     {
         private readonly Guid _projectId;
+        private readonly Guid _courseId;
         private readonly ITopicService _topicService;
         private readonly IUnityContainer _container = DependencyResolution.Container;
-        public CreateTopicForm(Guid projectId)
+        public CreateTopicForm(Guid courseId, Guid projectId)
         {
             InitializeComponent();
             _topicService = _container.Resolve<ITopicService>();
+            _courseId = courseId;
             _projectId = projectId;
             var topic = new TabTopicContentUserControl(){Location =  new Point(20,55), BackColor = Color.Transparent, Name = "topic"};
             Controls.Add(topic);
@@ -41,7 +43,7 @@ namespace HQT
                 if (act == DialogResult.OK)
                 {
                     IsClose = false;
-                    var projectDetail = new ProjectDetailForm(_projectId);
+                    var projectDetail = new ProjectDetailForm(_courseId, _projectId);
                     projectDetail.Show();
                     this.Close();
                 }
@@ -52,14 +54,14 @@ namespace HQT
                 if (act == DialogResult.Cancel)
                 {
                     IsClose = false;
-                    var projectDetailForm = new ProjectDetailForm(_projectId);
+                    var projectDetailForm = new ProjectDetailForm(_courseId, _projectId);
                     projectDetailForm.Show();
                     Close();
                 }
                 else
                 {
                     IsClose = false;
-                    var createTopic = new CreateTopicForm(_projectId);
+                    var createTopic = new CreateTopicForm(_courseId, _projectId);
                     createTopic.Show();
                     this.Close();
                 }

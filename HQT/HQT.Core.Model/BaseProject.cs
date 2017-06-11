@@ -18,6 +18,7 @@ namespace HQT.Core.Model
         public List<Topic> ListTopics { get; set; }
         public int Limit { get; set; }
         public string ProjectType { get; set; }
+        public bool IsRegister { get; set; }
         protected BaseProject()
         {
             ProjectName = string.Empty;

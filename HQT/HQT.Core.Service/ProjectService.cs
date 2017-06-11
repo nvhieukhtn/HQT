@@ -55,6 +55,19 @@ namespace HQT.Core.Service
             return result;
         }
 
+        public async Task<BaseProject> GetProjectDetailAsync(Guid projectId, Guid userId)
+        {
+            var result = await _projectRepository.GetProjectDetailAsync(projectId);
+            if (result != null)
+            {
+                var topic = await _topicRepository.GetRegisterdTopicAsync(projectId,userId);
+                if(result.ListTopics == null)
+                    result.ListTopics = new List<Topic>();
+                result.ListTopics.Add(topic);
+            }
+            return result;
+        }
+
         public async Task<List<BaseProject>> GetListProjectCanRegisterAsync(Guid courseId)
         {
             var listProjects = await _projectRepository.GetListProjectCanRegisterAsync(courseId);
@@ -89,6 +102,12 @@ namespace HQT.Core.Service
         {
             var listProjects = await _projectRepository.GetListPraceticeProjectAsync();
             return listProjects;
+        }
+
+        public async Task<bool> IsRegisterProjectAsync(Guid projectId, Guid userId)
+        {
+            var result = await _projectRepository.IsRegisterProjectAsync(projectId, userId);
+            return result;
         }
     }
 }

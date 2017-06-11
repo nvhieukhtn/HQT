@@ -41,6 +41,12 @@ namespace HQT.Core.Service
             return result;
         }
 
+        public async Task<List<Student>> GetListStudentsBySubjectAsync(Guid subjectId)
+        {
+            var listStudents = await _accountRepository.GetListStudentsBySubjectAsync(subjectId);
+            return listStudents;
+        }
+
         public async Task<bool> CreateAccountAsync(User account)
         {
             var result = await _accountRepository.CreateAccountAsync(account);

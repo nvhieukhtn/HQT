@@ -100,7 +100,8 @@ namespace HQT
         {
             var target = (SubjectBoardUserControl) sender;
             var currentProject = target.CurrentProject;
-            var projectDetail = new ProjectDetailForm(currentProject.Id);
+            var subject = target.Data;
+            var projectDetail = new ProjectDetailForm(subject.Id, currentProject.Id);
             projectDetail.Show();
             IsClose = false;
             Close();

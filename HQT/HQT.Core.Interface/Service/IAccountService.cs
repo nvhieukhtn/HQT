@@ -13,6 +13,7 @@ namespace HQT.Core.Interface.Service
         Task<User> GetUserDetailAsync(Guid userId);
         Task<List<User>> GetListAccountAsync();
         Task<List<Teacher>> GetListTeacherBySubjectAsync(Guid subjectId);
+        Task<List<Student>> GetListStudentsBySubjectAsync(Guid subjectId);
         Task<bool> CreateAccountAsync(User account);
         Task<bool> DeleteAccountAsync(Guid userId);
         Task<bool> UpdateAccountAsync(User account);

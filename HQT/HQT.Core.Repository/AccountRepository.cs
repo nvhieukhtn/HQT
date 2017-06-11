@@ -129,6 +129,40 @@ namespace HQT.Core.Repository
             }
         }
 
+        public async Task<List<Student>> GetListStudentsBySubjectAsync(Guid subjectId)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_User_GetListStudentsBySubject"))
+            {
+                var listParams = new Dictionary<string, object>
+                {
+                    {nameof(subjectId), subjectId}
+                };
+                var result = await db.ExecuteReaderAsync(listParams);
+                var listStudents = new List<Student>();
+                while (result.Read())
+                {
+                    var id = result["UserId"].GetGuid();
+                    var fullname = result["FullName"].GetString();
+                    var username = result["UserName"].GetString();
+                    var email = result["Email"].GetString();
+                    var phone = result["Phone"].GetString();
+                    var address = result["Address"].GetString();
+
+                    var student = new Student()
+                    {
+                        Id = id,
+                        FullName = fullname,
+                        UserName = username,
+                        Email = email,
+                        Phone = phone,
+                        Address = address
+                    };
+                    listStudents.Add(student);
+                }
+                return listStudents;
+            }
+        }
+
         public async Task<bool> UpdateAccountAsync(User user)
         {
             using (var db = DataAccessFactory.CreateDataAccess("sp_User_Update"))

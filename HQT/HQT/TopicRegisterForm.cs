@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Interface.Service;
 using HQT.Core.Model;
@@ -20,13 +15,17 @@ namespace HQT
         private readonly IProjectService _projectService;
         private readonly ITopicService _topicService;
         private readonly IUnityContainer _container = DependencyResolution.Container;
+        private bool _update;
         private readonly Guid _topicId;
         private readonly Guid _projectId;
-        public TopicRegisterForm(Guid projectId, Guid topicId)
+        private readonly Guid _courseId;
+        public TopicRegisterForm(Guid courseId, Guid projectId, Guid topicId, bool update = false)
         {
             InitializeComponent();
+            _courseId = courseId;
             _projectId = projectId;
             _topicId = topicId;
+            _update = update;
             _accountService = _container.Resolve<IAccountService>();
             _topicService = _container.Resolve<ITopicService>();
             _projectService = _container.Resolve<IProjectService>();
@@ -59,12 +58,16 @@ namespace HQT
             txtTitle.Text = topicDetail.Title;
             txtContent.Text = topicDetail.Detail;
 
+            btnRegister.Visible = !_update;
+            btnUpdate.Visible = _update;
+            btnRemove.Visible = _update;
+
             if (projectDetail is ProjectForSingle)
                 grbGroup.Visible = false;
             else
             {
                 txtCountNumber.Text = ((ProjectForTeam) projectDetail).UpperThreshold.ToString();
-                var listStudents = await _accountService.GetListStudentsAsync();
+                var listStudents = await _accountService.GetListStudentsBySubjectAsync(_courseId);
                 var listStudentItems = listStudents.Where(x=>x.Id != ApplicationSetting.CurrentUser.Id).Select(x => new ListViewItem() { Text = x.FullName, Tag = x }).ToArray();
                 lvStudent.Items.AddRange(listStudentItems);
             }
@@ -73,7 +76,9 @@ namespace HQT
 
         private async void btnRegister_Click(object sender, EventArgs e)
         {
-            var remainder = Int32.Parse(txtCountRemainder.Text);
+            
+            var remainder = 0;
+            Int32.TryParse(txtCountRemainder.Text, out remainder);
             if (remainder < 0)
                 MessageBox.Show(this, "Quá số người", "Cảnh cáo", MessageBoxButtons.OK);
             else
@@ -90,7 +95,7 @@ namespace HQT
                     if (act == DialogResult.OK)
                     {
                         IsClose = false;
-                        var projectDetailForm = new ProjectDetailForm(_projectId);
+                        var projectDetailForm = new ProjectDetailForm(_courseId, _projectId);
                         projectDetailForm.Show();
                         this.Close();
                     }
@@ -101,14 +106,14 @@ namespace HQT
                     if (act == DialogResult.Cancel)
                     {
                         IsClose = false;
-                        var projectDetailForm = new ProjectDetailForm(_projectId);
+                        var projectDetailForm = new ProjectDetailForm(_courseId, _projectId);
                         projectDetailForm.Show();
                         this.Close();
                     }
                     else
                     {
                         IsClose = false;
-                        var topicRegisterForm = new TopicRegisterForm(_projectId, _topicId);
+                        var topicRegisterForm = new TopicRegisterForm(_courseId, _projectId, _topicId);
                         topicRegisterForm.Show();
                         this.Close();
                     }
@@ -119,7 +124,8 @@ namespace HQT
         private Group GetGroup()
         {
             var groupName = txtGroupName.Text;
-            var capacity = Int32.Parse(txtCountNumber.Text);
+            var capacity = 1;
+            Int32.TryParse(txtCountNumber.Text, out capacity);
             var group = new Group
             {
                 Capacity = capacity,
@@ -141,8 +147,21 @@ namespace HQT
         {
             var totalMember = Int32.Parse(txtCountNumber.Text);
             var countChecked = lvStudent.CheckedItems.Count;
-            var remainderMember = totalMember - countChecked;
+            var remainderMember = totalMember - countChecked - 1;
             txtCountRemainder.Text = remainderMember.ToString();
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            var projectDetailForm = new ProjectDetailForm(_courseId, _projectId);
+            IsClose = false;
+            projectDetailForm.Show();
+            Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

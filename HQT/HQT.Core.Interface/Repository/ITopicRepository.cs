@@ -21,5 +21,6 @@ namespace HQT.Core.Interface.Repository
         Task<bool> CreateGroupAsync(Group group);
         Task<bool> AddMemberIntoGroupAsync(Guid groupId, Guid userId);
         Task<bool> RegisterTopicAsync(Group group);
+        Task<Topic> GetRegisterdTopicAsync(Guid projectId, Guid userId);
     }
 }

@@ -17,6 +17,7 @@ namespace HQT
         private readonly IUnityContainer _container = DependencyResolution.Container;
         private List<TopicUserControl> _listPracticeControl;
         private readonly Guid _projectId;
+        private readonly Guid _courseId;
         private bool _editing;
         private bool Editing
         {
@@ -27,8 +28,9 @@ namespace HQT
                 btnSave.Visible = _editing;
             }
         }
-        public ProjectDetailForm(Guid projectId)
+        public ProjectDetailForm(Guid courseId, Guid projectId)
         {
+            _courseId = courseId;
             _projectId = projectId;
             InitializeComponent();
             _projectService = _container.Resolve<IProjectService>();
@@ -55,12 +57,13 @@ namespace HQT
             Invoke((MethodInvoker)UpdateSubjects);
         }
 
+
         private void Register(object sender, EventArgs e)
         {
             var target = (TopicUserControl) sender;
             if (target != null)
             {
-                var topicRegister = new TopicRegisterForm(_projectId, target.Data.Id);
+                var topicRegister = new TopicRegisterForm(_courseId, _projectId, target.Data.Id);
                 IsClose = false;
                 topicRegister.Show();
                 Close();
@@ -78,7 +81,7 @@ namespace HQT
                 if (act == DialogResult.OK)
                 {
                     IsClose = false;
-                    var subjectForm = new ProjectDetailForm(_projectId);
+                    var subjectForm = new ProjectDetailForm(_courseId, _projectId);
                     subjectForm.Show();
                     Close();
                 }
@@ -89,7 +92,7 @@ namespace HQT
                 if (act == DialogResult.OK)
                 {
                     IsClose = false;
-                    var subjectForm = new ProjectDetailForm(_projectId);
+                    var subjectForm = new ProjectDetailForm(_courseId, _projectId);
                     subjectForm.Show();
                     Close();
                 }
@@ -98,7 +101,14 @@ namespace HQT
 
         private void DisplayMember(object sender, EventArgs e)
         {
-            
+            var target = (TopicUserControl)sender;
+            if (target != null)
+            {
+                var topicRegister = new TopicRegisterForm(_courseId, _projectId, target.Data.Id, true);
+                IsClose = false;
+                topicRegister.Show();
+                Close();
+            }
         }
 
         private void UpdateSubjects()
@@ -130,6 +140,7 @@ namespace HQT
                 topicControl.TopicRegister += Register;
                 topicControl.TopicDelete += DeleteTopic;
                 topicControl.DisplayMember += DisplayMember;
+                topicControl.IsRegister = data.IsRegister;
 
                 _listPracticeControl.Add(topicControl);
                 Controls.Add(topicControl);
@@ -147,8 +158,20 @@ namespace HQT
             var listProjectType = await _projectService.GetListProjectTypeAsync();
             cbProjectType.DataSource = listProjectType;
             cbProjectType.DisplayMember = "ProjectTypeName";
-            var project = await _projectService.GetProjectDetailAsync(_projectId);
-            Init(project);
+            var isRegistered =
+                await _projectService.IsRegisterProjectAsync(_projectId, ApplicationSetting.CurrentUser.Id);
+            if (!isRegistered)
+            {
+                var project = await _projectService.GetProjectDetailAsync(_projectId);
+                project.IsRegister = false;
+                Init(project);
+            }
+            else
+            {
+                var project = await _projectService.GetProjectDetailAsync(_projectId, ApplicationSetting.CurrentUser.Id);
+                project.IsRegister = true;
+                Init(project);
+            }
         }
 
         private async void btnSave_MouseClick(object sender, MouseEventArgs e)
@@ -202,7 +225,7 @@ namespace HQT
 
         private void btnAddTopic_Click(object sender, EventArgs e)
         {
-            var addTopic = new CreateTopicForm(_projectId);
+            var addTopic = new CreateTopicForm(_courseId, _projectId);
             IsClose = false;
             addTopic.Show();
             Close();

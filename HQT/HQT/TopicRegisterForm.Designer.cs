@@ -48,14 +48,16 @@
             this.dtDeadline = new System.Windows.Forms.DateTimePicker();
             this.dtFrom = new System.Windows.Forms.DateTimePicker();
             this.grbGroup = new System.Windows.Forms.GroupBox();
-            this.txtCountNumber = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.lvStudent = new System.Windows.Forms.ListView();
-            this.label10 = new System.Windows.Forms.Label();
             this.txtGroupName = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lvStudent = new System.Windows.Forms.ListView();
             this.txtCountRemainder = new System.Windows.Forms.TextBox();
+            this.txtCountNumber = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.gbTopicInformation.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numberGroup)).BeginInit();
@@ -314,22 +316,12 @@
             this.grbGroup.TabStop = false;
             this.grbGroup.Text = "Thông tin nhóm";
             // 
-            // txtCountNumber
+            // txtGroupName
             // 
-            this.txtCountNumber.Enabled = false;
-            this.txtCountNumber.Location = new System.Drawing.Point(114, 40);
-            this.txtCountNumber.Name = "txtCountNumber";
-            this.txtCountNumber.Size = new System.Drawing.Size(48, 20);
-            this.txtCountNumber.TabIndex = 1;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(18, 43);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(85, 13);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "Số lượng tối đa :";
+            this.txtGroupName.Location = new System.Drawing.Point(114, 16);
+            this.txtGroupName.Name = "txtGroupName";
+            this.txtGroupName.Size = new System.Drawing.Size(246, 20);
+            this.txtGroupName.TabIndex = 3;
             // 
             // lvStudent
             // 
@@ -342,21 +334,21 @@
             this.lvStudent.View = System.Windows.Forms.View.List;
             this.lvStudent.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvStudent_ItemChecked);
             // 
-            // label10
+            // txtCountRemainder
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(18, 19);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(64, 13);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Tên nhóm : ";
+            this.txtCountRemainder.Enabled = false;
+            this.txtCountRemainder.Location = new System.Drawing.Point(313, 40);
+            this.txtCountRemainder.Name = "txtCountRemainder";
+            this.txtCountRemainder.Size = new System.Drawing.Size(48, 20);
+            this.txtCountRemainder.TabIndex = 1;
             // 
-            // txtGroupName
+            // txtCountNumber
             // 
-            this.txtGroupName.Location = new System.Drawing.Point(114, 16);
-            this.txtGroupName.Name = "txtGroupName";
-            this.txtGroupName.Size = new System.Drawing.Size(246, 20);
-            this.txtGroupName.TabIndex = 3;
+            this.txtCountNumber.Enabled = false;
+            this.txtCountNumber.Location = new System.Drawing.Point(114, 40);
+            this.txtCountNumber.Name = "txtCountNumber";
+            this.txtCountNumber.Size = new System.Drawing.Size(48, 20);
+            this.txtCountNumber.TabIndex = 1;
             // 
             // label11
             // 
@@ -367,6 +359,15 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Thành viên:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(18, 19);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(64, 13);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Tên nhóm : ";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -376,13 +377,44 @@
             this.label12.TabIndex = 0;
             this.label12.Text = "Số lượng còn lại :";
             // 
-            // txtCountRemainder
+            // label9
             // 
-            this.txtCountRemainder.Enabled = false;
-            this.txtCountRemainder.Location = new System.Drawing.Point(313, 40);
-            this.txtCountRemainder.Name = "txtCountRemainder";
-            this.txtCountRemainder.Size = new System.Drawing.Size(48, 20);
-            this.txtCountRemainder.TabIndex = 1;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(18, 43);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Số lượng tối đa :";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.Green;
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnUpdate.Location = new System.Drawing.Point(352, 352);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(87, 38);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "Cập nhật";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Visible = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.Maroon;
+            this.btnRemove.FlatAppearance.BorderSize = 0;
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnRemove.Location = new System.Drawing.Point(231, 352);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(87, 38);
+            this.btnRemove.TabIndex = 2;
+            this.btnRemove.Text = "Hủy";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Visible = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // TopicRegisterForm
             // 
@@ -391,6 +423,8 @@
             this.ClientSize = new System.Drawing.Size(684, 411);
             this.Controls.Add(this.grbGroup);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.gbTopicInformation);
             this.Name = "TopicRegisterForm";
@@ -400,6 +434,8 @@
             this.Load += new System.EventHandler(this.TopicRegisterForm_Load);
             this.Controls.SetChildIndex(this.gbTopicInformation, 0);
             this.Controls.SetChildIndex(this.btnRegister, 0);
+            this.Controls.SetChildIndex(this.btnUpdate, 0);
+            this.Controls.SetChildIndex(this.btnRemove, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.grbGroup, 0);
             this.Controls.SetChildIndex(this.statusBar, 0);
@@ -445,5 +481,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtCountRemainder;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button btnRemove;
     }
 }

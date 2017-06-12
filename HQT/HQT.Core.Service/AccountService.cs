@@ -29,7 +29,7 @@ namespace HQT.Core.Service
             return account;
         }
 
-        public async Task<List<User>> GetListAccountAsync()
+        public async Task<Tuple<int,List<User>>> GetListAccountAsync()
         {
             var result = await _accountRepository.GetListAccountAsync();
             return result;

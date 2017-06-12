@@ -65,7 +65,7 @@ namespace HQT.Core.Service
             {
                 foreach (var member in group.Members)
                 {
-                    result |= await _topicRepository.AddMemberIntoGroupAsync(group.Id, member.Id);
+                    result &= await _topicRepository.AddMemberIntoGroupAsync(group.Id, member.Id);
                 }
             }
             return result;

@@ -94,6 +94,12 @@
     <Compile Include="Overview.Designer.cs">
       <DependentUpon>Overview.cs</DependentUpon>
     </Compile>
+    <Compile Include="RenewProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenewProjectForm.Designer.cs">
+      <DependentUpon>RenewProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\SubjectFilterUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Overview.resx">
       <DependentUpon>Overview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RenewProjectForm.resx">
+      <DependentUpon>RenewProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControl\SubjectFilterUserControl.resx">
       <DependentUpon>SubjectFilterUserControl.cs</DependentUpon>
@@ -407,6 +416,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\add-subject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\renew.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

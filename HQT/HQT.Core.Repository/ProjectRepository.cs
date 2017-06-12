@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using HQT.Core.Interface.Repository;
 using HQT.Core.Model;
@@ -271,16 +268,17 @@ namespace HQT.Core.Repository
             }
         }
 
-        public async Task<List<BaseProject>> GetListPraceticeProjectAsync()
+        public async Task<Tuple<int,List<BaseProject>>> GetListPraceticeProjectAsync()
         {
             using (var db = DataAccessFactory.CreateDataAccess("sp_Project_GetListPractice"))
             {
                 var listParams = new Dictionary<string, object>();
                 var result = await db.ExecuteReaderAsync(listParams);
                 var listProjects = new List<BaseProject>();
+                var count = 0;
                 if (result.Read())
                 {
-                    var count = result.GetInt32(0);
+                    count = result.GetInt32(0);
                     var next = result.NextResult();
                     while (next && result.Read())
                     {
@@ -301,7 +299,7 @@ namespace HQT.Core.Repository
                             listProjects.Add(project);
                     }
                 }
-                return listProjects;
+                return new Tuple<int, List<BaseProject>>(count, listProjects);
             }
         }
 
@@ -318,6 +316,34 @@ namespace HQT.Core.Repository
                 if (result.Read())
                     return true;
                 return false;
+            }
+        }
+
+        public async Task<bool> RenewEndSubmitDays(Guid projectId, int day)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Project_ExtendEndSubmit"))
+            {
+                var listParams = new Dictionary<string, object>
+                {
+                    {nameof(projectId), projectId },
+                    {nameof(day), day }
+                };
+                var result = await db.ExecuteNonQueryAsync(listParams);
+                return result > 0;
+            }
+        }
+
+        public async Task<bool> RenewEndRegisterDays(Guid projectId, int day)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Project_ExtendEndRegister"))
+            {
+                var listParams = new Dictionary<string, object>
+                {
+                    {nameof(projectId), projectId },
+                    {nameof(day), day }
+                };
+                var result = await db.ExecuteNonQueryAsync(listParams);
+                return result > 0;
             }
         }
     }

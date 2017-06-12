@@ -10,7 +10,7 @@ namespace HQT.Core.Interface.Service
     public interface ISubjectService
     {
         Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
-        Task<List<Subject>> GetListSubjectsAsync();
+        Task<Tuple<int, List<Subject>>> GetListSubjectsAsync();
         Task<bool> CreateSubjectAsync(Subject subject);
     }
 }

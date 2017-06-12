@@ -154,7 +154,7 @@ namespace HQT
         private void btnRemove_Click(object sender, EventArgs e)
         {
             var projectDetailForm = new ProjectDetailForm(_courseId, _projectId);
-            IsClose = false;
+            IsClose = false; 
             projectDetailForm.Show();
             Close();
         }

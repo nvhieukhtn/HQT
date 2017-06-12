@@ -19,8 +19,10 @@ namespace HQT.Core.Interface.Service
         Task<List<ProjectType>> GetListProjectTypeAsync();
         Task<bool> SaveProjectInformationAsync(BaseProject project);
         Task<bool> RemoveTopicAsync(Guid topicId, Guid projectId);
-        Task<List<BaseProject>> GetListPraceticeProjectAsync();
+        Task<Tuple<int, List<BaseProject>>> GetListPraceticeProjectAsync();
         Task<bool> IsRegisterProjectAsync(Guid projectId, Guid userId);
+        Task<bool> RenewEndSubmitDays(Guid projectId, int day);
+        Task<bool> RenewEndRegisterDays(Guid projectId, int day);
 
     }
 }

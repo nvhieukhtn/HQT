@@ -17,6 +17,7 @@ namespace HQT
         public BaseProject CurrentProject;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardProjectDetailClicked;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardCreateProject;
+        public event SubjectBoardProjectDetailClickedEventHandler SubjectRenewProject;
         private void SubjectBoardProjectDetail_OnClick(object sender, EventArgs e)
         {
             if (SubjectBoardProjectDetailClicked != null)
@@ -24,6 +25,16 @@ namespace HQT
                 var target = (ProjectItemUserControl) sender;
                 CurrentProject = target.Data;
                 SubjectBoardProjectDetailClicked(this, e);
+            }
+        }
+
+        private void SubjectBoardRenewProject(object sender, EventArgs e)
+        {
+            if (SubjectRenewProject != null)
+            {
+                var target = (ProjectItemUserControl)sender;
+                CurrentProject = target.Data;
+                SubjectRenewProject(this, e);
             }
         }
 
@@ -63,6 +74,7 @@ namespace HQT
                     Location = new Point(10, 19 + 35 * index)
                 };
                 project.ProjectItemClicked += SubjectBoardProjectDetail_OnClick;
+                project.RenewProjectItemClicked += SubjectBoardRenewProject;
                 index++;
                 grbProjects?.Controls.Add(project);
             });

@@ -13,13 +13,13 @@ namespace HQT
 {
     public partial class OverviewSubjectTabContentUserControl : OverviewTabContentUserControl
     {
-        public List<Subject> ListSubject
+        public Tuple<int, List<Subject>> ListSubject
         {
             set
             {
-                txtNumber.Text = value.Count.ToString();
+                txtNumber.Text = value.Item1.ToString();
                 var index = 1;
-                foreach (var subject in value)
+                foreach (var subject in value.Item2)
                 {
                     var item = new ListViewItem(index.ToString());
                     item.SubItems.Add(subject.SubjectName);

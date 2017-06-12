@@ -15,7 +15,6 @@ namespace HQT
     {
         private readonly IAccountService _accountService;
         private readonly IUnityContainer _container = DependencyResolution.Container;
-        public List<AccountUserControl> ListAccountUserControls;
         private bool _isEditing;
 
         public bool IsEditing
@@ -28,13 +27,12 @@ namespace HQT
             }
         }
 
-        private AccountUserControl CreateAccountUsercontrol(User account)
+        private AccountUserControl CreateAccountUsercontrol(User account, int index)
         {
-            var index = ListAccountUserControls.Count;
             var userControl = new AccountUserControl
             {
                 Data = account,
-                Location = new Point(60, 60 + index * 30)
+                Location = new Point(60, 90 + index * 30)
             };
             userControl.DeleteAccountEvent  += DeleteAccountEvent;
             userControl.DetailAccountEvent += DetailAccountEvent;
@@ -45,26 +43,23 @@ namespace HQT
         {
             InitializeComponent();
             _accountService = _container.Resolve<IAccountService>();
-            ListAccountUserControls = new List<AccountUserControl>();
         }
 
         private async Task RenderAccountToGuiAsync()
         {
-            var listAccounts = await GetListAccountAsync();
-            foreach (var account in listAccounts)
+            var accounts = await GetListAccountAsync();
+            txtCount.Text = accounts.Item1.ToString();
+            var index = 0;
+            foreach (var account in accounts.Item2)
             {
-                var accountControl = CreateAccountUsercontrol(account);
+                var accountControl = CreateAccountUsercontrol(account, index++);
                 Controls.Add(accountControl);
-                ListAccountUserControls.Add(accountControl);
             }
         }
 
-        private async Task<List<User>> GetListAccountAsync()
+        private async Task<Tuple<int,List<User>>> GetListAccountAsync()
         {
             var listAccounts = await _accountService.GetListAccountAsync();
-
-            if(listAccounts == null)
-                listAccounts = new List<User>();
 
             return listAccounts;
         }

@@ -37,7 +37,7 @@ namespace HQT.Core.Service
             return listSubjects;
         }
 
-        public async Task<List<Subject>> GetListSubjectsAsync()
+        public async Task<Tuple<int, List<Subject>>> GetListSubjectsAsync()
         {
             var listSubjects = await _subjectRepository.GetListSubjectsAsync();
             return listSubjects;
@@ -50,11 +50,11 @@ namespace HQT.Core.Service
             {
                 foreach (var student in subject.ListStudents)
                 {
-                    result |= await _subjectRepository.AddUserIntoSubjectAsync(student.Id, subject.Id);
+                    result &= await _subjectRepository.AddUserIntoSubjectAsync(student.Id, subject.Id);
                 }
                 foreach (var teacher in subject.ListTeachers)
                 {
-                    result |= await _subjectRepository.AddUserIntoSubjectAsync(teacher.Id, subject.Id);
+                    result &= await _subjectRepository.AddUserIntoSubjectAsync(teacher.Id, subject.Id);
                 }
             }
             return result;

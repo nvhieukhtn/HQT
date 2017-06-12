@@ -80,6 +80,7 @@ namespace HQT
             subjectBoard.SubjectBoardProjectDetailClicked +=
                 ShowProjectDetail;
             subjectBoard.SubjectBoardCreateProject += CreateProjectEvent;
+            subjectBoard.SubjectRenewProject += RenewProject;
             return subjectBoard;
         }
 
@@ -105,6 +106,14 @@ namespace HQT
             projectDetail.Show();
             IsClose = false;
             Close();
+        }
+
+        private void RenewProject(object sender, EventArgs e)
+        {
+            var target = (SubjectBoardUserControl)sender;
+            var currentProject = target.CurrentProject;
+            var renewProjectForm = new RenewProjectForm(currentProject.Id);
+            renewProjectForm.Show();
         }
 
         private void SubjectManager_FormClosing(object sender, FormClosingEventArgs e)

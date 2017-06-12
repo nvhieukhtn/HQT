@@ -9,7 +9,7 @@ namespace HQT.Core.Interface.Repository
 {
     public interface ISubjectRepository
     {
-        Task<List<Subject>> GetListSubjectsAsync();
+        Task<Tuple<int, List<Subject>>> GetListSubjectsAsync();
         Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
         Task<bool> CreateSubjectAsync(Subject subject);
         Task<bool> AddUserIntoSubjectAsync(Guid userId, Guid courseId);

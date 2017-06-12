@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using HQT.Core.Interface.Repository;
 using HQT.Core.Model;
@@ -37,16 +38,17 @@ namespace HQT.Core.Repository
 
 
 
-        public async Task<List<User>> GetListAccountAsync()
+        public async Task<Tuple<int, List<User>>> GetListAccountAsync()
         {
             using (var db = DataAccessFactory.CreateDataAccess("sp_User_GetAll"))
             {
                 var listAccounts = new List<User>();
                 var listParams = new Dictionary<string, object>();
                 var result = await db.ExecuteReaderAsync(listParams);
+                var count = 0;
                 if (result.Read())
                 {
-                    var count = result.GetInt32(0);
+                    count = result.GetInt32(0);
                     var next = result.NextResult();
                     while (next && result.Read())
                     {
@@ -64,7 +66,7 @@ namespace HQT.Core.Repository
                     }
                 }
 
-                return listAccounts;
+                return new Tuple<int, List<User>>(count, listAccounts) ;
             }
         }
 

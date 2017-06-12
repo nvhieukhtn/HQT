@@ -39,7 +39,7 @@ namespace HQT.Core.Service
             {
                 foreach (var topic in project.ListTopics)
                 {
-                    result |= await _topicRepository.CreateTopicAsync(topic, project.Id);
+                    result &= await _topicRepository.CreateTopicAsync(topic, project.Id);
                 }
             }
             return result;
@@ -98,7 +98,7 @@ namespace HQT.Core.Service
             return result;
         }
 
-        public async Task<List<BaseProject>> GetListPraceticeProjectAsync()
+        public async Task<Tuple<int, List<BaseProject>>> GetListPraceticeProjectAsync()
         {
             var listProjects = await _projectRepository.GetListPraceticeProjectAsync();
             return listProjects;
@@ -107,6 +107,18 @@ namespace HQT.Core.Service
         public async Task<bool> IsRegisterProjectAsync(Guid projectId, Guid userId)
         {
             var result = await _projectRepository.IsRegisterProjectAsync(projectId, userId);
+            return result;
+        }
+
+        public async Task<bool> RenewEndSubmitDays(Guid projectId, int day)
+        {
+            var result = await _projectRepository.RenewEndSubmitDays(projectId, day);
+            return result;
+        }
+
+        public async Task<bool> RenewEndRegisterDays(Guid projectId, int day)
+        {
+            var result = await _projectRepository.RenewEndRegisterDays(projectId, day);
             return result;
         }
     }

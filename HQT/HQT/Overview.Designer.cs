@@ -54,7 +54,6 @@
             // 
             // overviewAvailableTopicTabContentUserControl1
             // 
-            this.overviewAvailableTopicTabContentUserControl1.ListTopics = null;
             this.overviewAvailableTopicTabContentUserControl1.Location = new System.Drawing.Point(0, 0);
             this.overviewAvailableTopicTabContentUserControl1.Name = "overviewAvailableTopicTabContentUserControl1";
             this.overviewAvailableTopicTabContentUserControl1.Size = new System.Drawing.Size(647, 306);
@@ -102,7 +101,6 @@
             // 
             // overviewPracetice
             // 
-            this.overviewPracetice.ListProjects = null;
             this.overviewPracetice.Location = new System.Drawing.Point(0, 0);
             this.overviewPracetice.Name = "overviewPracetice";
             this.overviewPracetice.Size = new System.Drawing.Size(647, 306);

@@ -11,7 +11,7 @@ namespace HQT.Core.Repository
 {
     public class SubjectRepository:ISubjectRepository
     {
-        public async Task<List<Subject>> GetListSubjectsAsync()
+        public async Task<Tuple<int, List<Subject>>> GetListSubjectsAsync()
         {
             using (var db = DataAccessFactory.CreateDataAccess("sp_Course_GetAll"))
             {
@@ -19,10 +19,10 @@ namespace HQT.Core.Repository
                 var result = await db.ExecuteReaderAsync(listParams);
 
                 var listSubjects = new List<Subject>();
-
+                var count = 0;
                 if (result.Read())
                 {
-                    var count = result.GetInt32(0);
+                    count = result.GetInt32(0);
                     var next = result.NextResult();
 
                     while (next && result.Read())
@@ -40,7 +40,7 @@ namespace HQT.Core.Repository
                     }
                 }
                 
-                return listSubjects;
+                return new Tuple<int, List<Subject>>(count, listSubjects);
             }
         }
 

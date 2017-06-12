@@ -8,19 +8,22 @@ namespace HQT
 {
     public partial class OverviewAvailableProjectTabContentUserControl : OverviewTabContentUserControl
     {
-        public List<BaseProject> ListProjects { set; get; }
+        public Tuple<int, List<BaseProject>> ListProjects
+        {
+            set => RenderListProject(value);
+        }
 
         public OverviewAvailableProjectTabContentUserControl()
         {
             InitializeComponent();
         }
 
-        private void RenderListProject(List<BaseProject> listProjects)
+        private void RenderListProject(Tuple<int, List<BaseProject>> listProjects)
         {
             listView.Items.Clear();
-            txtNumber.Text = listProjects.Count.ToString();
+            txtNumber.Text = listProjects.Item1.ToString();
             var index = 1;
-            foreach (var project in listProjects)
+            foreach (var project in listProjects.Item2)
             {
                 var item = new ListViewItem(index.ToString());
                 item.SubItems.Add(project.ProjectName);
@@ -28,30 +31,6 @@ namespace HQT
                 listView.Items.Add(item);
                 index++;
             }
-        }
-
-        private void cbProjectType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var target = (ComboBox) sender;
-            if (target == null || ListProjects == null) 
-                return;
-            
-            if (target.SelectedItem.ToString().Equals("Cá nhân", StringComparison.CurrentCultureIgnoreCase))
-            {
-                var listProjects = ListProjects.Where(x => x is ProjectForSingle).ToList();
-                RenderListProject(listProjects);
-            }
-            else
-            {
-                var listProjects = ListProjects.Where(x => x is ProjectForTeam).ToList();
-                RenderListProject(listProjects);
-            }
-        }
-
-        private void OverviewAvailableProjectTabContentUserControl_Load(object sender, EventArgs e)
-        {
-            cbProjectType.Items.AddRange(new object[]{"Nhóm" , "Cá nhân"});
-            cbProjectType.SelectedItem = "Nhóm";
         }
     }
 }

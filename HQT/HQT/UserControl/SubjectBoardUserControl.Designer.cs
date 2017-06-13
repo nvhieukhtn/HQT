@@ -140,6 +140,7 @@
             this.Controls.Add(this.grbSubject);
             this.Name = "SubjectBoardUserControl";
             this.Size = new System.Drawing.Size(663, 87);
+            this.Load += new System.EventHandler(this.SubjectBoardUserControl_Load);
             this.grbSubject.ResumeLayout(false);
             this.grbSubject.PerformLayout();
             this.ResumeLayout(false);

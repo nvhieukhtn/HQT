@@ -165,6 +165,7 @@
             this.Controls.Add(this.grbPractice);
             this.Name = "TopicUserControl";
             this.Size = new System.Drawing.Size(660, 90);
+            this.Load += new System.EventHandler(this.TopicUserControl_Load);
             this.grbPractice.ResumeLayout(false);
             this.grbPractice.PerformLayout();
             this.grbDetail.ResumeLayout(false);

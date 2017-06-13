@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Model;
+using HQT.Shared;
 
 namespace HQT
 {
@@ -55,6 +56,14 @@ namespace HQT
         {
             if (RenewProjectItemClicked != null)
                 RenewProjectItemClicked(this, e);
+        }
+
+        private void ProjectItemUserControl_Load(object sender, EventArgs e)
+        {
+            if (ApplicationSetting.CurrentUser is Student)
+                btnRenew.Visible = false;
+            else
+                btnRenew.Visible = true;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HQT.Core.Interface.Service;
 using HQT.Core.Model;
+using HQT.Shared;
 using Microsoft.Practices.Unity;
 
 namespace HQT
@@ -107,6 +108,14 @@ namespace HQT
             {
                 SubjectBoardCreateProject(this, e);
             }
+        }
+
+        private void SubjectBoardUserControl_Load(object sender, EventArgs e)
+        {
+            if (ApplicationSetting.CurrentUser is Student)
+                btnAddProject.Visible = false;
+            else
+                btnAddProject.Visible = true;
         }
     }
 }

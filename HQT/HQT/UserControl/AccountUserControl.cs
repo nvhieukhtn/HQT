@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using HQT.Core.Model;
+using HQT.Shared;
 
 namespace HQT
 {
@@ -49,6 +50,14 @@ namespace HQT
         {
             if (DetailAccountEvent != null)
                 DetailAccountEvent(this, e);
+        }
+
+        private void AccountUserControl_Load(object sender, EventArgs e)
+        {
+            if (ApplicationSetting.CurrentUser is Administrator)
+                btnDelete.Visible = true;
+            else
+                btnDelete.Visible = false;
         }
     }
 }

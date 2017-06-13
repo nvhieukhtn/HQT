@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Interface.Service;
+using HQT.Core.Model;
+using HQT.Shared;
 using Microsoft.Practices.Unity;
 
 namespace HQT
@@ -45,10 +47,20 @@ namespace HQT
 
         private void funcAccount_FunctionClicked(object sender, EventArgs e)
         {
-            var subject = new AccountManagerForm();
-            subject.Show();
-            _isClose = false;
-            Close();
+            if (ApplicationSetting.CurrentUser is Administrator)
+            {
+                var accountManagerForm = new AccountManagerForm();
+                accountManagerForm.Show();
+                _isClose = false;
+                Close();
+            }
+            else 
+            {
+                var accountDetail = new AccountDetailForm(ApplicationSetting.CurrentUser.Id);
+                accountDetail.Show();
+                _isClose = false;
+                Close();
+            }
         }
 
         private void funcSubject_FunctionClicked(object sender, EventArgs e)

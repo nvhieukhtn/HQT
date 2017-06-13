@@ -79,6 +79,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Name = "ProjectItemUserControl";
             this.Size = new System.Drawing.Size(280, 25);
+            this.Load += new System.EventHandler(this.ProjectItemUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

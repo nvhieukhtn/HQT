@@ -71,7 +71,11 @@ namespace HQT
                 var listStudentItems = listStudents.Where(x=>x.Id != ApplicationSetting.CurrentUser.Id).Select(x => new ListViewItem() { Text = x.FullName, Tag = x }).ToArray();
                 lvStudent.Items.AddRange(listStudentItems);
             }
-
+            if (ApplicationSetting.CurrentUser is Student)
+            {
+                btnUpdate.Visible = false;
+                btnRemove.Visible = false;
+            }
         }
 
         private async void btnRegister_Click(object sender, EventArgs e)

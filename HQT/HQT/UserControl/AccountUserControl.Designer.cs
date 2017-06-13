@@ -99,6 +99,7 @@
             this.Controls.Add(this.txtUsername);
             this.Name = "AccountUserControl";
             this.Size = new System.Drawing.Size(539, 32);
+            this.Load += new System.EventHandler(this.AccountUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

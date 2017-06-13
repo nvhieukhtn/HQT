@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HQT.Core.Model;
+using HQT.Shared;
 
 namespace HQT
 {
@@ -135,6 +136,20 @@ namespace HQT
         {
             if (DisplayMember != null)
                 DisplayMember(this, e);
+        }
+
+        private void TopicUserControl_Load(object sender, EventArgs e)
+        {
+            if (ApplicationSetting.CurrentUser is Student)
+            {
+                btnRemove.Visible = false;
+                btnRegister.Visible = false;
+            }
+            else
+            {
+                btnRegister.Visible = true;
+                btnRemove.Visible = true;
+            }
         }
     }
 }

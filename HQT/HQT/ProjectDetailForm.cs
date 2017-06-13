@@ -172,6 +172,17 @@ namespace HQT
                 project.IsRegister = true;
                 Init(project);
             }
+            if (ApplicationSetting.CurrentUser is Student)
+            {
+                btnAddTopic.Visible = false;
+                btnEdit.Visible = false;
+            }
+            else
+            {
+                btnAddTopic.Visible = true;
+                btnEdit.Visible = true;
+            }
+
         }
 
         private async void btnSave_MouseClick(object sender, MouseEventArgs e)

@@ -11,14 +11,13 @@ namespace HQT
 {
     public partial class SubjectBoardUserControl : UserControl
     {
-        private readonly IProjectService _projectService;
-        private readonly IUnityContainer _container = DependencyResolution.Container;
         public delegate void SubjectBoardProjectDetailClickedEventHandler(object sender, EventArgs e);
 
         public BaseProject CurrentProject;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardProjectDetailClicked;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectBoardCreateProject;
         public event SubjectBoardProjectDetailClickedEventHandler SubjectRenewProject;
+        public event SubjectBoardProjectDetailClickedEventHandler SubjectLock;
         private void SubjectBoardProjectDetail_OnClick(object sender, EventArgs e)
         {
             if (SubjectBoardProjectDetailClicked != null)
@@ -83,7 +82,6 @@ namespace HQT
         public SubjectBoardUserControl()
         {
             InitializeComponent();
-            _projectService = _container.Resolve<IProjectService>();
             CurrentProject = null;
         }
 
@@ -113,9 +111,23 @@ namespace HQT
         private void SubjectBoardUserControl_Load(object sender, EventArgs e)
         {
             if (ApplicationSetting.CurrentUser is Student)
+            {
                 btnAddProject.Visible = false;
+                btnLock.Visible = false;
+            }
             else
+            {
                 btnAddProject.Visible = true;
+                btnLock.Visible = true;
+            }
+        }
+
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            if (SubjectLock != null)
+            {
+                SubjectLock(this, e);
+            }
         }
     }
 }

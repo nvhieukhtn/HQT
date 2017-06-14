@@ -59,5 +59,11 @@ namespace HQT.Core.Service
             }
             return result;
         }
+
+        public async Task<bool> LockSubjectAsync(Guid courseId)
+        {
+            var result = await _subjectRepository.LockSubjectAsync(courseId);
+            return result;
+        }
     }
 }

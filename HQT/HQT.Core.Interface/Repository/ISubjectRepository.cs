@@ -13,6 +13,6 @@ namespace HQT.Core.Interface.Repository
         Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
         Task<bool> CreateSubjectAsync(Subject subject);
         Task<bool> AddUserIntoSubjectAsync(Guid userId, Guid courseId);
-
+        Task<bool> LockSubjectAsync(Guid courseId);
     }
 }

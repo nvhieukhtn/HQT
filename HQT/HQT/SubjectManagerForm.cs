@@ -81,6 +81,7 @@ namespace HQT
                 ShowProjectDetail;
             subjectBoard.SubjectBoardCreateProject += CreateProjectEvent;
             subjectBoard.SubjectRenewProject += RenewProject;
+            subjectBoard.SubjectLock += LockSubject;
             return subjectBoard;
         }
 
@@ -95,6 +96,35 @@ namespace HQT
         private void FilterSubject(object sender, EventArgs e)
         {
             
+        }
+
+        private async void LockSubject(object sender, EventArgs e)
+        {
+            var target = (SubjectBoardUserControl)sender;
+            var courseId = target.Data.Id;
+            var result = await _subjectService.LockSubjectAsync(courseId);
+            if (result)
+            {
+                var act = MessageBox.Show(this, "Khóa môn học thành công", "Thông báo", MessageBoxButtons.OK);
+                if (act == DialogResult.OK)
+                {
+                    IsClose = false;
+                    var subjectManager = new SubjectManagerForm();
+                    subjectManager.Show();
+                    this.Close();
+                }
+            }
+            else
+            {
+                var act = MessageBox.Show(this, "Khóa môn học thất bại\nThử lại!", "Thông báo", MessageBoxButtons.OK);
+                if (act == DialogResult.OK)
+                {
+                    IsClose = false;
+                    var subjectManager = new SubjectManagerForm();
+                    subjectManager.Show();
+                    this.Close();
+                }
+            }
         }
 
         private void ShowProjectDetail(object sender, EventArgs e)

@@ -12,5 +12,6 @@ namespace HQT.Core.Interface.Service
         Task<List<Subject>> GetListSubjectByUserAsync(Guid userId);
         Task<Tuple<int, List<Subject>>> GetListSubjectsAsync();
         Task<bool> CreateSubjectAsync(Subject subject);
+        Task<bool> LockSubjectAsync(Guid courseId);
     }
 }

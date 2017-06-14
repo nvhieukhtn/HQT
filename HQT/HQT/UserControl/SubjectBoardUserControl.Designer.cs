@@ -30,6 +30,7 @@
         {
             this.grbSubject = new System.Windows.Forms.GroupBox();
             this.btnTeacherMore = new System.Windows.Forms.Button();
+            this.btnLock = new System.Windows.Forms.Button();
             this.btnAddProject = new System.Windows.Forms.Button();
             this.grbProjects = new System.Windows.Forms.GroupBox();
             this.txtTeacher = new System.Windows.Forms.TextBox();
@@ -45,6 +46,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grbSubject.Controls.Add(this.btnTeacherMore);
+            this.grbSubject.Controls.Add(this.btnLock);
             this.grbSubject.Controls.Add(this.btnAddProject);
             this.grbSubject.Controls.Add(this.grbProjects);
             this.grbSubject.Controls.Add(this.txtTeacher);
@@ -70,6 +72,20 @@
             this.btnTeacherMore.TabIndex = 2;
             this.btnTeacherMore.UseVisualStyleBackColor = true;
             this.btnTeacherMore.Click += new System.EventHandler(this.btnTeacherMore_Click);
+            // 
+            // btnLock
+            // 
+            this.btnLock.BackgroundImage = global::HQT.Properties.Resources._lock;
+            this.btnLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLock.FlatAppearance.BorderSize = 0;
+            this.btnLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLock.Location = new System.Drawing.Point(293, 19);
+            this.btnLock.Name = "btnLock";
+            this.btnLock.Size = new System.Drawing.Size(20, 20);
+            this.btnLock.TabIndex = 2;
+            this.btnLock.UseVisualStyleBackColor = true;
+            this.btnLock.Click += new System.EventHandler(this.btnLock_Click);
             // 
             // btnAddProject
             // 
@@ -110,7 +126,7 @@
             this.txtSubjectName.Enabled = false;
             this.txtSubjectName.Location = new System.Drawing.Point(99, 18);
             this.txtSubjectName.Name = "txtSubjectName";
-            this.txtSubjectName.Size = new System.Drawing.Size(216, 20);
+            this.txtSubjectName.Size = new System.Drawing.Size(188, 20);
             this.txtSubjectName.TabIndex = 1;
             // 
             // label1
@@ -157,5 +173,6 @@
         private System.Windows.Forms.Button btnAddProject;
         private System.Windows.Forms.Button btnTeacherMore;
         private System.Windows.Forms.TextBox txtTeacher;
+        private System.Windows.Forms.Button btnLock;
     }
 }

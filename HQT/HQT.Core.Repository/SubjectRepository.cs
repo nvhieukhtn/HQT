@@ -100,5 +100,19 @@ namespace HQT.Core.Repository
                 return result > 0;
             }
         }
+
+        public async Task<bool> LockSubjectAsync(Guid courseId)
+        {
+            using (var db = DataAccessFactory.CreateDataAccess("sp_Course_Lock"))
+            {
+                var listParams = new Dictionary<string, object>
+                {
+                    {nameof(courseId), courseId }
+                };
+
+                var result = await db.ExecuteNonQueryAsync(listParams);
+                return result > 0;
+            }
+        }
     }
 }

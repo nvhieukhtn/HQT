@@ -2,10 +2,8 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using HQT.Core.Interface.Service;
 using HQT.Core.Model;
 using HQT.Shared;
-using Microsoft.Practices.Unity;
 
 namespace HQT
 {
